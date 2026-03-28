@@ -1,0 +1,294 @@
+# 枯山水 - 日式禅意极简风格
+# 以极度克制的设计语言，大量留白，纤细线条，传达禅宗的宁静与空寂
+
+name: "枯山水"
+description: "日式禅意极简风格，极度克制的留白与纤细线条，传达枯山水庭院的宁静空寂"
+series: "oriental"
+tags: ["日式", "极简", "禅意"]
+
+# 容器样式 - 极简洁净
+container:
+  max_width: "677px"
+  padding: "8px"
+  background: "#fafaf8"
+  border_radius: "12px"
+  box_shadow: ""
+
+# H1 样式 - 纯黑大字，大字距，纤细底线
+h1:
+  style: |
+    padding: 1.2em 1em 0.8em;
+    margin: 2.5em 0 1.5em;
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 1.4;
+    color: #1a1a1a;
+    text-align: center;
+    letter-spacing: 0.3em;
+    border-bottom: 1px solid #d0d0d0;
+
+# H2 样式 - 极简左边框，深灰色
+h2:
+  style: |
+    margin: 2.5em 8px 1em 0;
+    padding: 0.3em 0 0.3em 14px;
+    border-left: 2px solid #333333;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: #2a2a2a;
+    letter-spacing: 0.12em;
+
+# H3 样式 - 更纤细的边框
+h3:
+  style: |
+    margin: 2em 8px 0.8em 0;
+    padding: 0.2em 0 0.2em 12px;
+    border-left: 1px solid #666666;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: #333333;
+    letter-spacing: 0.08em;
+
+# H4 样式
+h4:
+  style: |
+    margin: 1.8em 8px 0.6em 0;
+    padding-left: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #3a3a3a;
+    border-left: 1px solid #999999;
+
+# H5 样式
+h5:
+  style: |
+    margin: 1.5em 8px 0.5em 0;
+    padding-left: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #444444;
+
+# H6 样式
+h6:
+  style: |
+    margin: 1.2em 8px 0.4em 0;
+    padding-left: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #555555;
+
+# 段落样式 - 干净无衬线，宽松行距，深灰文字
+paragraph:
+  style: |
+    margin: 1.5em 8px;
+    text-align: justify;
+    line-height: 1.9;
+    font-family: 'PingFang SC', -apple-system-font, 'Hiragino Sans', 'Noto Sans CJK SC', sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.06em;
+    color: #444444;
+
+# 列表样式 - 极简
+list:
+  container_style: |
+    list-style: none;
+    padding: 0;
+    margin: 1.5em 8px;
+    color: #444444;
+    font-size: 15px;
+
+  item_style: |
+    margin: 0.6em 0;
+    padding: 0;
+    line-height: 1.85;
+    font-size: 15px;
+    color: #444444;
+
+  ul_prefix: "– "
+  ol_prefix: "{n}. "
+
+# 代码块样式 - 干净浅灰底，无重边框
+code_block:
+  style: |
+    margin: 1.8em 8px;
+    padding: 1.4em;
+    background-color: #f5f5f3;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 14px;
+    line-height: 1.6;
+    border: 1px solid #e8e8e6;
+
+  code_inner_style: |
+    background: none;
+    padding: 0;
+    font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+    font-size: 14px;
+    color: #3a3a3a;
+    line-height: 1.6;
+
+# 内联代码样式 - 极简灰底
+inline_code:
+  style: |
+    background-color: #f0f0ee;
+    color: #333333;
+    font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 90%;
+
+# 引用样式 - 纤细灰线，无背景，斜体
+blockquote:
+  style: |
+    margin: 2em 0;
+    padding: 0.8em 1.5em;
+    border-left: 1px solid #cccccc;
+    color: #666666;
+    font-style: italic;
+
+  p_inner_style: |
+    margin: 0;
+    color: #666666;
+    line-height: 1.85;
+    font-style: italic;
+    font-size: 15px;
+
+# 链接样式 - 深灰不喧宾夺主
+link:
+  style: |
+    color: #333333;
+    text-decoration: none;
+    border-bottom: 1px solid #cccccc;
+
+# 图片样式 - 无阴影，极简边框
+image:
+  container_style: |
+    margin: 2em 0;
+    text-align: center;
+
+  img_style: |
+    max-width: 100%;
+    margin: 1em auto;
+    display: block;
+    border-radius: 2px;
+
+# 表格样式 - 纤细线条
+table:
+  style: |
+    margin: 1.8em 0;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+
+  th_style: |
+    background: #f0f0ee;
+    color: #2a2a2a;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 500;
+    border-bottom: 1px solid #cccccc;
+
+  td_style: |
+    border-bottom: 1px solid #e8e8e6;
+    padding: 10px 14px;
+    color: #444444;
+
+# 分隔线样式 - 纤细灰线
+hr:
+  style: |
+    border: none;
+    height: 1px;
+    margin: 3em 0;
+    background: #d8d8d6;
+
+# 粗体样式 - 仅加粗，不改色
+bold:
+  style: |
+    font-weight: 600;
+
+# 斜体样式 - 灰色斜体
+italic:
+  style: |
+    font-style: italic;
+    color: #888888;
+
+# 删除线样式
+strikethrough:
+  style: |
+    text-decoration: line-through;
+    color: #aaaaaa;
+
+# 对话样式 - 极简留白
+dialogue:
+  container_style: |
+    margin: 2.5em 0;
+    padding: 20px;
+    background: #fafaf8;
+    border-radius: 8px;
+    border: 1px solid #e8e8e6;
+
+  title_style: |
+    font-size: 17px;
+    font-weight: 400;
+    margin-bottom: 18px;
+    color: #2a2a2a;
+    text-align: center;
+    letter-spacing: 0.15em;
+
+  message_style: |
+    display: flex;
+    margin-bottom: 16px;
+    align-items: flex-start;
+
+  bubble_left_style: |
+    background: #f5f5f3;
+    color: #444444;
+    padding: 12px 16px;
+    border-radius: 12px;
+    max-width: 65%;
+    word-wrap: break-word;
+    border: 1px solid #e8e8e6;
+
+  bubble_right_style: |
+    background: #333333;
+    color: #ffffff;
+    padding: 12px 16px;
+    border-radius: 12px;
+    max-width: 65%;
+    word-wrap: break-word;
+
+  avatar_style: |
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 400;
+    font-size: 14px;
+    flex-shrink: 0;
+    margin: 0 12px;
+
+  avatar_left_style: |
+    background: #e8e8e6;
+    color: #555555;
+
+  avatar_right_style: |
+    background: #333333;
+    color: #ffffff;
+
+# 页面背景
+body:
+  background: "#f2f2f0"
+  padding: "16px"
+  margin: "0"
+
+# 装饰配置
+decorations:
+  h2_prefix: "· "
+  ul_prefix: "– "

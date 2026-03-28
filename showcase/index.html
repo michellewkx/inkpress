@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>inkpress 墨印 — Markdown → 微信排版</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0f0f13;
+      --surface: #1a1a22;
+      --surface-hover: #22222e;
+      --border: #2a2a35;
+      --text: #e4e4e8;
+      --text-dim: #8888a0;
+      --accent: #8b5cf6;
+      --accent-glow: rgba(139, 92, 246, 0.3);
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Nav */
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 32px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--bg); z-index: 100; backdrop-filter: blur(12px); }
+    .nav-brand { font-size: 20px; font-weight: 700; letter-spacing: 0.05em; }
+    .nav-brand span { color: var(--accent); }
+    .nav-links { display: flex; gap: 24px; font-size: 14px; }
+    .nav-links a { color: var(--text-dim); }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    /* Hero */
+    .hero { text-align: center; padding: 80px 32px 60px; }
+    .hero h1 { font-size: 48px; font-weight: 800; margin-bottom: 16px; background: linear-gradient(135deg, #e4e4e8, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { font-size: 18px; color: var(--text-dim); max-width: 600px; margin: 0 auto 32px; }
+    .hero-badges { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
+    .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 13px; background: var(--surface); border: 1px solid var(--border); color: var(--text-dim); }
+    .hero-actions { display: flex; gap: 12px; justify-content: center; }
+    .btn { padding: 10px 24px; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; border: none; transition: all 0.2s; }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { box-shadow: 0 0 20px var(--accent-glow); transform: translateY(-1px); }
+    .btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+    .btn-secondary:hover { background: var(--surface-hover); }
+
+    /* Gallery */
+    .gallery { padding: 40px 32px 60px; max-width: 1200px; margin: 0 auto; }
+    .gallery h2 { font-size: 28px; font-weight: 700; margin-bottom: 24px; }
+    .tabs { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+    .tab { padding: 6px 16px; border-radius: 20px; font-size: 13px; cursor: pointer; background: var(--surface); border: 1px solid var(--border); color: var(--text-dim); transition: all 0.2s; }
+    .tab.active, .tab:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .theme-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+    .theme-card { background: var(--surface); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; cursor: pointer; transition: all 0.25s; }
+    .theme-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); border-color: var(--accent); }
+    .theme-card.active { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-glow); }
+    .theme-preview { height: 160px; overflow: hidden; padding: 12px; font-size: 10px; line-height: 1.4; }
+    .theme-info { padding: 12px 16px; border-top: 1px solid var(--border); }
+    .theme-name { font-weight: 600; font-size: 14px; }
+    .theme-desc { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
+    .theme-tags { margin-top: 6px; display: flex; gap: 4px; flex-wrap: wrap; }
+    .theme-tag { font-size: 10px; padding: 1px 6px; border-radius: 4px; background: var(--border); color: var(--text-dim); }
+
+    /* Editor */
+    .editor-section { padding: 40px 32px 60px; max-width: 1200px; margin: 0 auto; }
+    .editor-section h2 { font-size: 28px; font-weight: 700; margin-bottom: 24px; }
+    .editor-wrap { display: flex; gap: 16px; height: 500px; }
+    .editor-pane { flex: 1; display: flex; flex-direction: column; }
+    .editor-pane label { font-size: 13px; color: var(--text-dim); margin-bottom: 8px; font-weight: 600; }
+    .editor-pane textarea { flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; color: var(--text); font-family: 'SFMono-Regular', Consolas, monospace; font-size: 14px; line-height: 1.6; resize: none; outline: none; }
+    .editor-pane textarea:focus { border-color: var(--accent); }
+    .preview-frame { flex: 1; border: 1px solid var(--border); border-radius: 8px; background: #fff; overflow: auto; }
+    .editor-toolbar { display: flex; gap: 8px; align-items: center; margin-top: 16px; flex-wrap: wrap; }
+    .editor-toolbar select { padding: 8px 12px; border-radius: 8px; background: var(--surface); border: 1px solid var(--border); color: var(--text); font-size: 14px; outline: none; }
+    .copy-toast { position: fixed; top: 24px; right: 24px; background: var(--accent); color: #fff; padding: 10px 20px; border-radius: 8px; font-size: 14px; opacity: 0; transition: opacity 0.3s; z-index: 1000; }
+    .copy-toast.show { opacity: 1; }
+
+    /* Install */
+    .install-section { padding: 40px 32px 80px; max-width: 800px; margin: 0 auto; text-align: center; }
+    .install-section h2 { font-size: 28px; font-weight: 700; margin-bottom: 24px; }
+    .install-code { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px 24px; font-family: monospace; font-size: 16px; color: var(--accent); display: inline-block; margin-bottom: 16px; cursor: pointer; }
+    .install-code:hover { border-color: var(--accent); }
+
+    /* Footer */
+    .footer { padding: 24px 32px; border-top: 1px solid var(--border); text-align: center; font-size: 13px; color: var(--text-dim); }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 32px; }
+      .editor-wrap { flex-direction: column; height: auto; }
+      .editor-pane textarea { height: 250px; }
+      .preview-frame { height: 350px; }
+      .theme-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-brand"><span>ink</span>press</div>
+    <div class="nav-links">
+      <a href="#gallery">Themes</a>
+      <a href="#editor">Editor</a>
+      <a href="#install">Install</a>
+      <a href="https://github.com/nicekate/inkpress" target="_blank">GitHub</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>inkpress 墨印</h1>
+    <p>把 Markdown 变成微信公众号排版<br>20+ 精品主题 · 完全免费 · 完全离线</p>
+    <div class="hero-badges">
+      <span class="badge">零依赖</span>
+      <span class="badge">零付费</span>
+      <span class="badge">Python + JS</span>
+      <span class="badge">YAML 主题</span>
+    </div>
+    <div class="hero-actions">
+      <button class="btn btn-primary" onclick="document.getElementById('editor').scrollIntoView({behavior:'smooth'})">开始使用</button>
+      <button class="btn btn-secondary" onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'})">浏览主题</button>
+    </div>
+  </section>
+
+  <section class="gallery" id="gallery">
+    <h2>主题画廊</h2>
+    <div class="tabs" id="tabs"></div>
+    <div class="theme-grid" id="themeGrid"></div>
+  </section>
+
+  <section class="editor-section" id="editor">
+    <h2>在线编辑器</h2>
+    <div class="editor-wrap">
+      <div class="editor-pane">
+        <label>Markdown 输入</label>
+        <textarea id="mdInput" placeholder="在这里输入 Markdown..."></textarea>
+      </div>
+      <div class="editor-pane">
+        <label>实时预览</label>
+        <div class="preview-frame" id="previewFrame"></div>
+      </div>
+    </div>
+    <div class="editor-toolbar">
+      <select id="themeSelect"></select>
+      <button class="btn btn-primary" onclick="copyHTML()">📋 复制 HTML</button>
+      <button class="btn btn-secondary" onclick="downloadHTML()">↓ 下载</button>
+    </div>
+  </section>
+
+  <section class="install-section" id="install">
+    <h2>安装</h2>
+    <div class="install-code" onclick="navigator.clipboard.writeText('pip install inkpress')">pip install inkpress</div>
+    <p style="color: var(--text-dim); margin-top: 16px;">
+      CLI: <code style="color:var(--accent)">inkpress convert input.md -t cyberpunk</code><br>
+      Python: <code style="color:var(--accent)">from inkpress import convert</code>
+    </p>
+  </section>
+
+  <div class="copy-toast" id="copyToast">已复制到剪贴板</div>
+
+  <footer class="footer">
+    inkpress — Open source, MIT License
+  </footer>
+
+  <!-- marked.js for browser-side markdown parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="js/themes.js"></script>
+  <script src="js/renderer.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

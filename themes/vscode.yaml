@@ -1,0 +1,311 @@
+# VS Code 风格 - Visual Studio Code 编辑器风格
+# 还原 VS Code 暗色主题的经典配色
+
+name: "VS Code"
+description: "Visual Studio Code 编辑器风格，经典 IDE 暗色主题"
+series: "tech"
+tags: ["IDE", "开发者", "编程"]
+
+# 容器样式
+container:
+  max_width: "677px"
+  padding: "16px"
+  background: "#1e1e1e"
+  border_radius: "12px"
+  box_shadow: "0 2px 12px rgba(0, 0, 0, 0.4)"
+
+# H1 样式
+h1:
+  style: |
+    margin: 1.5em 8px 0.75em 0px;
+    padding: 0.4em 0;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: #569cd6;
+    border-bottom: 2px solid #333333;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+
+# H2 样式
+h2:
+  style: |
+    margin: 2em 8px 0.75em 0px;
+    padding: 0px 0px 0.35em 0px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #4ec9b0;
+    border-bottom: 1px solid #333333;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+
+# H3 样式
+h3:
+  style: |
+    margin: 2em 8px 0.75em 0px;
+    padding: 0px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #dcdcaa;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+
+# H4 样式
+h4:
+  style: |
+    margin: 1.5em 8px 0.5em 0px;
+    padding: 0px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #9cdcfe;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+
+# H5 样式
+h5:
+  style: |
+    margin: 1.2em 8px 0.4em 0px;
+    padding: 0px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #c586c0;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+
+# H6 样式
+h6:
+  style: |
+    margin: 1em 8px 0.3em 0px;
+    padding: 0px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #808080;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+
+# 段落样式
+paragraph:
+  style: |
+    margin: 1em 8px;
+    text-align: left;
+    line-height: 1.6;
+    font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+    font-size: 15px;
+    color: #d4d4d4;
+    overflow-wrap: break-word;
+
+# 列表样式
+list:
+  container_style: |
+    list-style: none;
+    margin: 0em 8px 1em;
+    padding: 0px;
+    text-align: left;
+    line-height: 1.6;
+    font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+    font-size: 15px;
+    color: #d4d4d4;
+
+  item_style: |
+    margin: 0.3em 0px;
+    padding: 0px;
+    text-align: left;
+    line-height: 1.6;
+    font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+    font-size: 15px;
+    color: #d4d4d4;
+
+  ul_prefix: "• "
+  ol_prefix: "{n}. "
+
+# 代码块样式
+code_block:
+  style: |
+    margin: 1.5em 8px;
+    padding: 16px;
+    background-color: #1e1e1e;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 14px;
+    line-height: 1.5;
+    border: 1px solid #333333;
+
+  code_inner_style: |
+    background: none;
+    padding: 0;
+    font-family: 'Cascadia Code', 'Fira Code', Menlo, Monaco, Consolas, monospace;
+    font-size: 14px;
+    color: #d4d4d4;
+    line-height: 1.5;
+
+# 内联代码样式
+inline_code:
+  style: |
+    background-color: #2d2d2d;
+    color: #ce9178;
+    font-family: 'Cascadia Code', 'Fira Code', Menlo, Monaco, Consolas, monospace;
+    padding: 3px 6px;
+    border-radius: 3px;
+    font-size: 90%;
+
+# 引用样式
+blockquote:
+  style: |
+    margin: 1em 0;
+    padding: 0.8em 1em 0.8em 1.5em;
+    border-left: 4px solid #007acc;
+    border-radius: 0px;
+    background: #252526;
+    color: #d4d4d4;
+    font-style: normal;
+
+  p_inner_style: |
+    margin: 0px;
+    text-align: left;
+    line-height: 1.6;
+    font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+    font-size: 15px;
+    display: block;
+    color: #d4d4d4;
+    font-style: normal;
+
+# 链接样式
+link:
+  style: |
+    color: #569cd6;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(86, 156, 214, 0.3);
+
+# 图片样式
+image:
+  container_style: |
+    margin: 1.5em 0;
+    text-align: center;
+    line-height: 1.6;
+    font-size: 14px;
+    color: #808080;
+
+  img_style: |
+    display: block;
+    max-width: 100%;
+    margin: 0.1em auto 0.5em;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    border: 1px solid #333333;
+
+# 表格样式
+table:
+  style: |
+    margin: 1.5em 0;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+    color: #d4d4d4;
+
+  th_style: |
+    background: #252526;
+    color: #569cd6;
+    padding: 10px 13px;
+    text-align: left;
+    font-weight: 600;
+    border: 1px solid #333333;
+
+  td_style: |
+    border: 1px solid #333333;
+    padding: 10px 13px;
+    color: #d4d4d4;
+
+# 分隔线样式
+hr:
+  style: |
+    border: none;
+    height: 1px;
+    margin: 2em 0;
+    background: #333333;
+
+# 粗体样式
+bold:
+  style: |
+    font-weight: 600;
+    color: #569cd6;
+
+# 斜体样式
+italic:
+  style: |
+    font-style: italic;
+    color: #c586c0;
+
+# 删除线样式
+strikethrough:
+  style: |
+    text-decoration: line-through;
+    color: #808080;
+
+# 对话样式
+dialogue:
+  container_style: |
+    margin: 2em 0;
+    padding: 20px;
+    background: #252526;
+    border-radius: 8px;
+    border: 1px solid #333333;
+
+  title_style: |
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #569cd6;
+    text-align: center;
+
+  message_style: |
+    display: flex;
+    margin-bottom: 16px;
+    align-items: flex-start;
+
+  bubble_left_style: |
+    background: #2d2d2d;
+    color: #d4d4d4;
+    padding: 10px 14px;
+    border-radius: 8px;
+    max-width: 65%;
+    word-wrap: break-word;
+    border: 1px solid #333333;
+    font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+
+  bubble_right_style: |
+    background: #007acc;
+    color: #ffffff;
+    padding: 10px 14px;
+    border-radius: 8px;
+    max-width: 65%;
+    word-wrap: break-word;
+
+  avatar_style: |
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    flex-shrink: 0;
+    margin: 0 12px;
+
+  avatar_left_style: |
+    background: #2d2d2d;
+    color: #d4d4d4;
+    border: 1px solid #333333;
+
+  avatar_right_style: |
+    background: #007acc;
+    color: #ffffff;
+
+# 页面背景
+body:
+  background: "#1e1e1e"
+  padding: "16px"
+  margin: "0"
+
+# 装饰配置
+decorations: {}

@@ -1,0 +1,188 @@
+# inkpress theme template
+# Create a new theme by copying this file
+
+# 风格基本信息
+name: "风格名称"
+description: "风格描述"
+
+# 颜色配置
+colors:
+  # 主色调（支持单色或渐变）
+  primary: "#1677ff"                    # 主色
+  primary_gradient: "linear-gradient(135deg, #007aff 0%, #5856d6 100%)"  # 渐变（可选）
+  secondary: "#05d4cd"                  # 辅助色
+  accent: "#ff2d55"                     # 强调色
+
+  # 背景色
+  background: "#ffffff"                 # 容器背景
+  body_background: "#f9f9f9"           # 页面背景
+
+  # 文字颜色
+  text_primary: "#1d1d1f"              # 主要文字
+  text_secondary: "#333333"            # 次要文字
+  text_tertiary: "#666666"             # 三级文字
+
+  # 边框颜色
+  border: "#e8e8e8"                     # 普通边框
+  border_light: "rgba(0,0,0,0.08)"     # 浅边框
+
+  # 特殊元素颜色
+  link: "#007aff"                       # 链接颜色
+  code_background: "#f5f5f5"           # 代码背景
+  code_text: "#333333"                  # 代码文字
+  blockquote_background: "#f7f7f7"     # 引用背景
+
+# 字体配置
+typography:
+  font_family: "'PingFang SC', -apple-system-font, BlinkMacSystemFont, 'Helvetica Neue', sans-serif"
+  base_font_size: "15px"
+  line_height: "1.75"
+  letter_spacing: "0.1em"
+
+# 间距配置
+spacing:
+  container_padding: "8px"
+  paragraph_margin: "1.2em 8px"
+  heading_margin_top: "2em"
+  heading_margin_bottom: "0.75em"
+  list_margin: "0em 8px 1.5em"
+
+# 圆角配置
+radius:
+  container: "12px"
+  heading: "8px"
+  code_block: "8px"
+  blockquote: "6px"
+  image: "8px"
+
+# 阴影配置
+shadows:
+  container: ""
+  heading: "0 2px 8px rgba(0,0,0,0.1)"
+  code_block: "0 2px 8px rgba(0,0,0,0.1)"
+  blockquote: "0 4px 6px rgba(0,0,0,0.05)"
+  image: "0 4px 8px rgba(0,0,0,0.1)"
+
+# 标题样式配置
+headings:
+  h1:
+    style: "banner"  # banner: 背景色块, underline: 下划线, border: 边框
+    background: "primary"  # primary, primary_gradient, 或自定义
+    color: "#ffffff"
+    font_size: "22px"
+    font_weight: "bold"
+    padding: "0.8em 1.5em"
+    border_radius: "8px"
+    box_shadow: true
+    text_align: "center"
+
+  h2:
+    style: "border"  # border: 左边框+底部虚线
+    border_left: "4px solid {primary}"
+    border_bottom: "1px dashed {primary}"
+    color: "text_secondary"
+    font_size: "20px"
+    font_weight: "bold"
+    padding: "0px 0px 0.5em 12px"
+    background: ""  # 可选背景
+
+  h3:
+    style: "border"
+    border_left: "4px solid {primary}"
+    border_bottom: "1px dashed {primary}"
+    color: "text_secondary"
+    font_size: "18px"
+    font_weight: "bold"
+    padding: "0px 0px 0.4em 12px"
+
+  h4:
+    style: "border"
+    border_left: "4px solid {primary}"
+    color: "text_secondary"
+    font_size: "16px"
+    font_weight: "bold"
+    padding: "0 0 0 12px"
+
+  h5:
+    style: "border"
+    border_left: "3px solid {primary}"
+    color: "text_secondary"
+    font_size: "15px"
+    font_weight: "bold"
+    padding: "0 0 0 8px"
+
+  h6:
+    style: "border"
+    border_left: "2px solid {primary}"
+    color: "text_secondary"
+    font_size: "14px"
+    font_weight: "bold"
+    padding: "0 0 0 6px"
+
+# 列表样式
+lists:
+  style: "custom"  # custom: 自定义前缀, default: 默认样式
+  ul_prefix: "• "   # 无序列表前缀
+  ol_prefix: "{n}. " # 有序列表前缀，{n} 会被替换为数字
+  color: "text_secondary"
+  line_height: "1.75"
+
+# 引用样式
+blockquote:
+  border_left: "4px solid {primary}"
+  border_radius: "6px"
+  background: "blockquote_background"
+  padding: "1em 1em 1em 2em"
+  color: "text_secondary"
+  font_style: "normal"
+  box_shadow: true
+
+# 代码块样式
+code_block:
+  background: "code_background"
+  border_top: "3px solid {primary}"  # 顶部彩色边框
+  border_radius: "8px"
+  padding: "1.2em"
+  font_family: "'SFMono-Regular', Consolas, Menlo, monospace"
+  font_size: "14px"
+  line_height: "1.5"
+  box_shadow: true
+
+# 内联代码样式
+inline_code:
+  background: "rgba({primary_rgb}, 0.1)"
+  color: "primary"
+  padding: "3px 6px"
+  border_radius: "4px"
+  font_size: "90%"
+
+# 粗体样式
+bold:
+  style: "color"  # color: 颜色, gradient: 渐变文字
+  color: "primary"
+  gradient: ""  # 如果 style 为 gradient
+
+# 斜体样式
+italic:
+  style: "color"
+  color: "rgb(102, 102, 102)"
+  gradient: ""
+
+# 分隔线样式
+hr:
+  style: "gradient"  # gradient: 渐变线, solid: 实线
+  height: "1px"
+  background: "linear-gradient(to right, transparent, {primary}, transparent)"
+
+# 链接样式
+link:
+  color: "primary"
+  text_decoration: "none"
+  border_bottom: "1px solid rgba({primary_rgb}, 0.3)"
+
+# 图片样式
+image:
+  border_radius: "8px"
+  box_shadow: true
+  display: "block"
+  max_width: "100%"

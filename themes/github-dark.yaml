@@ -1,0 +1,305 @@
+# GitHub Dark 风格 - GitHub 暗色模式
+# 还原 GitHub 暗色主题的设计风格
+
+name: "GitHub Dark"
+description: "GitHub 暗色模式风格，开发者熟悉的深色界面"
+series: "tech"
+tags: ["GitHub", "暗色", "开发者"]
+
+# 容器样式
+container:
+  max_width: "677px"
+  padding: "16px"
+  background: "#0d1117"
+  border_radius: "12px"
+  box_shadow: "0 2px 12px rgba(0, 0, 0, 0.3)"
+
+# H1 样式
+h1:
+  style: |
+    margin: 1.5em 8px 0.75em 0px;
+    padding: 0px 0px 0.4em 0px;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #e6edf3;
+    border-bottom: 1px solid #30363d;
+
+# H2 样式
+h2:
+  style: |
+    margin: 2em 8px 0.75em 0px;
+    padding: 0px 0px 0.35em 0px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #e6edf3;
+    border-bottom: 1px solid #30363d;
+
+# H3 样式
+h3:
+  style: |
+    margin: 2em 8px 0.75em 0px;
+    padding: 0px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #e6edf3;
+
+# H4 样式
+h4:
+  style: |
+    margin: 1.5em 8px 0.5em 0px;
+    padding: 0px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #e6edf3;
+
+# H5 样式
+h5:
+  style: |
+    margin: 1.2em 8px 0.4em 0px;
+    padding: 0px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #e6edf3;
+
+# H6 样式
+h6:
+  style: |
+    margin: 1em 8px 0.3em 0px;
+    padding: 0px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #848d97;
+
+# 段落样式
+paragraph:
+  style: |
+    margin: 1em 8px;
+    text-align: left;
+    line-height: 1.6;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    color: #e6edf3;
+    overflow-wrap: break-word;
+
+# 列表样式
+list:
+  container_style: |
+    list-style: none;
+    margin: 0em 8px 1em;
+    padding: 0px;
+    text-align: left;
+    line-height: 1.6;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    color: #e6edf3;
+
+  item_style: |
+    margin: 0.25em 0px;
+    padding: 0px;
+    text-align: left;
+    line-height: 1.6;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    color: #e6edf3;
+
+  ul_prefix: "• "
+  ol_prefix: "{n}. "
+
+# 代码块样式
+code_block:
+  style: |
+    margin: 1.5em 8px;
+    padding: 16px;
+    background-color: #161b22;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 14px;
+    line-height: 1.45;
+    border: 1px solid #30363d;
+
+  code_inner_style: |
+    background: none;
+    padding: 0;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 14px;
+    color: #e6edf3;
+    line-height: 1.45;
+
+# 内联代码样式
+inline_code:
+  style: |
+    background-color: rgba(31, 111, 235, 0.25);
+    color: #e6edf3;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    padding: 3px 6px;
+    border-radius: 6px;
+    font-size: 85%;
+
+# 引用样式
+blockquote:
+  style: |
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 4px solid #30363d;
+    border-radius: 0px;
+    background: #161b22;
+    color: #848d97;
+    font-style: normal;
+
+  p_inner_style: |
+    margin: 0px;
+    text-align: left;
+    line-height: 1.6;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    display: block;
+    color: #848d97;
+    font-style: normal;
+
+# 链接样式
+link:
+  style: |
+    color: #58a6ff;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+
+# 图片样式
+image:
+  container_style: |
+    margin: 1.5em 0;
+    text-align: center;
+    line-height: 1.6;
+    font-size: 14px;
+    color: #848d97;
+
+  img_style: |
+    display: block;
+    max-width: 100%;
+    margin: 0.1em auto 0.5em;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    border: 1px solid #30363d;
+
+# 表格样式
+table:
+  style: |
+    margin: 1.5em 0;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    color: #e6edf3;
+
+  th_style: |
+    background: #161b22;
+    color: #e6edf3;
+    padding: 10px 13px;
+    text-align: left;
+    font-weight: 600;
+    border: 1px solid #30363d;
+
+  td_style: |
+    border: 1px solid #30363d;
+    padding: 10px 13px;
+    color: #e6edf3;
+
+# 分隔线样式
+hr:
+  style: |
+    border: none;
+    height: 4px;
+    margin: 1.5em 0;
+    padding: 0;
+    background: #30363d;
+    border-radius: 2px;
+
+# 粗体样式
+bold:
+  style: |
+    font-weight: 600;
+    color: #ffffff;
+
+# 斜体样式
+italic:
+  style: |
+    font-style: italic;
+    color: #e6edf3;
+
+# 删除线样式
+strikethrough:
+  style: |
+    text-decoration: line-through;
+    color: #848d97;
+
+# 对话样式
+dialogue:
+  container_style: |
+    margin: 2em 0;
+    padding: 20px;
+    background: #161b22;
+    border-radius: 6px;
+    border: 1px solid #30363d;
+
+  title_style: |
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #e6edf3;
+    text-align: center;
+
+  message_style: |
+    display: flex;
+    margin-bottom: 16px;
+    align-items: flex-start;
+
+  bubble_left_style: |
+    background: #21262d;
+    color: #e6edf3;
+    padding: 10px 14px;
+    border-radius: 12px;
+    max-width: 65%;
+    word-wrap: break-word;
+    border: 1px solid #30363d;
+
+  bubble_right_style: |
+    background: #1f6feb;
+    color: #ffffff;
+    padding: 10px 14px;
+    border-radius: 12px;
+    max-width: 65%;
+    word-wrap: break-word;
+
+  avatar_style: |
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    flex-shrink: 0;
+    margin: 0 12px;
+
+  avatar_left_style: |
+    background: #21262d;
+    color: #e6edf3;
+    border: 1px solid #30363d;
+
+  avatar_right_style: |
+    background: #1f6feb;
+    color: #ffffff;
+
+# 页面背景
+body:
+  background: "#010409"
+  padding: "16px"
+  margin: "0"
+
+# 装饰配置
+decorations: {}

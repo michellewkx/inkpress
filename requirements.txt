@@ -1,0 +1,3 @@
+markdown>=3.6
+pygments>=2.17
+pyyaml>=6.0
