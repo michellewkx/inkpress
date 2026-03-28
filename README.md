@@ -1,6 +1,6 @@
 # inkpress 墨印
 
-> Markdown → 微信公众号排版，20+ 精品主题，完全免费，完全离线
+> Markdown → 微信公众号排版，25 个精品主题，完全免费，完全离线
 
 ## 快速开始
 
@@ -32,15 +32,14 @@ for name, desc in list_themes().items():
 
 ## 主题画廊
 
-5 大系列，17 个精品手工主题：
+5 大系列，25 个精品主题：
 
 | 系列 | 主题 |
 |------|------|
-| **经典 Classic** | default, minimal, elegant-serif, aurora, ocean, sunset |
-| **科技 Tech** | cyberpunk, terminal, github-dark, vscode, blueprint |
-| **东方 Oriental** | chinese-ink, zen-garden, tang-poetry |
-| **杂志 Magazine** | vogue |
-| **社交 Social** | xiaohongshu, mint |
+| **经典 Classic** | default, minimal, elegant-serif, aurora, ocean, sunset, mono, latte, bluehl, corporate, forest, sunshine |
+| **东方 Oriental** | chinese-ink, zen-garden, tang-poetry, sanguo, inkwash |
+| **杂志 Magazine** | vogue, bauhaus, editorial, academy |
+| **社交 Social** | xiaohongshu, mint, mint-highlight, sakura |
 
 在线预览：打开 `showcase/index.html` 或运行 `python -m inkpress serve`
 

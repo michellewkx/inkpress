@@ -1,0 +1,240 @@
+# Corporate theme
+# 藏蓝正式风，专业权威，财经/商业/职场内容
+
+name: "商务蓝"
+description: "藏蓝正式风，专业权威，财经/商业/职场内容"
+series: "classic"
+tags: ["商务", "藏蓝", "专业", "权威"]
+
+# 容器样式
+container:
+  max_width: "677px"
+  padding: "24px 20px"
+  background: "#ffffff"
+  border_radius: "0"
+  box_shadow: "none"
+  border: "1px solid #d0d5dd"
+
+# 页面背景
+body:
+  background: "#f2f4f7"
+  padding: "18px"
+
+# H1 样式
+h1:
+  style: |
+    padding: 0.8em 0;
+    margin: 1.5em 0 1.2em;
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1.35;
+    color: #101828;
+    text-align: center;
+    letter-spacing: 0.04em;
+    border-bottom: 3px solid #1e3a5f;
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+
+# H2 样式
+h2:
+  style: |
+    margin: 2.5em 0 1em;
+    padding: 0.5em 1em;
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 1.4;
+    color: #ffffff;
+    background-color: #1e3a5f;
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
+    letter-spacing: 0.04em;
+
+# H3 样式
+h3:
+  style: |
+    margin: 2em 0 0.8em;
+    padding: 0.3em 0 0.3em 14px;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #1e3a5f;
+    border-left: 4px solid #1e3a5f;
+    border-bottom: 1px solid #d0d5dd;
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
+
+# H4 样式
+h4:
+  style: |
+    margin: 1.5em 0 0.5em;
+    padding-left: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #344054;
+    border-left: 3px solid #3b6998;
+
+# H5 样式
+h5:
+  style: |
+    margin: 1.2em 0 0.4em;
+    padding-left: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #475467;
+    border-left: 2px solid #98a2b3;
+
+# H6 样式
+h6:
+  style: |
+    margin: 1em 0 0.3em;
+    padding-left: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #667085;
+
+# 段落样式
+paragraph:
+  style: |
+    margin: 1.3em 0;
+    letter-spacing: 0.03em;
+    color: #344054;
+    text-align: justify;
+    line-height: 1.9;
+    font-size: 15px;
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+
+# 列表样式
+list:
+  container_style: |
+    list-style: none;
+    padding: 0;
+    margin: 1.2em 0;
+    color: #344054;
+    font-size: 15px;
+
+  item_style: |
+    margin: 0.5em 0;
+    padding: 0;
+    line-height: 1.8;
+    font-size: 15px;
+
+  ul_prefix: "▪ "
+  ol_prefix: "{n}. "
+
+# 代码块样式
+code_block:
+  style: |
+    margin: 1.5em 0;
+    padding: 1.2em;
+    background-color: #f9fafb;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 14px;
+    line-height: 1.5;
+    border: 1px solid #d0d5dd;
+    border-left: 3px solid #1e3a5f;
+
+  code_inner_style: |
+    background: none;
+    padding: 0;
+    font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+    font-size: 14px;
+    color: #1e3a5f;
+    line-height: 1.5;
+
+# 内联代码样式
+inline_code:
+  style: |
+    font-size: 90%;
+    color: #1e3a5f;
+    background-color: rgba(30, 58, 95, 0.06);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'SFMono-Regular', Consolas, monospace;
+
+# 引用样式
+blockquote:
+  style: |
+    margin: 1.8em 0;
+    padding: 1em 1.5em;
+    border-left: 4px solid #1e3a5f;
+    background-color: #f9fafb;
+    color: #475467;
+    border-radius: 0;
+
+  p_inner_style: |
+    margin: 0;
+    color: #475467;
+    line-height: 1.85;
+    font-style: normal;
+
+# 链接样式
+link:
+  style: |
+    color: #1e3a5f;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(30, 58, 95, 0.3);
+    font-weight: 600;
+
+# 图片样式
+image:
+  container_style: |
+    margin: 1.5em 0;
+    text-align: center;
+
+  img_style: |
+    max-width: 100%;
+    margin: 1em auto;
+    display: block;
+    border-radius: 4px;
+    border: 1px solid #d0d5dd;
+
+# 表格样式
+table:
+  style: |
+    margin: 1.5em 0;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14.5px;
+    border: 1px solid #d0d5dd;
+
+  th_style: |
+    background-color: #1e3a5f;
+    color: #fff;
+    padding: 12px 14px;
+    text-align: left;
+    font-weight: 600;
+
+  td_style: |
+    border: 1px solid #d0d5dd;
+    padding: 10px 14px;
+    color: #344054;
+
+# 分隔线样式
+hr:
+  style: |
+    border: none;
+    height: 1px;
+    margin: 2.5em 0;
+    background-color: #d0d5dd;
+
+# 粗体样式
+bold:
+  style: |
+    font-weight: 800;
+    color: #1e3a5f;
+
+# 斜体样式
+italic:
+  style: |
+    font-style: italic;
+    color: #667085;
+
+# 删除线样式
+strikethrough:
+  style: |
+    text-decoration: line-through;
+    color: #98a2b3;
+
+# 装饰配置
+decorations: {}

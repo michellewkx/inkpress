@@ -1,0 +1,248 @@
+# Sanguo theme
+# 古卷羊皮纸质感，龙虾红与箭头蓝配色
+
+name: "三国风"
+description: "古卷羊皮纸质感，龙虾红与箭头蓝配色"
+series: "oriental"
+tags: ["古风", "三国", "羊皮纸", "东方"]
+
+# 容器样式
+container:
+  max_width: "677px"
+  padding: "14px"
+  background: "linear-gradient(180deg, #fdf8ef 0%, #f5edd6 100%)"
+  border_radius: "6px"
+  box_shadow: "0 4px 16px rgba(106, 66, 38, 0.12)"
+  border: "2px solid #c5a06e"
+
+# H1 样式
+h1:
+  style: |
+    padding: 0.9em 1.8em;
+    margin: 1.8em 0 1.2em;
+    background: linear-gradient(135deg, #d4513a 0%, #b83a28 40%, #8b2920 100%);
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1.3;
+    color: #fff5e8;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(212, 81, 58, 0.25), inset 0 1px 0 rgba(255,255,255,0.2);
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+    letter-spacing: 0.1em;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+
+# H2 样式
+h2:
+  style: |
+    margin: 2.2em 8px 0.8em 0px;
+    padding: 0.5em 1em 0.4em 16px;
+    border-left: 5px solid #d4513a;
+    border-bottom: 2px solid #c5a06e;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #3a2a1a;
+    background: linear-gradient(to right, rgba(212, 81, 58, 0.06), rgba(197, 160, 110, 0.06));
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+
+# H3 样式
+h3:
+  style: |
+    margin: 2em 8px 0.75em 0px;
+    padding: 0.4em 0.8em 0.3em 14px;
+    border-left: 4px solid #5ba0d0;
+    border-bottom: 1px dashed #5ba0d0;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.3;
+    color: #2c5a7e;
+    background: linear-gradient(to right, rgba(91, 160, 208, 0.06), transparent);
+
+# H4 样式
+h4:
+  style: |
+    margin: 1.5em 8px 0.5em 0px;
+    padding-left: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.3;
+    color: #6b4226;
+    border-left: 3px solid #c5a06e;
+
+# H5 样式
+h5:
+  style: |
+    margin: 1.2em 8px 0.4em 0px;
+    padding-left: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1.3;
+    color: #5c8a3a;
+    border-left: 2px solid #5c8a3a;
+
+# H6 样式
+h6:
+  style: |
+    margin: 1em 8px 0.3em 0px;
+    padding-left: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.3;
+    color: #8b7355;
+    border-left: 2px solid #c5a06e;
+
+# 段落样式
+paragraph:
+  style: |
+    margin: 1.2em 8px;
+    text-align: justify;
+    line-height: 1.8;
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    color: #3a2a1a;
+
+# 列表样式
+list:
+  container_style: |
+    list-style: none;
+    padding: 0;
+    margin: 1.2em 8px;
+    color: #3a2a1a;
+    font-size: 15px;
+
+  item_style: |
+    margin: 0.5em 0;
+    padding: 0;
+    line-height: 1.75;
+    font-size: 15px;
+
+  ul_prefix: "◆ "
+  ol_prefix: "{n}、"
+
+# 代码块样式
+code_block:
+  style: |
+    margin: 1.5em 8px;
+    padding: 1.2em;
+    background: linear-gradient(180deg, #f5edd6, #f0e6cc);
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 14px;
+    line-height: 1.5;
+    border: 1px solid #d8c9a8;
+    border-top: 3px solid #d4513a;
+
+  code_inner_style: |
+    background: none;
+    padding: 0;
+    font-family: 'SFMono-Regular', Consolas, Menlo, 'Courier New', monospace;
+    font-size: 14px;
+    color: #3a2a1a;
+    line-height: 1.5;
+
+# 内联代码样式
+inline_code:
+  style: |
+    background-color: rgba(212, 81, 58, 0.1);
+    color: #b83a28;
+    font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    border: 1px solid rgba(212, 81, 58, 0.15);
+
+# 引用样式
+blockquote:
+  style: |
+    margin: 1.5em 8px 2em;
+    padding: 1em 1.5em;
+    border-left: 4px solid #c5a06e;
+    background: linear-gradient(135deg, rgba(197, 160, 110, 0.08), rgba(91, 160, 208, 0.04));
+    color: #5a4a3a;
+    border-radius: 4px;
+    box-shadow: inset 0 0 12px rgba(197, 160, 110, 0.06);
+
+  p_inner_style: |
+    margin: 0;
+    color: #5a4a3a;
+    line-height: 1.75;
+    font-style: normal;
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+
+# 链接样式
+link:
+  style: |
+    color: #5ba0d0;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(91, 160, 208, 0.4);
+
+# 图片样式
+image:
+  container_style: |
+    margin: 1.5em 0;
+    text-align: center;
+
+  img_style: |
+    max-width: 100%;
+    margin: 1em auto;
+    display: block;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(106, 66, 38, 0.12);
+    border: 2px solid #d8c9a8;
+
+# 表格样式
+table:
+  style: |
+    margin: 1.5em 8px;
+    width: calc(100% - 16px);
+    border-collapse: collapse;
+    font-size: 15px;
+
+  th_style: |
+    background: linear-gradient(135deg, #d4513a, #b83a28);
+    color: #fff5e8;
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+
+  td_style: |
+    border: 1px solid #d8c9a8;
+    padding: 10px;
+    color: #3a2a1a;
+    background: rgba(253, 248, 239, 0.5);
+
+# 分隔线样式
+hr:
+  style: |
+    border: none;
+    height: 2px;
+    margin: 2em 8px;
+    background: linear-gradient(to right, transparent, #c5a06e, #d4513a, #5ba0d0, #c5a06e, transparent);
+
+# 粗体样式
+bold:
+  style: |
+    font-weight: bold;
+    color: #d4513a;
+
+# 斜体样式
+italic:
+  style: |
+    font-style: italic;
+    color: #5c8a3a;
+
+# 删除线样式
+strikethrough:
+  style: |
+    text-decoration: line-through;
+    color: #8b7355;
+
+# 页面背景
+body:
+  background: "#ebe3d0"
+  padding: "16px"
+
+# 装饰配置
+decorations: {}
