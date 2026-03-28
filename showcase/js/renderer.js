@@ -159,8 +159,9 @@ class InkpressRenderer {
     const thStyle = (tc.th_style || '').trim();
     const tdStyle = (tc.td_style || '').trim();
     if (style) html = html.replace(/<table[^>]*>/g, `<table style="${style}">`);
-    if (thStyle) html = html.replace(/<th[^>]*>/g, `<th style="${thStyle}">`);
-    if (tdStyle) html = html.replace(/<td[^>]*>/g, `<td style="${tdStyle}">`);
+    // Use word boundary after tag name to avoid matching <thead> as <th> and <tbody> as <td>
+    if (thStyle) html = html.replace(/<th(?=[\s>])(?![^>]*style=)([^>]*)>/g, `<th style="${thStyle}"$1>`);
+    if (tdStyle) html = html.replace(/<td(?=[\s>])(?![^>]*style=)([^>]*)>/g, `<td style="${tdStyle}"$1>`);
     return html;
   }
 
