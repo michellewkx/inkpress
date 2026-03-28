@@ -95,7 +95,9 @@ class InkpressRenderer {
       html = html.replace(/<pre(?![^>]*style=)([^>]*)>/g, `<pre style="${style}"$1>`);
     }
     if (codeStyle) {
-      html = html.replace(/<code(?![^>]*style=)([^>]*)>/g, `<code style="${codeStyle}"$1>`);
+      // Only apply code_inner_style to <code> tags directly inside <pre> blocks
+      html = html.replace(/<pre([^>]*)><code(?![^>]*style=)([^>]*)>/g,
+        `<pre$1><code style="${codeStyle}"$2>`);
     }
     return html;
   }
