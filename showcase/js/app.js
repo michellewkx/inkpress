@@ -214,6 +214,16 @@ function renderTabs() {
 // ============ Gallery ============
 function initGallery() {
   renderGallery();
+  // Keyboard support for cards — Enter/Space opens preview
+  document.getElementById('themeGrid').addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      const card = e.target.closest('.card');
+      if (card) {
+        e.preventDefault();
+        openPreviewModal(card.dataset.theme);
+      }
+    }
+  });
 }
 
 function renderGallery() {
@@ -231,14 +241,14 @@ function renderGallery() {
     const bgColor = theme.body?.background || theme.container?.background || '#f9f9f9';
 
     html += `
-      <div class="card card-anim" data-theme="${name}" style="animation-delay:${Math.min(visibleCount * 0.06, 0.5)}s">
+      <div class="card card-anim" data-theme="${name}" style="animation-delay:${Math.min(visibleCount * 0.06, 0.5)}s" onclick="openPreviewModal('${name}')" tabindex="0" role="button" aria-label="${theme.name || name}">
         <div class="card-body">
           <div class="card-prev" style="background:${bgColor}">
             <div class="card-prev-in" style="background:${theme.container?.background || '#fff'};${theme.container?.border ? 'border:' + theme.container.border + ';' : ''}${theme.container?.border_radius ? 'border-radius:' + theme.container.border_radius + ';' : 'border-radius:8px;'}">
               ${previewHtml}
             </div>
             <div class="card-ov">
-              <button class="card-ov-btn" onclick="openPreviewModal('${name}')">${t('gallery.preview')} <span class="arr">→</span></button>
+              <span class="card-ov-label">${t('gallery.preview')} <span class="arr">→</span></span>
             </div>
           </div>
           <div class="card-info">
