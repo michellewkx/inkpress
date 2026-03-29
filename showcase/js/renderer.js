@@ -21,7 +21,13 @@ class InkpressRenderer {
   }
 
   render(markdown) {
-    let html = marked.parse(markdown);
+    const [processed, placeholders] = this.preprocessMarkdown(markdown);
+    let html = marked.parse(processed);
+    // Restore placeholders (may be wrapped in <p> tags)
+    for (const [key, value] of Object.entries(placeholders)) {
+      html = html.replace(new RegExp(`<p>\\s*${key}\\s*</p>`, 'g'), value);
+      html = html.replace(key, value);
+    }
     html = this.styleHeadings(html);
     html = this.styleParagraphs(html);
     html = this.styleLists(html);
@@ -36,6 +42,90 @@ class InkpressRenderer {
     html = this.styleHr(html);
     html = this.styleEmphasis(html);
     return this.wrapHtml(html);
+  }
+
+  // Preprocess markdown: handle GFM alerts, strikethrough, etc.
+  // Mirrors Python parser.py's preprocess_markdown()
+  preprocessMarkdown(text) {
+    const placeholders = {};
+    let counter = 0;
+    const makePlaceholder = (html) => {
+      const key = `INKPRESS_JS_BLOCK_${counter++}`;
+      placeholders[key] = html;
+      return key;
+    };
+
+    // Strikethrough
+    text = text.replace(/~~(.+?)~~/g, '<del>$1</del>');
+
+    // GFM Alerts: > [!NOTE] ... → HTML skeleton with data attributes
+    const ALERT_TYPES = {
+      NOTE:      ['提示', '#1677ff', '📌'],
+      TIP:       ['技巧', '#52c41a', '💡'],
+      IMPORTANT: ['重要', '#fa8c16', '⚠️'],
+      WARNING:   ['警告', '#f5222d', '🔔'],
+      CAUTION:   ['注意', '#a0d911', '⚡'],
+    };
+
+    const lines = text.split('\n');
+    const result = [];
+    let i = 0;
+
+    // First pass: extract footnote definitions [^n]: text
+    const footnoteDefs = {};
+    const nonFootnoteLines = [];
+    for (const line of lines) {
+      const fnDefMatch = line.match(/^\[\^(\d+)\]:\s*(.+)$/);
+      if (fnDefMatch) {
+        footnoteDefs[fnDefMatch[1]] = fnDefMatch[2];
+      } else {
+        nonFootnoteLines.push(line);
+      }
+    }
+
+    i = 0;
+    while (i < nonFootnoteLines.length) {
+      const alertMatch = nonFootnoteLines[i].match(/^>\s*\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]/);
+      if (alertMatch) {
+        const alertType = alertMatch[1];
+        const [label, color, icon] = ALERT_TYPES[alertType];
+        const contentLines = [];
+        i++;
+        while (i < nonFootnoteLines.length && nonFootnoteLines[i].startsWith('>')) {
+          contentLines.push(nonFootnoteLines[i].substring(1).trim());
+          i++;
+        }
+        const contentHtml = marked.parse(contentLines.join('\n')).replace(/^<p>(.*)<\/p>\s*$/s, '$1');
+        const alertHtml =
+          `<div data-inkpress-alert="${alertType}" data-alert-color="${color}">` +
+          `<div data-inkpress-alert-title="${alertType}">` +
+          `<span>${icon}</span><span>${label}</span></div>` +
+          `<div data-inkpress-alert-content="${alertType}">${contentHtml}</div></div>`;
+        result.push(makePlaceholder(alertHtml));
+      } else {
+        result.push(nonFootnoteLines[i]);
+        i++;
+      }
+    }
+
+    // Process inline footnote references [^n] → <sup>...</sup>
+    let processed = result.join('\n');
+    processed = processed.replace(/\[\^(\d+)\]/g, (_, n) =>
+      `<sup id="fnref:${n}"><a class="footnote-ref" href="#fn:${n}">${n}</a></sup>`
+    );
+
+    // Build footnote section if definitions exist
+    const fnIds = Object.keys(footnoteDefs).sort((a, b) => Number(a) - Number(b));
+    if (fnIds.length > 0) {
+      const fnItems = fnIds.map(id => {
+        const defHtml = marked.parse(footnoteDefs[id]).replace(/^<p>(.*)<\/p>\s*$/s, '$1');
+        return `<li id="fn:${id}">${defHtml} <a class="footnote-backref" href="#fnref:${id}" title="Jump back">↩</a></li>`;
+      }).join('\n');
+      const fnSection = `<div class="footnote"><hr />\n<ol>\n${fnItems}\n</ol>\n</div>`;
+      processed += '\n' + makePlaceholder(fnSection);
+    }
+
+    return [processed, placeholders];
   }
 
   styleHeadings(html) {
