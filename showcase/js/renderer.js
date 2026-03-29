@@ -262,7 +262,7 @@ class InkpressRenderer {
       const idx = html.indexOf('<ol>', pos);
       if (idx === -1) break;
       const preceding = html.substring(Math.max(0, idx - 200), idx);
-      if (preceding.includes('role="doc-footnotes"')) {
+      if (preceding.includes('role="doc-footnotes"') || preceding.includes('class="footnote"')) {
         pos = idx + 4;
         continue;
       }
@@ -341,7 +341,7 @@ class InkpressRenderer {
     if (sectionStyle) {
       html = html.replace(/<div class="footnote">\s*<hr\s*\/?>/s,
         `<section role="doc-footnotes" style="${sectionStyle}">`);
-      html = html.replace(/<\/ol>\s*<\/div>\s*$/, '</ol>\n</section>');
+      html = html.replace(/<\/ol>\s*<\/div>/, '</ol>\n</section>');
     }
     if (listStyle) {
       html = html.replace(/(<section role="doc-footnotes"[^>]*>)\s*<ol>/,
