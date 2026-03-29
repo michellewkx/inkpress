@@ -323,6 +323,10 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('heroBrowseBtn').addEventListener('click', () => {
     document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
   });
+
+  // Hash routing
+  window.addEventListener('hashchange', handleRoute);
+  handleRoute(); // handle initial URL
 });
 
 // ============ Spotlight ============
@@ -439,6 +443,7 @@ function initEditor() {
 
   select.addEventListener('change', () => {
     currentTheme = select.value;
+    history.replaceState(null, '', `#editor/${currentTheme}`);
     renderEditorPreview();
   });
 
@@ -473,22 +478,17 @@ function initEditor() {
   document.getElementById('editorCopyBtn').addEventListener('click', copyHTMLText);
   document.getElementById('editorDownloadBtn').addEventListener('click', downloadHTML);
   document.getElementById('editorCopyRichBtn').addEventListener('click', copyHTMLRich);
-
-  // Close on backdrop click
-  document.getElementById('editorOverlay').addEventListener('click', e => {
-    if (e.target === e.currentTarget) closeEditor();
-  });
 }
 
 function openEditorWithTheme(name) {
-  const theme = THEMES[name];
-  if (!theme) return;
-  currentTheme = name;
-  document.getElementById('editorThemeSelect').value = name;
-  openEditor();
+  location.hash = `editor/${name}`;
 }
 
 function openEditor() {
+  location.hash = `editor/${currentTheme}`;
+}
+
+function _showEditor() {
   const overlay = document.getElementById('editorOverlay');
   overlay.style.display = 'flex';
   requestAnimationFrame(() => overlay.classList.add('open'));
@@ -497,12 +497,33 @@ function openEditor() {
 }
 
 function closeEditor() {
+  history.pushState(null, '', location.pathname);
+  _hideEditor();
+}
+
+function _hideEditor() {
   const overlay = document.getElementById('editorOverlay');
   overlay.classList.remove('open');
   setTimeout(() => {
     overlay.style.display = 'none';
     document.body.style.overflow = '';
   }, 300);
+}
+
+// ============ Hash Router ============
+function handleRoute() {
+  const hash = location.hash.slice(1); // remove #
+  if (hash.startsWith('editor')) {
+    const parts = hash.split('/');
+    const themeName = parts[1];
+    if (themeName && THEMES[themeName]) {
+      currentTheme = themeName;
+      document.getElementById('editorThemeSelect').value = themeName;
+    }
+    _showEditor();
+  } else {
+    _hideEditor();
+  }
 }
 
 function renderEditorPreview() {

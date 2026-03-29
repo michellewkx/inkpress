@@ -365,36 +365,43 @@
   .card:focus-visible .card-ov { opacity: 1; }
   .card:focus-visible .card-ov-label { transform: translateY(0); }
 
-  /* ============ Editor Overlay ============ */
+  /* ============ Editor Full-Screen ============ */
   .editor-overlay {
     position: fixed; inset: 0; z-index: 500;
-    background: rgba(0,0,0,0.4);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    display: none; align-items: center; justify-content: center;
+    background: var(--bg);
+    display: none; flex-direction: column;
     opacity: 0; transition: opacity 0.3s;
   }
   .editor-overlay.open { display: flex; opacity: 1; }
   .editor-container {
-    width: calc(100vw - 48px); height: calc(100vh - 48px);
-    max-width: 1400px;
+    width: 100%; height: 100%;
     background: var(--surface);
-    border-radius: 16px;
-    border: 1px solid var(--border);
-    box-shadow: 0 24px 80px rgba(0,0,0,0.15);
     display: flex; flex-direction: column;
     overflow: hidden;
-    transform: scale(0.96); transition: transform 0.3s var(--ease);
   }
-  .editor-overlay.open .editor-container { transform: scale(1); }
   .editor-header {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 12px 20px;
-    border-bottom: 1px solid var(--border);
+    padding: 0 20px; height: 50px;
+    background: rgba(250,250,250,0.85);
+    backdrop-filter: blur(20px) saturate(1.5);
+    -webkit-backdrop-filter: blur(20px) saturate(1.5);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
     flex-shrink: 0;
   }
   .editor-header-l { display: flex; align-items: center; gap: 12px; }
-  .editor-header-l h3 { font-size: 14px; font-weight: 700; }
+  .editor-header-l .editor-back {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 13px; color: var(--text-2); cursor: pointer;
+    padding: 5px 12px; border-radius: 6px; font-weight: 500;
+    border: none; background: none; font-family: var(--sans);
+    transition: all 0.15s;
+  }
+  .editor-header-l .editor-back:hover { color: var(--text); background: rgba(0,0,0,0.04); }
+  .editor-header-l .editor-back:active { transform: scale(0.97); transition-duration: 0.08s; }
+  .editor-header-l h3 {
+    font-size: 14px; font-weight: 700; letter-spacing: -0.01em;
+    padding-left: 12px; border-left: 1px solid var(--border);
+  }
   .editor-header-l select {
     padding: 5px 10px; border-radius: 6px;
     background: var(--bg); border: 1px solid var(--border);
@@ -416,15 +423,6 @@
   }
   .editor-btn-p:hover { opacity: 0.85; }
   .editor-btn-p:active { opacity: 0.75; transform: scale(0.96); }
-  .editor-close {
-    width: 32px; height: 32px; border-radius: 8px;
-    border: 1px solid var(--border); background: var(--surface);
-    display: grid; place-items: center;
-    cursor: pointer; transition: all 0.15s;
-    font-size: 16px; color: var(--text-2);
-  }
-  .editor-close:hover { background: var(--bg); color: var(--text); }
-  .editor-close:active { transform: scale(0.9); transition-duration: 0.08s; }
   .editor-body {
     display: flex; flex: 1; overflow: hidden;
   }
@@ -592,11 +590,12 @@
   inkpress — Open source, <a href="https://github.com/michellewkx/inkpress" target="_blank">MIT License</a>
 </div>
 
-<!-- Editor Overlay -->
+<!-- Editor Full-Screen -->
 <div class="editor-overlay" id="editorOverlay">
   <div class="editor-container">
     <div class="editor-header">
       <div class="editor-header-l">
+        <button class="editor-back" id="editorCloseBtn">← <span data-i18n="nav.themes">Themes</span></button>
         <h3 data-i18n="editor.title">Editor</h3>
         <select id="editorThemeSelect"></select>
       </div>
@@ -604,7 +603,6 @@
         <button class="editor-btn" id="editorCopyBtn" data-i18n="editor.copy">Copy HTML</button>
         <button class="editor-btn" id="editorDownloadBtn" data-i18n="editor.download">Download</button>
         <button class="editor-btn editor-btn-p" id="editorCopyRichBtn" data-i18n="editor.copyRich">Copy for WeChat</button>
-        <button class="editor-close" id="editorCloseBtn">&times;</button>
       </div>
     </div>
     <div class="editor-body">
