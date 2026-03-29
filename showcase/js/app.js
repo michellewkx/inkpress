@@ -122,6 +122,8 @@ const SAMPLE_MD = `# inkpress 排版引擎
 | GFM 提示框 | NOTE / TIP / WARNING 等 | ✅ |
 | 代码高亮 | Pygments 驱动，支持 100+ 语言 | ✅ |
 | 图片说明 | 自动提取 alt 生成 figcaption | ✅ |
+| 图片画廊 | 多图横向滑动展示 | ✅ |
+| 对话功能 | 聊天气泡风格的问答展示 | ✅ |
 
 ---
 
@@ -231,6 +233,37 @@ document.getElementById('preview').innerHTML = html;
 ## 图片
 
 ![inkpress 支持自动从 alt 文本生成图片说明](https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800)
+
+---
+
+## 图片画廊
+
+:::gallery[inkpress 主题效果展示]
+![经典主题](https://images.unsplash.com/photo-1432821596592-e2c18b78144f?w=600)
+![东方水墨](https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600)
+![杂志风格](https://images.unsplash.com/photo-1504711331083-9c895941bf81?w=600)
+:::
+
+---
+
+## 长图展示
+
+:::longimage[inkpress 渲染流程示意]
+![系统架构全景图](https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=1200)
+:::
+
+---
+
+## 对话功能
+
+:::dialogue[inkpress 技术问答]
+用户: inkpress 支持哪些平台？
+技术支持: 目前支持微信公众号、小红书等主流内容平台，所有样式通过内联 CSS 注入，无需额外适配。
+用户: 如何自定义主题？
+技术支持: 只需复制 \`themes/_template.yaml\`，修改其中的 CSS 值即可。所有元素都可以独立配置样式。
+用户: 输出的内容可以直接复制到微信公众号吗？
+技术支持: 完全可以！使用编辑器的「复制到微信」按钮，直接粘贴到公众号后台即可发布。
+:::
 
 ---
 

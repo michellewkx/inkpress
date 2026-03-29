@@ -41,6 +41,7 @@ class InkpressRenderer {
     html = this.styleTables(html);
     html = this.styleHr(html);
     html = this.styleEmphasis(html);
+    html = this.styleDialogue(html);
     return this.wrapHtml(html);
   }
 
@@ -108,8 +109,133 @@ class InkpressRenderer {
       }
     }
 
+    // Gallery: :::gallery[title]\n![alt](url)\n:::
+    const galleryProcessed = [];
+    const galleryLines = result;
+    let gi = 0;
+    while (gi < galleryLines.length) {
+      const galleryMatch = galleryLines[gi].match(/^:::gallery\[([^\]]*)\]/);
+      if (galleryMatch) {
+        const galleryTitle = galleryMatch[1];
+        const galleryImages = [];
+        gi++;
+        while (gi < galleryLines.length && !galleryLines[gi].startsWith(':::')) {
+          const imgMatch = galleryLines[gi].match(/!\[([^\]]*)\]\(([^)]+)\)/);
+          if (imgMatch) galleryImages.push([imgMatch[1], imgMatch[2]]);
+          gi++;
+        }
+        if (gi < galleryLines.length && galleryLines[gi].startsWith(':::')) gi++; // skip closing :::
+        if (galleryImages.length > 0) {
+          const imgsHtml = galleryImages.map(([alt, url]) =>
+            `<div style="flex: 0 0 auto; width: 280px; height: 200px; margin-right: 12px; border-radius: 8px; overflow: hidden;">` +
+            `<img src="${url}" alt="${alt}" style="width: 100%; height: 100%; object-fit: cover;"></div>`
+          ).join('\n');
+          galleryProcessed.push(makePlaceholder(
+            `<div style="margin: 2em 0; padding: 16px; background: #f5f5f5; border-radius: 8px;">` +
+            `<div style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #333;">📷 ${galleryTitle}</div>` +
+            `<div style="display: flex; overflow-x: auto; padding-bottom: 8px; scrollbar-width: none; -webkit-overflow-scrolling: touch;">` +
+            `${imgsHtml}</div></div>`
+          ));
+        }
+      } else {
+        galleryProcessed.push(galleryLines[gi]);
+        gi++;
+      }
+    }
+
+    // Long image: :::longimage[title]\n![alt](url)\n:::
+    const longimgProcessed = [];
+    let li = 0;
+    while (li < galleryProcessed.length) {
+      const longMatch = galleryProcessed[li].match(/^:::longimage\[([^\]]*)\]/);
+      if (longMatch) {
+        const longTitle = longMatch[1];
+        let imgAlt = '', imgUrl = '';
+        li++;
+        while (li < galleryProcessed.length && !galleryProcessed[li].startsWith(':::')) {
+          const imgMatch = galleryProcessed[li].match(/!\[([^\]]*)\]\(([^)]+)\)/);
+          if (imgMatch) { imgAlt = imgMatch[1]; imgUrl = imgMatch[2]; }
+          li++;
+        }
+        if (li < galleryProcessed.length && galleryProcessed[li].startsWith(':::')) li++;
+        if (imgUrl) {
+          longimgProcessed.push(makePlaceholder(
+            `<div style="margin: 2em 0; padding: 16px; background: #f9f9f9; border-radius: 8px; border: 1px solid #e8e8e8;">` +
+            `<div style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #333;">📋 ${longTitle}</div>` +
+            `<div style="max-height: 600px; overflow-y: auto; text-align: center;">` +
+            `<img src="${imgUrl}" alt="${imgAlt}" style="max-width: 100%; height: auto; border-radius: 4px;"></div></div>`
+          ));
+        }
+      } else {
+        longimgProcessed.push(galleryProcessed[li]);
+        li++;
+      }
+    }
+
+    // Dialogue: :::dialogue[title]\nSpeaker: text\n:::
+    const dialogueProcessed = [];
+    let di = 0;
+    while (di < longimgProcessed.length) {
+      const dlgMatch = longimgProcessed[di].match(/^:::dialogue\[([^\]]*)\]/);
+      if (dlgMatch) {
+        const dlgTitle = dlgMatch[1];
+        const messages = [];
+        di++;
+        while (di < longimgProcessed.length && !longimgProcessed[di].startsWith(':::')) {
+          const line = longimgProcessed[di].trim();
+          if (line) {
+            const msgMatch = line.match(/^([^:：]+)[:：](.+)$/);
+            if (msgMatch) messages.push([msgMatch[1].trim(), msgMatch[2].trim()]);
+          }
+          di++;
+        }
+        if (di < longimgProcessed.length && longimgProcessed[di].startsWith(':::')) di++;
+        if (messages.length > 0) {
+          const msgsHtml = messages.map(([speaker, text], idx) => {
+            const isRight = idx % 2 === 1;
+            const side = isRight ? 'right' : 'left';
+            const initial = speaker[0] || 'U';
+            const avatarHtml =
+              `<section class="dialogue-avatar" data-dialogue-side="${side}" ` +
+              `style="display: inline-block; vertical-align: top; width: 40px; height: 40px; box-sizing: border-box; position: relative; flex-shrink: 0;">` +
+              `<section class="dialogue-avatar-inner" data-dialogue-side="${side}" ` +
+              `style="width: 40px; height: 40px; border-radius: 50%; text-align: center; line-height: 40px; font-size: 13px; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,0.15); box-sizing: border-box;">` +
+              `<span class="dialogue-avatar-text" data-dialogue-side="${side}" style="font-size: 13px; font-weight: 600;" leaf="">${initial}</span>` +
+              `</section></section>`;
+            const bubbleHtml =
+              `<section class="dialogue-bubble" data-dialogue-side="${side}" ` +
+              `style="display: inline-block; vertical-align: top; padding: 10px 14px; max-width: 65%; color: inherit; line-height: 1.5; font-size: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); word-wrap: break-word; box-sizing: border-box; text-align: left;">` +
+              `<p style="margin: 0px; color: inherit; line-height: 1.5; font-size: 14px; text-align: left; box-sizing: border-box;">` +
+              `<span leaf="">${text}</span></p></section>`;
+            const inner = isRight ? bubbleHtml + avatarHtml : avatarHtml + bubbleHtml;
+            const align = isRight ? 'text-align: right;' : 'text-align: left;';
+            const padding = isRight ? 'padding-right: 0px;' : 'padding-left: 0px;';
+            return `<section style="margin: 12px 0px; box-sizing: border-box; clear: both;">` +
+              `<section style="${align} box-sizing: border-box; ${padding}">${inner}</section></section>`;
+          }).join('');
+
+          dialogueProcessed.push(makePlaceholder(
+            `<section class="dialogue-container" data-mpa-template="t" mpa-data-temp-power-by="inkpress" mpa-from-tpl="t" data-mpa-action-id="dialogue">` +
+            `<section data-mpa-template="t" mpa-from-tpl="t">` +
+            `<section style="box-sizing: border-box; width: 100%;" mpa-from-tpl="t">` +
+            `<section style="box-sizing: border-box; width: 100%;" mpa-from-tpl="t">` +
+            `<section class="dialogue-inner" style="margin: 12px 8px 16px; padding: 12px; border-radius: 12px; box-sizing: border-box;" mpa-from-tpl="t">` +
+            `<section style="margin: 0px; padding: 0px; box-sizing: border-box;" mpa-from-tpl="t">` +
+            `<section class="dialogue-title" style="text-align: center; font-size: 16px; font-weight: 600; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid; letter-spacing: 0.5px; box-sizing: border-box;" mpa-from-tpl="t">` +
+            `<p style="margin: 0px; text-align: center; box-sizing: border-box;">` +
+            `<span class="dialogue-title-text" style="font-size: 16px; font-weight: 600;" leaf="">💬 ${dlgTitle}</span></p></section>` +
+            `<section style="margin: 0px; padding: 0px; box-sizing: border-box;" mpa-from-tpl="t">${msgsHtml}</section>` +
+            `</section></section></section></section></section></section>`
+          ));
+        }
+      } else {
+        dialogueProcessed.push(longimgProcessed[di]);
+        di++;
+      }
+    }
+
     // Process inline footnote references [^n] → <sup>...</sup>
-    let processed = result.join('\n');
+    let processed = dialogueProcessed.join('\n');
     processed = processed.replace(/\[\^(\d+)\]/g, (_, n) =>
       `<sup id="fnref:${n}"><a class="footnote-ref" href="#fn:${n}">${n}</a></sup>`
     );
@@ -487,6 +613,83 @@ class InkpressRenderer {
     if (strike) {
       html = html.replace(/<del(?![^>]*style=)([^>]*)>/g, `<del style="${strike}"$1>`);
     }
+    return html;
+  }
+
+  styleDialogue(html) {
+    const dc = this.theme.dialogue || {};
+    if (!Object.keys(dc).length) return html;
+
+    const containerStyle = (dc.container_style || '').trim();
+    const titleStyle = (dc.title_style || '').trim();
+    const bubbleLeft = (dc.bubble_left_style || '').trim();
+    const bubbleRight = (dc.bubble_right_style || '').trim();
+    const avatarCommon = (dc.avatar_style || '').trim();
+    const avatarLeft = (dc.avatar_left_style || '').trim();
+    const avatarRight = (dc.avatar_right_style || '').trim();
+
+    if (containerStyle) {
+      html = html.replace(
+        /<section class="dialogue-inner"[\s\S]*?mpa-from-tpl="t">/g,
+        `<section class="dialogue-inner" style="${containerStyle}" mpa-from-tpl="t">`
+      );
+    }
+    if (titleStyle) {
+      html = html.replace(
+        /<section class="dialogue-title"[\s\S]*?mpa-from-tpl="t">/g,
+        `<section class="dialogue-title" style="${titleStyle}" mpa-from-tpl="t">`
+      );
+    }
+
+    const buildBubbleReplacer = (side, themeStyle) => {
+      return (match, existing) => {
+        const layoutProps = [];
+        for (const [pattern, prop] of [
+          [/display:\s*([^;]+);?/, 'display'],
+          [/vertical-align:\s*([^;]+);?/, 'vertical-align'],
+          [/max-width:\s*([^;]+);?/, 'max-width'],
+        ]) {
+          const pm = existing.match(pattern);
+          if (pm) layoutProps.push(`${prop}: ${pm[1]};`);
+        }
+        const merged = layoutProps.length ? layoutProps.join(' ') + ' ' + themeStyle : themeStyle;
+        return `<section class="dialogue-bubble" data-dialogue-side="${side}" style="${merged}">`;
+      };
+    };
+
+    if (bubbleLeft) {
+      html = html.replace(
+        /<section class="dialogue-bubble"\s+data-dialogue-side="left"\s+style="([\s\S]*?)">/g,
+        buildBubbleReplacer('left', bubbleLeft)
+      );
+    }
+    if (bubbleRight) {
+      html = html.replace(
+        /<section class="dialogue-bubble"\s+data-dialogue-side="right"\s+style="([\s\S]*?)">/g,
+        buildBubbleReplacer('right', bubbleRight)
+      );
+    }
+
+    if (avatarCommon) {
+      const commonClean = avatarCommon.replace(/margin[^;]*;/g, '').trim();
+      for (const [side, sideStyle, margin] of [['left', avatarLeft, 'margin: 0 10px 0 0;'], ['right', avatarRight, 'margin: 0 0 0 10px;']]) {
+        if (!sideStyle) continue;
+        const fullStyle = `${commonClean} ${sideStyle} ${margin}`;
+        html = html.replace(
+          new RegExp(`<section class="dialogue-avatar-inner" data-dialogue-side="${side}"[\\s\\S]*?>`, 'g'),
+          `<section class="dialogue-avatar-inner" data-dialogue-side="${side}" style="${fullStyle}">`
+        );
+        // Extract color from side style and apply to avatar text
+        const colorMatch = sideStyle.match(/(?:background-color|background):\s*([^;]+)/);
+        if (colorMatch) {
+          html = html.replace(
+            new RegExp(`(<span class="dialogue-avatar-text"\\s+data-dialogue-side="${side}"[\\s\\S]*?style="[\\s\\S]*?)(")`, 'g'),
+            `$1; color: ${avatarRight.match(/color:\s*([^;]+)/)?.[1] || '#fff'}$2`
+          );
+        }
+      }
+    }
+
     return html;
   }
 
