@@ -4,9 +4,10 @@
  */
 
 class InkpressRenderer {
-  constructor(theme) {
+  constructor(theme, options = {}) {
     this.theme = theme;
     this.decorations = theme.decorations || {};
+    this.watermark = options.watermark !== false;
   }
 
   getStyle(element) {
@@ -715,6 +716,11 @@ class InkpressRenderer {
     let containerStyle = `max-width:${maxWidth};margin:0 auto;padding:${padding};background-color:${bg};${globalStyle} border-radius:${radius};`;
     if (shadow) containerStyle += ` box-shadow:${shadow};`;
 
-    return `<section style="${containerStyle}">${content}</section>`;
+    const wm = this.watermark
+      ? `<p style="text-align:center;font-size:11px;color:#bbb;margin-top:2.5em;padding-top:1em;border-top:1px solid #eee;">` +
+        `Styled by <a href="https://github.com/michellewkx/inkpress" style="color:#aaa;text-decoration:none;border-bottom:1px dashed #ccc;">inkpress</a></p>`
+      : '';
+
+    return `<section style="${containerStyle}">${content}${wm}</section>`;
   }
 }

@@ -29,7 +29,7 @@ class InkpressRenderer:
             extension_configs={"codehilite": {"linenums": False, "guess_lang": False}},
         )
 
-    def render(self, markdown_text: str) -> str:
+    def render(self, markdown_text: str, watermark: bool = True) -> str:
         from .parser import preprocess_markdown
 
         processed, placeholders = preprocess_markdown(markdown_text)
@@ -40,7 +40,7 @@ class InkpressRenderer:
             html_content = re.sub(rf"<p>\s*{re.escape(placeholder)}\s*</p>", html, html_content)
             html_content = html_content.replace(placeholder, html)
 
-        return self._wrap_html(self._apply_styles(html_content))
+        return self._wrap_html(self._apply_styles(html_content), watermark=watermark)
 
     def _get_style(self, element: str) -> str:
         element_config = self.config.get(element, {})
@@ -573,7 +573,7 @@ class InkpressRenderer:
         match = re.search(r"color:\s*([^;]+)", style_str)
         return match.group(1).strip() if match else ""
 
-    def _wrap_html(self, content: str) -> str:
+    def _wrap_html(self, content: str, watermark: bool = True) -> str:
         container_config = self.config.get("container", {})
         body_config = self.config.get("body", {})
 
@@ -602,6 +602,16 @@ class InkpressRenderer:
         if box_shadow:
             container_style += f" box-shadow: {box_shadow};"
 
+        watermark_html = ""
+        if watermark:
+            watermark_html = (
+                '\n  <p style="text-align: center; font-size: 11px; color: #bbb; '
+                'margin-top: 2.5em; padding-top: 1em; border-top: 1px solid #eee;">'
+                'Styled by <a href="https://github.com/michellewkx/inkpress" '
+                'style="color: #aaa; text-decoration: none; border-bottom: 1px dashed #ccc;">'
+                'inkpress</a></p>'
+            )
+
         return f"""<!DOCTYPE html>
 <html>
 <head>
@@ -611,7 +621,7 @@ class InkpressRenderer:
 </head>
 <body style="margin: 0; padding: {body_padding}; background-color: {body_bg};">
   <section style="{container_style}">
-    {content}
+    {content}{watermark_html}
   </section>
 </body>
 </html>"""

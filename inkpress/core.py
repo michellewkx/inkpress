@@ -9,13 +9,14 @@ from .renderer.theme_loader import get_theme_loader, ThemeLoader
 from .renderer.engine import InkpressRenderer
 
 
-def convert(markdown_text: str, theme: str = "default") -> str:
+def convert(markdown_text: str, theme: str = "default", watermark: bool = True) -> str:
     """
     Convert Markdown to WeChat-compatible HTML.
 
     Args:
         markdown_text: Markdown content
         theme: Theme name (e.g. default, cyberpunk, chinese-ink)
+        watermark: Include "Styled by inkpress" footer (default: True)
 
     Returns:
         Full HTML string with inline styles
@@ -26,13 +27,14 @@ def convert(markdown_text: str, theme: str = "default") -> str:
     loader = get_theme_loader()
     config = loader.load_raw_theme(theme)
     renderer = InkpressRenderer(config=config)
-    return renderer.render(markdown_text)
+    return renderer.render(markdown_text, watermark=watermark)
 
 
 def convert_to_file(
     markdown_text: str,
     output_path: str,
     theme: str = "default",
+    watermark: bool = True,
     encoding: str = "utf-8",
 ) -> str:
     """
@@ -41,7 +43,7 @@ def convert_to_file(
     Returns:
         The output file path
     """
-    html = convert(markdown_text, theme=theme)
+    html = convert(markdown_text, theme=theme, watermark=watermark)
     output_file = Path(output_path)
     output_file.parent.mkdir(parents=True, exist_ok=True)
     with open(output_file, "w", encoding=encoding) as f:
@@ -85,13 +87,13 @@ class MarkdownConverter:
         self.theme = theme
         self._init_renderer()
 
-    def convert(self, markdown_text: str) -> str:
-        return self._renderer.render(markdown_text)
+    def convert(self, markdown_text: str, watermark: bool = True) -> str:
+        return self._renderer.render(markdown_text, watermark=watermark)
 
     def convert_to_file(
-        self, markdown_text: str, output_path: str, encoding: str = "utf-8"
+        self, markdown_text: str, output_path: str, watermark: bool = True, encoding: str = "utf-8"
     ) -> str:
-        html = self.convert(markdown_text)
+        html = self.convert(markdown_text, watermark=watermark)
         output_file = Path(output_path)
         output_file.parent.mkdir(parents=True, exist_ok=True)
         with open(output_file, "w", encoding=encoding) as f:

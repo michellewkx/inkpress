@@ -31,7 +31,7 @@ def cmd_convert(args):
     else:
         output_path = str(input_path.with_suffix(".html"))
 
-    convert_to_file(md_text, output_path, theme=args.theme)
+    convert_to_file(md_text, output_path, theme=args.theme, watermark=not args.no_watermark)
     print(f"Done: {output_path} (theme: {args.theme})")
 
 
@@ -92,6 +92,7 @@ def main():
     p_convert.add_argument("input", help="Input Markdown file")
     p_convert.add_argument("-t", "--theme", default="default", help="Theme name (default: default)")
     p_convert.add_argument("-o", "--output", help="Output HTML file (default: input.html)")
+    p_convert.add_argument("--no-watermark", action="store_true", help="Remove 'Styled by inkpress' footer")
 
     # themes
     p_themes = subparsers.add_parser("themes", help="List available themes")

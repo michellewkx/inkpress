@@ -14,6 +14,7 @@ from typing import Optional
 class ConvertRequest(BaseModel):
     markdown: str
     theme: str = "default"
+    watermark: bool = True
 
 
 def create_app() -> FastAPI:
@@ -35,7 +36,7 @@ def create_app() -> FastAPI:
     @app.post("/api/convert")
     def api_convert(req: ConvertRequest):
         try:
-            html = convert(req.markdown, theme=req.theme)
+            html = convert(req.markdown, theme=req.theme, watermark=req.watermark)
             return {"html": html, "theme": req.theme}
         except ValueError as e:
             raise HTTPException(status_code=400, detail=str(e))
