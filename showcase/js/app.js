@@ -32,6 +32,7 @@ const I18N = {
     'editor.copy': '复制 HTML',
     'editor.download': '下载',
     'editor.copyRich': '复制到微信',
+    'editor.watermark': '水印',
     'editor.input': 'MARKDOWN 输入',
     'editor.preview': '实时预览',
     'toast.copied': '已复制到剪贴板',
@@ -66,6 +67,7 @@ const I18N = {
     'editor.copy': 'Copy HTML',
     'editor.download': 'Download',
     'editor.copyRich': 'Copy for WeChat',
+    'editor.watermark': 'Watermark',
     'editor.input': 'MARKDOWN',
     'editor.preview': 'PREVIEW',
     'toast.copied': 'Copied to clipboard',
@@ -477,6 +479,8 @@ function initEditor() {
   document.getElementById('editorCloseBtn').addEventListener('click', closeEditor);
   document.getElementById('editorCopyBtn').addEventListener('click', copyHTMLText);
   document.getElementById('editorDownloadBtn').addEventListener('click', downloadHTML);
+
+  document.getElementById('watermarkToggle').addEventListener('change', renderEditorPreview);
   document.getElementById('editorCopyRichBtn').addEventListener('click', copyHTMLRich);
 }
 
@@ -530,7 +534,8 @@ function renderEditorPreview() {
   const md = document.getElementById('mdInput').value;
   const theme = THEMES[currentTheme];
   if (!theme) return;
-  const renderer = new InkpressRenderer(theme);
+  const wm = document.getElementById('watermarkToggle').checked;
+  const renderer = new InkpressRenderer(theme, { watermark: wm });
   document.getElementById('previewFrame').innerHTML = renderer.render(md);
 }
 
@@ -538,7 +543,8 @@ function getFullHTML() {
   const md = document.getElementById('mdInput').value;
   const theme = THEMES[currentTheme];
   if (!theme) return '';
-  const renderer = new InkpressRenderer(theme);
+  const wm = document.getElementById('watermarkToggle').checked;
+  const renderer = new InkpressRenderer(theme, { watermark: wm });
   return renderer.render(md);
 }
 
