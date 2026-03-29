@@ -43,7 +43,10 @@ const THEMES = {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.3em 0;\ncolor: #2a2a2a;\nfont-size: 15px;\nfont-family: Georgia, 'Noto Serif CJK SC', serif;\n",
       "item_style": "margin: 0.6em 0;\npadding: 0;\nline-height: 2;\nfont-size: 15px;\n",
       "ul_prefix": "• ",
-      "ol_prefix": "{n}. "
+      "ol_prefix": "{n}. ",
+      "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
+      "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #2a2a2a;\n",
+      "nested_ul_prefix": "◦ "
     },
     "code_block": {
       "style": "margin: 1.8em 0;\npadding: 1.2em 1.5em;\nbackground-color: #f5f2ec;\nborder-radius: 0;\noverflow-x: auto;\nfont-size: 13.5px;\nline-height: 1.7;\nborder: 1px solid #ddd5c8;\n",
@@ -61,15 +64,18 @@ const THEMES = {
     },
     "image": {
       "container_style": "margin: 2em 0;\ntext-align: center;\n",
-      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 0;\n"
+      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 0;\n",
+      "caption_style": "text-align: center;\nfont-size: 0.85em;\ncolor: #666666;\nmargin-top: 0.5em;\nfont-style: italic;\nfont-family: Georgia, 'Noto Serif CJK SC', serif;\n"
     },
     "table": {
+      "wrapper_style": "overflow-x: auto;\nmargin: 1.5em 8px;\n",
+      "tr_odd_style": "background: rgba(26, 26, 26, 0.03);\n",
       "style": "margin: 1.8em 0;\nwidth: 100%;\nborder-collapse: collapse;\nfont-size: 14px;\nfont-family: Georgia, 'Noto Serif CJK SC', serif;\n",
       "th_style": "background-color: transparent;\ncolor: #1a1a1a;\npadding: 10px 14px;\ntext-align: left;\nfont-weight: 700;\nborder-top: 2px solid #1a1a1a;\nborder-bottom: 1px solid #1a1a1a;\nfont-family: Georgia, 'Noto Serif CJK SC', serif;\n",
       "td_style": "border-bottom: 1px solid #ddd5c8;\npadding: 10px 14px;\ncolor: #333;\n"
     },
     "hr": {
-      "style": "border: none;\nheight: 0;\nmargin: 3em auto;\nwidth: 25%;\nborder-top: 1px solid #999;\n"
+      "style": ""
     },
     "bold": {
       "style": "font-weight: 700;\ncolor: #1a1a1a;\n"
@@ -84,7 +90,28 @@ const THEMES = {
       "background": "#f5f2ec",
       "padding": "20px"
     },
-    "decorations": {}
+    "decorations": {
+      "h2_prefix": "§ ",
+      "hr_text": "· · ·"
+    },
+    "footnote": {
+      "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
+      "ref_style": "color: inherit;\ntext-decoration: none;\nborder-bottom: 1px dashed #8b0000;\npadding-bottom: 1px;\n",
+      "section_style": "margin-top: 2.5em;\npadding-top: 1.8em;\nborder-top: 1px solid #ddd5c8;\n",
+      "list_style": "list-style-type: decimal;\nmargin: 0;\npadding-left: 1.5em;\n",
+      "item_style": "font-size: 0.85em;\ncolor: #888888;\nline-height: 1.6;\nmargin-bottom: 0.3em;\n",
+      "backref_style": "color: #8b0000;\ntext-decoration: none;\nmargin-left: 0.3em;\n"
+    },
+    "gfm_alert": {
+      "container_style": "margin: 1.5em 8px;\npadding: 12px 16px;\nborder-radius: 4px;\n",
+      "title_style": "font-weight: 600;\nmargin-bottom: 8px;\ndisplay: flex;\nalign-items: center;\ngap: 6px;\n",
+      "content_style": "color: #2a2a2a;\nline-height: 1.6;\nfont-size: 14px;\n",
+      "note_color": "#1a4d8b",
+      "tip_color": "#2e7d32",
+      "important_color": "#b8860b",
+      "warning_color": "#8b0000",
+      "caution_color": "#cd853f"
+    }
   },
   "aurora": {
     "name": "极光",
@@ -129,7 +156,10 @@ const THEMES = {
       "item_style": "margin: 0.6em 0;\npadding: 0;\nline-height: 1.8;\nfont-size: 15.5px;\nposition: relative;\npadding-left: 20px;\n",
       "item_style_before": "content: \"•\";\nposition: absolute;\nleft: 0;\ncolor: #a855f7;\nfont-weight: bold;\nfont-size: 1.2em;\nline-height: 1.8;\n",
       "ul_prefix": "",
-      "ol_prefix": "{n}."
+      "ol_prefix": "{n}.",
+      "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
+      "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #1e293b;\n",
+      "nested_ul_prefix": "◦ "
     },
     "code_block": {
       "style": "font-size: 14px;\noverflow-x: auto;\nborder-radius: 12px;\npadding: 1.4em;\nline-height: 1.6;\nmargin: 1.8em 0;\nbackground: linear-gradient(135deg, rgba(99, 102, 241, 0.03), rgba(168, 85, 247, 0.03), rgba(236, 72, 153, 0.03));\nborder: 2px solid transparent;\nborder-image: linear-gradient(135deg, #6366f1, #a855f7, #ec4899) 1;\nbox-shadow: 0 4px 20px rgba(99, 102, 241, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);\n",
@@ -147,9 +177,12 @@ const THEMES = {
     },
     "image": {
       "container_style": "margin: 2em 0;\ntext-align: center;\nline-height: 1.6;\nfont-size: 15.5px;\ncolor: #64748b;\n",
-      "img_style": "max-width: 100%;\nborder-radius: 16px;\nmargin: 1.5em auto;\ndisplay: block;\nbox-shadow: 0 8px 32px rgba(99, 102, 241, 0.15), 0 2px 8px rgba(0, 0, 0, 0.05);\nborder: 1px solid rgba(168, 85, 247, 0.15);\n"
+      "img_style": "max-width: 100%;\nborder-radius: 16px;\nmargin: 1.5em auto;\ndisplay: block;\nbox-shadow: 0 8px 32px rgba(99, 102, 241, 0.15), 0 2px 8px rgba(0, 0, 0, 0.05);\nborder: 1px solid rgba(168, 85, 247, 0.15);\n",
+      "caption_style": "text-align: center;\nfont-size: 0.85em;\ncolor: #a78bfa;\nmargin-top: 0.5em;\n"
     },
     "table": {
+      "wrapper_style": "overflow-x: auto;\nmargin: 1.5em 8px;\n",
+      "tr_odd_style": "background: rgba(99, 102, 241, 0.04);\n",
       "style": "width: 100%;\nborder-collapse: separate;\nborder-spacing: 0;\nmargin: 1.8em 0;\nborder-radius: 12px;\noverflow: hidden;\nbox-shadow: 0 4px 20px rgba(99, 102, 241, 0.1);\nborder: 1px solid rgba(168, 85, 247, 0.15);\n",
       "th_style": "padding: 14px 18px;\ntext-align: left;\nfont-weight: 700;\nborder-bottom: 2px solid rgba(168, 85, 247, 0.2);\nbackground: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));\ncolor: #6366f1;\nletter-spacing: 0.5px;\n",
       "td_style": "padding: 12px 18px;\nborder-bottom: 1px solid rgba(168, 85, 247, 0.08);\ncolor: #334155;\nbackground: rgba(255, 255, 255, 0.5);\n"
@@ -181,7 +214,27 @@ const THEMES = {
       "padding": "20px",
       "margin": "0"
     },
-    "decorations": {}
+    "decorations": {
+      "h2_prefix": "✦ "
+    },
+    "footnote": {
+      "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
+      "ref_style": "color: inherit;\ntext-decoration: none;\nborder-bottom: 1px dashed #6366f1;\npadding-bottom: 1px;\n",
+      "section_style": "margin-top: 2.5em;\npadding-top: 1.8em;\nborder-top: 1px solid #e0e7ff;\n",
+      "list_style": "list-style-type: decimal;\nmargin: 0;\npadding-left: 1.5em;\n",
+      "item_style": "font-size: 0.85em;\ncolor: #94a3b8;\nline-height: 1.6;\nmargin-bottom: 0.3em;\n",
+      "backref_style": "color: #6366f1;\ntext-decoration: none;\nmargin-left: 0.3em;\n"
+    },
+    "gfm_alert": {
+      "container_style": "margin: 1.5em 8px;\npadding: 12px 16px;\nborder-radius: 4px;\n",
+      "title_style": "font-weight: 600;\nmargin-bottom: 8px;\ndisplay: flex;\nalign-items: center;\ngap: 6px;\n",
+      "content_style": "color: #1e293b;\nline-height: 1.6;\nfont-size: 14px;\n",
+      "note_color": "#6366f1",
+      "tip_color": "#a855f7",
+      "important_color": "#f59e0b",
+      "warning_color": "#ef4444",
+      "caution_color": "#ec4899"
+    }
   },
   "bauhaus": {
     "name": "包豪斯",
@@ -226,7 +279,10 @@ const THEMES = {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.2em 0;\ncolor: #1a1a1a;\nfont-size: 15px;\nfont-family: 'Helvetica Neue', Helvetica, sans-serif;\n",
       "item_style": "margin: 0.6em 0;\npadding: 0 0 0 0;\nline-height: 1.75;\nfont-size: 15px;\n",
       "ul_prefix": "■ ",
-      "ol_prefix": "{n}. "
+      "ol_prefix": "{n}. ",
+      "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
+      "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #1a1a1a;\n",
+      "nested_ul_prefix": "◦ "
     },
     "code_block": {
       "style": "margin: 1.5em 0;\npadding: 1.2em;\nbackground: #1d3557;\nborder-radius: 0;\noverflow-x: auto;\nfont-size: 14px;\nline-height: 1.5;\nborder-left: 6px solid #e63946;\n",
@@ -244,9 +300,12 @@ const THEMES = {
     },
     "image": {
       "container_style": "margin: 2em 0;\ntext-align: center;\n",
-      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 0;\nborder: 4px solid #1d3557;\nbox-shadow: 8px 8px 0 #e63946;\n"
+      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 0;\nborder: 4px solid #1d3557;\nbox-shadow: 8px 8px 0 #e63946;\n",
+      "caption_style": "text-align: center;\nfont-size: 0.8em;\ncolor: #457b9d;\nmargin-top: 0.5em;\ntext-transform: uppercase;\nletter-spacing: 0.05em;\n"
     },
     "table": {
+      "wrapper_style": "overflow-x: auto;\nmargin: 1.5em 8px;\n",
+      "tr_odd_style": "background: rgba(29, 53, 87, 0.06);\n",
       "style": "margin: 1.5em 0;\nwidth: 100%;\nborder-collapse: collapse;\nfont-size: 14.5px;\nborder: 2px solid #1d3557;\n",
       "th_style": "background: #e63946;\ncolor: #fff;\npadding: 12px 14px;\ntext-align: left;\nfont-weight: 800;\nborder: 2px solid #1d3557;\nfont-family: 'Helvetica Neue', Helvetica, sans-serif;\nletter-spacing: 0.05em;\ntext-transform: uppercase;\n",
       "td_style": "border: 2px solid #1d3557;\npadding: 10px 14px;\ncolor: #1a1a1a;\n"
@@ -267,7 +326,27 @@ const THEMES = {
       "background": "#f0f0f0",
       "padding": "16px"
     },
-    "decorations": {}
+    "decorations": {
+      "h2_prefix": "■ "
+    },
+    "footnote": {
+      "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
+      "ref_style": "color: inherit;\ntext-decoration: none;\nborder-bottom: 1px dashed #e63946;\npadding-bottom: 1px;\n",
+      "section_style": "margin-top: 2.5em;\npadding-top: 1.8em;\nborder-top: 1px solid #1d3557;\n",
+      "list_style": "list-style-type: decimal;\nmargin: 0;\npadding-left: 1.5em;\n",
+      "item_style": "font-size: 0.85em;\ncolor: #888888;\nline-height: 1.6;\nmargin-bottom: 0.3em;\n",
+      "backref_style": "color: #e63946;\ntext-decoration: none;\nmargin-left: 0.3em;\n"
+    },
+    "gfm_alert": {
+      "container_style": "margin: 1.5em 8px;\npadding: 12px 16px;\nborder-radius: 4px;\n",
+      "title_style": "font-weight: 600;\nmargin-bottom: 8px;\ndisplay: flex;\nalign-items: center;\ngap: 6px;\n",
+      "content_style": "color: #1a1a1a;\nline-height: 1.6;\nfont-size: 14px;\n",
+      "note_color": "#457b9d",
+      "tip_color": "#2d6a4f",
+      "important_color": "#f4a261",
+      "warning_color": "#e63946",
+      "caution_color": "#ff8c42"
+    }
   },
   "bluehl": {
     "name": "蓝标高亮",
@@ -311,7 +390,10 @@ const THEMES = {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.2em 16px;\ncolor: #1a1a1a;\nfont-size: 15px;\nfont-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;\n",
       "item_style": "margin: 0.5em 0;\npadding: 0;\nline-height: 2;\nfont-size: 15px;\n",
       "ul_prefix": "• ",
-      "ol_prefix": "{n}. "
+      "ol_prefix": "{n}. ",
+      "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
+      "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #1a1a1a;\n",
+      "nested_ul_prefix": "◦ "
     },
     "code_block": {
       "style": "margin: 1.5em 16px;\npadding: 1.2em;\nbackground: #f6f8fa;\nborder-radius: 6px;\noverflow-x: auto;\nfont-size: 14px;\nline-height: 1.5;\nborder: 1px solid #e5e7eb;\n",
@@ -329,9 +411,12 @@ const THEMES = {
     },
     "image": {
       "container_style": "margin: 1.5em 0;\ntext-align: center;\n",
-      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 4px;\n"
+      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 4px;\n",
+      "caption_style": "text-align: center;\nfont-size: 0.85em;\ncolor: #64b5f6;\nmargin-top: 0.5em;\n"
     },
     "table": {
+      "wrapper_style": "overflow-x: auto;\nmargin: 1.5em 8px;\n",
+      "tr_odd_style": "background: rgba(22, 119, 255, 0.04);\n",
       "style": "margin: 1.5em 16px;\nwidth: calc(100% - 32px);\nborder-collapse: collapse;\nfont-size: 15px;\n",
       "th_style": "background: #1677ff;\ncolor: #fff;\npadding: 10px 14px;\ntext-align: left;\nfont-weight: 600;\n",
       "td_style": "border-bottom: 1px solid #e5e7eb;\npadding: 10px 14px;\ncolor: #1a1a1a;\n"
@@ -352,7 +437,27 @@ const THEMES = {
       "background": "#f5f5f5",
       "padding": "16px"
     },
-    "decorations": {}
+    "decorations": {
+      "h2_prefix": "▍"
+    },
+    "footnote": {
+      "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
+      "ref_style": "color: inherit;\ntext-decoration: none;\nborder-bottom: 1px dashed #1677ff;\npadding-bottom: 1px;\n",
+      "section_style": "margin-top: 2.5em;\npadding-top: 1.8em;\nborder-top: 1px solid #d6e4ff;\n",
+      "list_style": "list-style-type: decimal;\nmargin: 0;\npadding-left: 1.5em;\n",
+      "item_style": "font-size: 0.85em;\ncolor: #888888;\nline-height: 1.6;\nmargin-bottom: 0.3em;\n",
+      "backref_style": "color: #1677ff;\ntext-decoration: none;\nmargin-left: 0.3em;\n"
+    },
+    "gfm_alert": {
+      "container_style": "margin: 1.5em 8px;\npadding: 12px 16px;\nborder-radius: 4px;\n",
+      "title_style": "font-weight: 600;\nmargin-bottom: 8px;\ndisplay: flex;\nalign-items: center;\ngap: 6px;\n",
+      "content_style": "color: #1a1a1a;\nline-height: 1.6;\nfont-size: 14px;\n",
+      "note_color": "#1677ff",
+      "tip_color": "#52c41a",
+      "important_color": "#f59e0b",
+      "warning_color": "#ef4444",
+      "caution_color": "#ff8f00"
+    }
   },
   "chinese-ink": {
     "name": "水墨丹青",
@@ -395,7 +500,10 @@ const THEMES = {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.2em 8px;\ncolor: #2c2420;\nfont-size: 15px;\n",
       "item_style": "margin: 0.5em 0;\npadding: 0;\nline-height: 1.8;\nfont-size: 15px;\ncolor: #2c2420;\n",
       "ul_prefix": "○ ",
-      "ol_prefix": "{n}、"
+      "ol_prefix": "{n}、",
+      "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
+      "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #2c2420;\n",
+      "nested_ul_prefix": "◦ "
     },
     "code_block": {
       "style": "margin: 1.5em 8px;\npadding: 1.2em;\nbackground-color: #f5f1ea;\nborder-radius: 4px;\noverflow-x: auto;\nfont-size: 14px;\nline-height: 1.5;\nborder: 1px solid #e5dcd0;\nborder-top: 3px solid #8b4513;\n",
@@ -413,9 +521,12 @@ const THEMES = {
     },
     "image": {
       "container_style": "margin: 1.5em 0;\ntext-align: center;\n",
-      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 4px;\nbox-shadow: 0 2px 8px rgba(60, 40, 20, 0.1);\nborder: 1px solid #e5dcd0;\n"
+      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 4px;\nbox-shadow: 0 2px 8px rgba(60, 40, 20, 0.1);\nborder: 1px solid #e5dcd0;\n",
+      "caption_style": "text-align: center;\nfont-size: 0.85em;\ncolor: #8b4513;\nmargin-top: 0.5em;\nfont-style: italic;\n"
     },
     "table": {
+      "wrapper_style": "overflow-x: auto;\nmargin: 1.5em 8px;\n",
+      "tr_odd_style": "background: rgba(139, 69, 19, 0.04);\n",
       "style": "margin: 1.5em 0;\nwidth: 100%;\nborder-collapse: collapse;\nfont-size: 15px;\n",
       "th_style": "background: #8b4513;\ncolor: #ffffff;\npadding: 10px 14px;\ntext-align: left;\nfont-weight: 600;\n",
       "td_style": "border: 1px solid #e5dcd0;\npadding: 10px 14px;\ncolor: #2c2420;\nbackground: #faf7f2;\n"
@@ -451,6 +562,24 @@ const THEMES = {
       "h2_prefix": "◈ ",
       "ul_prefix": "○ ",
       "hr_text": "— ✦ —"
+    },
+    "footnote": {
+      "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
+      "ref_style": "color: inherit;\ntext-decoration: none;\nborder-bottom: 1px dashed #8b4513;\npadding-bottom: 1px;\n",
+      "section_style": "margin-top: 2.5em;\npadding-top: 1.8em;\nborder-top: 1px solid #d8c9a8;\n",
+      "list_style": "list-style-type: decimal;\nmargin: 0;\npadding-left: 1.5em;\n",
+      "item_style": "font-size: 0.85em;\ncolor: #8b8378;\nline-height: 1.6;\nmargin-bottom: 0.3em;\n",
+      "backref_style": "color: #8b4513;\ntext-decoration: none;\nmargin-left: 0.3em;\n"
+    },
+    "gfm_alert": {
+      "container_style": "margin: 1.5em 8px;\npadding: 12px 16px;\nborder-radius: 4px;\n",
+      "title_style": "font-weight: 600;\nmargin-bottom: 8px;\ndisplay: flex;\nalign-items: center;\ngap: 6px;\n",
+      "content_style": "color: #2c2420;\nline-height: 1.6;\nfont-size: 14px;\n",
+      "note_color": "#8b4513",
+      "tip_color": "#2e8b57",
+      "important_color": "#b8860b",
+      "warning_color": "#a0522d",
+      "caution_color": "#cd853f"
     }
   },
   "corporate": {
@@ -500,7 +629,10 @@ const THEMES = {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.2em 0;\ncolor: #344054;\nfont-size: 15px;\n",
       "item_style": "margin: 0.5em 0;\npadding: 0;\nline-height: 1.8;\nfont-size: 15px;\n",
       "ul_prefix": "▪ ",
-      "ol_prefix": "{n}. "
+      "ol_prefix": "{n}. ",
+      "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
+      "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #344054;\n",
+      "nested_ul_prefix": "◦ "
     },
     "code_block": {
       "style": "margin: 1.5em 0;\npadding: 1.2em;\nbackground-color: #f9fafb;\nborder-radius: 4px;\noverflow-x: auto;\nfont-size: 14px;\nline-height: 1.5;\nborder: 1px solid #d0d5dd;\nborder-left: 3px solid #1e3a5f;\n",
@@ -518,9 +650,12 @@ const THEMES = {
     },
     "image": {
       "container_style": "margin: 1.5em 0;\ntext-align: center;\n",
-      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 4px;\nborder: 1px solid #d0d5dd;\n"
+      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 4px;\nborder: 1px solid #d0d5dd;\n",
+      "caption_style": "text-align: center;\nfont-size: 0.85em;\ncolor: #667085;\nmargin-top: 0.5em;\n"
     },
     "table": {
+      "wrapper_style": "overflow-x: auto;\nmargin: 1.5em 8px;\n",
+      "tr_odd_style": "background: rgba(30, 58, 95, 0.04);\n",
       "style": "margin: 1.5em 0;\nwidth: 100%;\nborder-collapse: collapse;\nfont-size: 14.5px;\nborder: 1px solid #d0d5dd;\n",
       "th_style": "background-color: #1e3a5f;\ncolor: #fff;\npadding: 12px 14px;\ntext-align: left;\nfont-weight: 600;\n",
       "td_style": "border: 1px solid #d0d5dd;\npadding: 10px 14px;\ncolor: #344054;\n"
@@ -537,7 +672,27 @@ const THEMES = {
     "strikethrough": {
       "style": "text-decoration: line-through;\ncolor: #98a2b3;\n"
     },
-    "decorations": {}
+    "decorations": {
+      "h2_prefix": "▎"
+    },
+    "footnote": {
+      "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
+      "ref_style": "color: inherit;\ntext-decoration: none;\nborder-bottom: 1px dashed #1e3a5f;\npadding-bottom: 1px;\n",
+      "section_style": "margin-top: 2.5em;\npadding-top: 1.8em;\nborder-top: 1px solid #d0d5dd;\n",
+      "list_style": "list-style-type: decimal;\nmargin: 0;\npadding-left: 1.5em;\n",
+      "item_style": "font-size: 0.85em;\ncolor: #667085;\nline-height: 1.6;\nmargin-bottom: 0.3em;\n",
+      "backref_style": "color: #1e3a5f;\ntext-decoration: none;\nmargin-left: 0.3em;\n"
+    },
+    "gfm_alert": {
+      "container_style": "margin: 1.5em 8px;\npadding: 12px 16px;\nborder-radius: 4px;\n",
+      "title_style": "font-weight: 600;\nmargin-bottom: 8px;\ndisplay: flex;\nalign-items: center;\ngap: 6px;\n",
+      "content_style": "color: #344054;\nline-height: 1.6;\nfont-size: 14px;\n",
+      "note_color": "#1e3a5f",
+      "tip_color": "#2e7d32",
+      "important_color": "#c17900",
+      "warning_color": "#b71c1c",
+      "caution_color": "#ef6c00"
+    }
   },
   "default": {
     "name": "墨印默认",
@@ -580,7 +735,10 @@ const THEMES = {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.2em 8px;\ncolor: #2c3e50;\nfont-size: 15px;\n",
       "item_style": "margin: 0.5em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #2c3e50;\n",
       "ul_prefix": "• ",
-      "ol_prefix": "{n}. "
+      "ol_prefix": "{n}. ",
+      "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
+      "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #2c3e50;\n",
+      "nested_ul_prefix": "◦ "
     },
     "code_block": {
       "style": "margin: 1.5em 8px;\npadding: 1.2em;\nbackground-color: #f8f9fa;\nborder-top: 3px solid #3498db;\nborder-radius: 6px;\noverflow-x: auto;\nfont-size: 14px;\nline-height: 1.5;\n",
@@ -598,9 +756,12 @@ const THEMES = {
     },
     "image": {
       "container_style": "margin: 1.5em 0;\ntext-align: center;\nline-height: 1.6;\nfont-size: 14px;\ncolor: #7f8c8d;\n",
-      "img_style": "max-width: 100%;\ndisplay: block;\nmargin: 0.5em auto;\nborder-radius: 6px;\nbox-shadow: 0 2px 8px rgba(44, 62, 80, 0.1);\n"
+      "img_style": "max-width: 100%;\ndisplay: block;\nmargin: 0.5em auto;\nborder-radius: 6px;\nbox-shadow: 0 2px 8px rgba(44, 62, 80, 0.1);\n",
+      "caption_style": "text-align: center;\nfont-size: 0.85em;\ncolor: #7f8c8d;\nmargin-top: 0.5em;\n"
     },
     "table": {
+      "wrapper_style": "overflow-x: auto;\nmargin: 1.5em 8px;\n",
+      "tr_odd_style": "background: rgba(52, 152, 219, 0.04);\n",
       "style": "width: 100%;\nborder-collapse: collapse;\nmargin: 1.5em 0;\nfont-size: 14px;\nborder-radius: 6px;\noverflow: hidden;\n",
       "th_style": "padding: 10px 14px;\ntext-align: left;\nfont-weight: 700;\ncolor: #ffffff;\nbackground-color: #3498db;\nborder: 1px solid #2e86c1;\n",
       "td_style": "padding: 8px 14px;\nborder: 1px solid #d5dbdb;\ncolor: #2c3e50;\nbackground-color: #ffffff;\n"
@@ -632,7 +793,27 @@ const THEMES = {
       "padding": "16px",
       "margin": "0"
     },
-    "decorations": {}
+    "decorations": {
+      "h2_prefix": "✦ "
+    },
+    "footnote": {
+      "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
+      "ref_style": "color: inherit;\ntext-decoration: none;\nborder-bottom: 1px dashed #3498db;\npadding-bottom: 1px;\n",
+      "section_style": "margin-top: 2.5em;\npadding-top: 1.8em;\nborder-top: 1px solid #d5e8f5;\n",
+      "list_style": "list-style-type: decimal;\nmargin: 0;\npadding-left: 1.5em;\n",
+      "item_style": "font-size: 0.85em;\ncolor: #95a5a6;\nline-height: 1.6;\nmargin-bottom: 0.3em;\n",
+      "backref_style": "color: #3498db;\ntext-decoration: none;\nmargin-left: 0.3em;\n"
+    },
+    "gfm_alert": {
+      "container_style": "margin: 1.5em 8px;\npadding: 12px 16px;\nborder-radius: 4px;\n",
+      "title_style": "font-weight: 600;\nmargin-bottom: 8px;\ndisplay: flex;\nalign-items: center;\ngap: 6px;\n",
+      "content_style": "color: #2c3e50;\nline-height: 1.6;\nfont-size: 14px;\n",
+      "note_color": "#3498db",
+      "tip_color": "#27ae60",
+      "important_color": "#f39c12",
+      "warning_color": "#e74c3c",
+      "caution_color": "#e67e22"
+    }
   },
   "editorial": {
     "name": "编辑精选",
@@ -676,7 +857,10 @@ const THEMES = {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.3em 0;\ncolor: #1a202c;\nfont-size: 15px;\nfont-family: Georgia, 'Noto Serif CJK SC', 'PingFang SC', serif;\n",
       "item_style": "margin: 0.6em 0;\npadding: 0;\nline-height: 1.9;\nfont-size: 15px;\n",
       "ul_prefix": "▪ ",
-      "ol_prefix": "{n}. "
+      "ol_prefix": "{n}. ",
+      "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
+      "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #1a202c;\n",
+      "nested_ul_prefix": "◦ "
     },
     "code_block": {
       "style": "margin: 1.8em 0;\npadding: 1.2em 1.5em;\nbackground: #f7f5ef;\nborder-radius: 0;\noverflow-x: auto;\nfont-size: 13.5px;\nline-height: 1.7;\nborder-left: 3px solid #1a365d;\nborder-top: 1px solid #e8e4da;\nborder-bottom: 1px solid #e8e4da;\n",
@@ -694,9 +878,12 @@ const THEMES = {
     },
     "image": {
       "container_style": "margin: 2em 0;\ntext-align: center;\n",
-      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 0;\nbox-shadow: 0 4px 16px rgba(0,0,0,0.06);\n"
+      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 0;\nbox-shadow: 0 4px 16px rgba(0,0,0,0.06);\n",
+      "caption_style": "text-align: center;\nfont-size: 0.85em;\ncolor: #718096;\nmargin-top: 0.5em;\nfont-style: italic;\n"
     },
     "table": {
+      "wrapper_style": "overflow-x: auto;\nmargin: 1.5em 8px;\n",
+      "tr_odd_style": "background: rgba(26, 54, 93, 0.04);\n",
       "style": "margin: 1.8em 0;\nwidth: 100%;\nborder-collapse: collapse;\nfont-size: 14.5px;\nfont-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;\n",
       "th_style": "background: #1a365d;\ncolor: #fffdf8;\npadding: 12px 16px;\ntext-align: left;\nfont-weight: 600;\nletter-spacing: 0.04em;\n",
       "td_style": "border-bottom: 1px solid #e8e4da;\npadding: 11px 16px;\ncolor: #1a202c;\n"
@@ -717,7 +904,27 @@ const THEMES = {
       "background": "#f8f6f0",
       "padding": "20px"
     },
-    "decorations": {}
+    "decorations": {
+      "h2_prefix": "— "
+    },
+    "footnote": {
+      "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
+      "ref_style": "color: inherit;\ntext-decoration: none;\nborder-bottom: 1px dashed #1a365d;\npadding-bottom: 1px;\n",
+      "section_style": "margin-top: 2.5em;\npadding-top: 1.8em;\nborder-top: 1px solid #e2e8f0;\n",
+      "list_style": "list-style-type: decimal;\nmargin: 0;\npadding-left: 1.5em;\n",
+      "item_style": "font-size: 0.85em;\ncolor: #718096;\nline-height: 1.6;\nmargin-bottom: 0.3em;\n",
+      "backref_style": "color: #1a365d;\ntext-decoration: none;\nmargin-left: 0.3em;\n"
+    },
+    "gfm_alert": {
+      "container_style": "margin: 1.5em 8px;\npadding: 12px 16px;\nborder-radius: 4px;\n",
+      "title_style": "font-weight: 600;\nmargin-bottom: 8px;\ndisplay: flex;\nalign-items: center;\ngap: 6px;\n",
+      "content_style": "color: #1a202c;\nline-height: 1.6;\nfont-size: 14px;\n",
+      "note_color": "#1a365d",
+      "tip_color": "#2e7d32",
+      "important_color": "#f59e0b",
+      "warning_color": "#c0392b",
+      "caution_color": "#e67e22"
+    }
   },
   "elegant-serif": {
     "name": "典雅衬线",
@@ -760,7 +967,10 @@ const THEMES = {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.2em 0;\ncolor: #2c2c2c;\nfont-family: Georgia, 'Times New Roman', serif;\nfont-size: 16px;\n",
       "item_style": "margin: 0.5em 0;\npadding: 0;\nline-height: 1.8;\nfont-size: 16px;\n",
       "ul_prefix": "- ",
-      "ol_prefix": "{n}. "
+      "ol_prefix": "{n}. ",
+      "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
+      "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #2c2c2c;\n",
+      "nested_ul_prefix": "◦ "
     },
     "code_block": {
       "style": "margin: 1.5em 0;\npadding: 1.2em;\nbackground-color: #f5f3ef;\nborder-radius: 6px;\noverflow-x: auto;\nfont-size: 14px;\nline-height: 1.5;\nborder: 1px solid #e8e2d8;\n",
@@ -778,15 +988,18 @@ const THEMES = {
     },
     "image": {
       "container_style": "margin: 2em 0;\ntext-align: center;\nline-height: 1.6;\nfont-size: 13px;\ncolor: #999999;\nfont-family: Georgia, 'Times New Roman', serif;\nfont-style: italic;\n",
-      "img_style": "max-width: 100%;\ndisplay: block;\nmargin: 1.5em auto;\nborder-radius: 4px;\nbox-shadow: 0 2px 10px rgba(139, 115, 85, 0.1);\n"
+      "img_style": "max-width: 100%;\ndisplay: block;\nmargin: 1.5em auto;\nborder-radius: 4px;\nbox-shadow: 0 2px 10px rgba(139, 115, 85, 0.1);\n",
+      "caption_style": "text-align: center;\nfont-size: 0.85em;\ncolor: #a08c6e;\nmargin-top: 0.5em;\nfont-style: italic;\nfont-family: Georgia, 'Times New Roman', serif;\n"
     },
     "table": {
+      "wrapper_style": "overflow-x: auto;\nmargin: 1.5em 8px;\n",
+      "tr_odd_style": "background: rgba(139, 115, 85, 0.04);\n",
       "style": "width: 100%;\nborder-collapse: collapse;\nmargin: 1.5em 0;\nfont-family: Georgia, 'Times New Roman', serif;\nfont-size: 15px;\n",
       "th_style": "padding: 12px 15px;\ntext-align: left;\nfont-weight: 700;\ncolor: #1a1a1a;\nborder-bottom: 2px solid #8b7355;\nbackground-color: rgba(139, 115, 85, 0.06);\n",
       "td_style": "padding: 10px 15px;\nborder-bottom: 1px solid #e8e2d8;\ncolor: #2c2c2c;\n"
     },
     "hr": {
-      "style": "border: none;\nheight: 1px;\nmargin: 2.5em 0;\nbackground: linear-gradient(to right, transparent, #8b7355, transparent);\n"
+      "style": ""
     },
     "bold": {
       "style": "font-weight: 700;\ncolor: #5c4a32;\n"
@@ -809,14 +1022,32 @@ const THEMES = {
     },
     "decorations": {
       "h2_prefix": "§ ",
-      "blockquote_prefix": "",
-      "blockquote_suffix": "",
-      "hr_text": ""
+      "blockquote_prefix": "「",
+      "blockquote_suffix": "」",
+      "hr_text": "— ✦ —"
     },
     "body": {
       "background": "#f9f7f3",
       "padding": "16px",
       "margin": "0"
+    },
+    "footnote": {
+      "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
+      "ref_style": "color: inherit;\ntext-decoration: none;\nborder-bottom: 1px dashed #8b7355;\npadding-bottom: 1px;\n",
+      "section_style": "margin-top: 2.5em;\npadding-top: 1.8em;\nborder-top: 1px solid #e8e2d8;\n",
+      "list_style": "list-style-type: decimal;\nmargin: 0;\npadding-left: 1.5em;\n",
+      "item_style": "font-size: 0.85em;\ncolor: #a09080;\nline-height: 1.6;\nmargin-bottom: 0.3em;\n",
+      "backref_style": "color: #8b7355;\ntext-decoration: none;\nmargin-left: 0.3em;\n"
+    },
+    "gfm_alert": {
+      "container_style": "margin: 1.5em 8px;\npadding: 12px 16px;\nborder-radius: 4px;\n",
+      "title_style": "font-weight: 600;\nmargin-bottom: 8px;\ndisplay: flex;\nalign-items: center;\ngap: 6px;\n",
+      "content_style": "color: #2c2c2c;\nline-height: 1.6;\nfont-size: 14px;\n",
+      "note_color": "#8b7355",
+      "tip_color": "#5c8a3a",
+      "important_color": "#b8860b",
+      "warning_color": "#a0522d",
+      "caution_color": "#8b6914"
     }
   },
   "forest": {
@@ -865,7 +1096,10 @@ const THEMES = {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.2em 0;\ncolor: #2d3a2e;\nfont-size: 15px;\nfont-family: Georgia, 'Noto Serif CJK SC', serif;\n",
       "item_style": "margin: 0.6em 0;\npadding: 0;\nline-height: 1.85;\nfont-size: 15px;\n",
       "ul_prefix": "🌿 ",
-      "ol_prefix": "{n}. "
+      "ol_prefix": "{n}. ",
+      "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
+      "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #2d3a2e;\n",
+      "nested_ul_prefix": "◦ "
     },
     "code_block": {
       "style": "margin: 1.5em 0;\npadding: 1.2em;\nbackground-color: #f0f5ec;\nborder-radius: 8px;\noverflow-x: auto;\nfont-size: 13.5px;\nline-height: 1.6;\nborder: 1px solid #d8e8d0;\nborder-left: 3px solid #2d6a4f;\n",
@@ -883,15 +1117,18 @@ const THEMES = {
     },
     "image": {
       "container_style": "margin: 1.5em 0;\ntext-align: center;\n",
-      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 8px;\nbox-shadow: 0 4px 12px rgba(34, 120, 74, 0.08);\n"
+      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 8px;\nbox-shadow: 0 4px 12px rgba(34, 120, 74, 0.08);\n",
+      "caption_style": "text-align: center;\nfont-size: 0.85em;\ncolor: #6b8f71;\nmargin-top: 0.5em;\nfont-style: italic;\n"
     },
     "table": {
+      "wrapper_style": "overflow-x: auto;\nmargin: 1.5em 8px;\n",
+      "tr_odd_style": "background: rgba(45, 106, 79, 0.04);\n",
       "style": "margin: 1.5em 0;\nwidth: 100%;\nborder-collapse: collapse;\nfont-size: 14.5px;\n",
       "th_style": "background-color: #2d6a4f;\ncolor: #f0f5ec;\npadding: 12px 14px;\ntext-align: left;\nfont-weight: 600;\n",
       "td_style": "border-bottom: 1px solid #d8e8d0;\npadding: 10px 14px;\ncolor: #2d3a2e;\n"
     },
     "hr": {
-      "style": "border: none;\nheight: 2px;\nmargin: 2.5em 0;\nbackground-color: #b7e4c7;\n"
+      "style": ""
     },
     "bold": {
       "style": "font-weight: 800;\ncolor: #2d6a4f;\n"
@@ -902,7 +1139,28 @@ const THEMES = {
     "strikethrough": {
       "style": "text-decoration: line-through;\ncolor: #a8b8a0;\n"
     },
-    "decorations": {}
+    "decorations": {
+      "h2_prefix": "🌿 ",
+      "hr_text": "— 🌱 —"
+    },
+    "footnote": {
+      "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
+      "ref_style": "color: inherit;\ntext-decoration: none;\nborder-bottom: 1px dashed #2d6a4f;\npadding-bottom: 1px;\n",
+      "section_style": "margin-top: 2.5em;\npadding-top: 1.8em;\nborder-top: 1px solid #d8ead5;\n",
+      "list_style": "list-style-type: decimal;\nmargin: 0;\npadding-left: 1.5em;\n",
+      "item_style": "font-size: 0.85em;\ncolor: #6b8f71;\nline-height: 1.6;\nmargin-bottom: 0.3em;\n",
+      "backref_style": "color: #2d6a4f;\ntext-decoration: none;\nmargin-left: 0.3em;\n"
+    },
+    "gfm_alert": {
+      "container_style": "margin: 1.5em 8px;\npadding: 12px 16px;\nborder-radius: 4px;\n",
+      "title_style": "font-weight: 600;\nmargin-bottom: 8px;\ndisplay: flex;\nalign-items: center;\ngap: 6px;\n",
+      "content_style": "color: #2d3a2e;\nline-height: 1.6;\nfont-size: 14px;\n",
+      "note_color": "#2d6a4f",
+      "tip_color": "#40916c",
+      "important_color": "#b8860b",
+      "warning_color": "#a0522d",
+      "caution_color": "#cd853f"
+    }
   },
   "inkwash": {
     "name": "水墨丹青",
@@ -947,7 +1205,10 @@ const THEMES = {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.2em 0;\ncolor: #2a2a2a;\nfont-size: 15px;\nfont-family: 'STSong', 'SimSun', 'Noto Serif CJK SC', serif;\n",
       "item_style": "margin: 0.6em 0;\npadding: 0;\nline-height: 1.9;\nfont-size: 15px;\n",
       "ul_prefix": "・",
-      "ol_prefix": "{n}、"
+      "ol_prefix": "{n}、",
+      "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
+      "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #2a2a2a;\n",
+      "nested_ul_prefix": "◦ "
     },
     "code_block": {
       "style": "margin: 1.8em 0;\npadding: 1.2em 1.5em;\nbackground: #f0ebe2;\nborder-radius: 0;\noverflow-x: auto;\nfont-size: 13.5px;\nline-height: 1.6;\nborder: 1px solid #c4b8a8;\nborder-left: 4px solid #1a1a1a;\n",
@@ -965,15 +1226,18 @@ const THEMES = {
     },
     "image": {
       "container_style": "margin: 2em 0;\ntext-align: center;\n",
-      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 0;\nbox-shadow: 0 2px 12px rgba(0,0,0,0.08);\nborder: 1px solid #c4b8a8;\n"
+      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 0;\nbox-shadow: 0 2px 12px rgba(0,0,0,0.08);\nborder: 1px solid #c4b8a8;\n",
+      "caption_style": "text-align: center;\nfont-size: 0.85em;\ncolor: #8c7b6b;\nmargin-top: 0.5em;\nletter-spacing: 0.1em;\n"
     },
     "table": {
+      "wrapper_style": "overflow-x: auto;\nmargin: 1.5em 8px;\n",
+      "tr_odd_style": "background: rgba(26, 26, 26, 0.03);\n",
       "style": "margin: 1.8em 0;\nwidth: 100%;\nborder-collapse: collapse;\nfont-size: 14.5px;\n",
       "th_style": "background: #1a1a1a;\ncolor: #f0ebe2;\npadding: 12px 14px;\ntext-align: left;\nfont-weight: 600;\nletter-spacing: 0.05em;\nfont-family: 'STKaiti', 'KaiTi', serif;\n",
       "td_style": "border-bottom: 1px solid #c4b8a8;\npadding: 10px 14px;\ncolor: #2a2a2a;\nbackground: rgba(247, 243, 236, 0.5);\n"
     },
     "hr": {
-      "style": "border: none;\nheight: 0;\nmargin: 2.5em auto;\nborder-top: 1px solid #8c7b6b;\nwidth: 40%;\n"
+      "style": ""
     },
     "bold": {
       "style": "font-weight: 900;\ncolor: #1a1a1a;\n"
@@ -988,7 +1252,30 @@ const THEMES = {
       "background": "#eae4d9",
       "padding": "20px"
     },
-    "decorations": {}
+    "decorations": {
+      "h2_prefix": "◇ ",
+      "hr_text": "—— ◇ ——",
+      "blockquote_prefix": "「",
+      "blockquote_suffix": "」"
+    },
+    "footnote": {
+      "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
+      "ref_style": "color: inherit;\ntext-decoration: none;\nborder-bottom: 1px dashed #b5302a;\npadding-bottom: 1px;\n",
+      "section_style": "margin-top: 2.5em;\npadding-top: 1.8em;\nborder-top: 1px solid #d5cfc5;\n",
+      "list_style": "list-style-type: decimal;\nmargin: 0;\npadding-left: 1.5em;\n",
+      "item_style": "font-size: 0.85em;\ncolor: #888888;\nline-height: 1.6;\nmargin-bottom: 0.3em;\n",
+      "backref_style": "color: #b5302a;\ntext-decoration: none;\nmargin-left: 0.3em;\n"
+    },
+    "gfm_alert": {
+      "container_style": "margin: 1.5em 8px;\npadding: 12px 16px;\nborder-radius: 4px;\n",
+      "title_style": "font-weight: 600;\nmargin-bottom: 8px;\ndisplay: flex;\nalign-items: center;\ngap: 6px;\n",
+      "content_style": "color: #2a2a2a;\nline-height: 1.6;\nfont-size: 14px;\n",
+      "note_color": "#1a1a1a",
+      "tip_color": "#4a6741",
+      "important_color": "#8b7355",
+      "warning_color": "#b5302a",
+      "caution_color": "#8c7b6b"
+    }
   },
   "latte": {
     "name": "拿铁日常",
@@ -1033,7 +1320,10 @@ const THEMES = {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.2em 0;\ncolor: #4a3728;\nfont-size: 15px;\nfont-family: 'PingFang SC', -apple-system, sans-serif;\n",
       "item_style": "margin: 0.6em 0;\npadding: 0;\nline-height: 1.8;\nfont-size: 15px;\n",
       "ul_prefix": "☕ ",
-      "ol_prefix": "{n}. "
+      "ol_prefix": "{n}. ",
+      "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
+      "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #4a3728;\n",
+      "nested_ul_prefix": "◦ "
     },
     "code_block": {
       "style": "margin: 1.5em 0;\npadding: 1.2em 1.5em;\nbackground: #f5ede2;\nborder-radius: 12px;\noverflow-x: auto;\nfont-size: 13.5px;\nline-height: 1.6;\nborder: 1px dashed #dcc9b0;\n",
@@ -1051,15 +1341,18 @@ const THEMES = {
     },
     "image": {
       "container_style": "margin: 1.5em 0;\ntext-align: center;\n",
-      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 12px;\nbox-shadow: 4px 4px 0 rgba(160, 114, 78, 0.1);\nborder: 2px solid #ecdfd2;\n"
+      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 12px;\nbox-shadow: 4px 4px 0 rgba(160, 114, 78, 0.1);\nborder: 2px solid #ecdfd2;\n",
+      "caption_style": "text-align: center;\nfont-size: 0.85em;\ncolor: #a0724e;\nmargin-top: 0.5em;\nfont-style: italic;\n"
     },
     "table": {
+      "wrapper_style": "overflow-x: auto;\nmargin: 1.5em 8px;\n",
+      "tr_odd_style": "background: rgba(160, 114, 78, 0.05);\n",
       "style": "margin: 1.5em 0;\nwidth: 100%;\nborder-collapse: collapse;\nfont-size: 14.5px;\nborder-radius: 12px;\noverflow: hidden;\nborder: 1px solid #dcc9b0;\n",
       "th_style": "background: #f0e0cc;\ncolor: #5c3d2e;\npadding: 12px 14px;\ntext-align: left;\nfont-weight: 700;\nborder-bottom: 2px solid #c4956a;\nfont-family: 'PingFang SC', sans-serif;\n",
       "td_style": "border-bottom: 1px dashed #e0d0c0;\npadding: 10px 14px;\ncolor: #4a3728;\nbackground: rgba(250, 244, 235, 0.5);\n"
     },
     "hr": {
-      "style": "border: none;\nheight: 0;\nmargin: 2.5em auto;\nwidth: 80%;\nborder-top: 2px dashed #dcc9b0;\n"
+      "style": ""
     },
     "bold": {
       "style": "font-weight: 800;\ncolor: #a0724e;\n"
@@ -1074,7 +1367,28 @@ const THEMES = {
       "background": "#f0e8db",
       "padding": "20px"
     },
-    "decorations": {}
+    "decorations": {
+      "h2_prefix": "☕ ",
+      "hr_text": "· · ·"
+    },
+    "footnote": {
+      "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
+      "ref_style": "color: inherit;\ntext-decoration: none;\nborder-bottom: 1px dashed #a0724e;\npadding-bottom: 1px;\n",
+      "section_style": "margin-top: 2.5em;\npadding-top: 1.8em;\nborder-top: 1px solid #dcc9b0;\n",
+      "list_style": "list-style-type: decimal;\nmargin: 0;\npadding-left: 1.5em;\n",
+      "item_style": "font-size: 0.85em;\ncolor: #a09080;\nline-height: 1.6;\nmargin-bottom: 0.3em;\n",
+      "backref_style": "color: #a0724e;\ntext-decoration: none;\nmargin-left: 0.3em;\n"
+    },
+    "gfm_alert": {
+      "container_style": "margin: 1.5em 8px;\npadding: 12px 16px;\nborder-radius: 4px;\n",
+      "title_style": "font-weight: 600;\nmargin-bottom: 8px;\ndisplay: flex;\nalign-items: center;\ngap: 6px;\n",
+      "content_style": "color: #4a3728;\nline-height: 1.6;\nfont-size: 14px;\n",
+      "note_color": "#7a5a47",
+      "tip_color": "#5c8a3a",
+      "important_color": "#b8860b",
+      "warning_color": "#a0522d",
+      "caution_color": "#cd853f"
+    }
   },
   "minimal": {
     "name": "极简",
@@ -1117,7 +1431,10 @@ const THEMES = {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.2em 0;\ncolor: #333333;\nfont-size: 15px;\n",
       "item_style": "margin: 0.4em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\n",
       "ul_prefix": "- ",
-      "ol_prefix": "{n}. "
+      "ol_prefix": "{n}. ",
+      "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
+      "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #333333;\n",
+      "nested_ul_prefix": "◦ "
     },
     "code_block": {
       "style": "margin: 1.5em 0;\npadding: 1em;\nbackground-color: #f6f8fa;\nborder-radius: 6px;\noverflow-x: auto;\nfont-size: 14px;\nline-height: 1.5;\nborder: 1px solid #e1e4e8;\n",
@@ -1135,9 +1452,12 @@ const THEMES = {
     },
     "image": {
       "container_style": "margin: 1.5em 0;\ntext-align: center;\n",
-      "img_style": "max-width: 100%;\ndisplay: block;\nmargin: 1em auto;\n"
+      "img_style": "max-width: 100%;\ndisplay: block;\nmargin: 1em auto;\n",
+      "caption_style": "text-align: center;\nfont-size: 0.85em;\ncolor: #999999;\nmargin-top: 0.5em;\n"
     },
     "table": {
+      "wrapper_style": "overflow-x: auto;\nmargin: 1.5em 8px;\n",
+      "tr_odd_style": "background: rgba(0, 0, 0, 0.02);\n",
       "style": "width: 100%;\nborder-collapse: collapse;\nmargin: 1.5em 0;\nfont-size: 15px;\n",
       "th_style": "padding: 10px 12px;\ntext-align: left;\nfont-weight: 600;\ncolor: #24292e;\nborder-bottom: 2px solid #e1e4e8;\n",
       "td_style": "padding: 8px 12px;\nborder-bottom: 1px solid #e1e4e8;\ncolor: #333333;\n"
@@ -1174,6 +1494,24 @@ const THEMES = {
       "background": "#ffffff",
       "padding": "16px",
       "margin": "0"
+    },
+    "footnote": {
+      "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
+      "ref_style": "color: inherit;\ntext-decoration: none;\nborder-bottom: 1px dashed #0366d6;\npadding-bottom: 1px;\n",
+      "section_style": "margin-top: 2.5em;\npadding-top: 1.8em;\nborder-top: 1px solid #e1e4e8;\n",
+      "list_style": "list-style-type: decimal;\nmargin: 0;\npadding-left: 1.5em;\n",
+      "item_style": "font-size: 0.85em;\ncolor: #999999;\nline-height: 1.6;\nmargin-bottom: 0.3em;\n",
+      "backref_style": "color: #0366d6;\ntext-decoration: none;\nmargin-left: 0.3em;\n"
+    },
+    "gfm_alert": {
+      "container_style": "margin: 1.5em 8px;\npadding: 12px 16px;\nborder-radius: 4px;\n",
+      "title_style": "font-weight: 600;\nmargin-bottom: 8px;\ndisplay: flex;\nalign-items: center;\ngap: 6px;\n",
+      "content_style": "color: #333333;\nline-height: 1.6;\nfont-size: 14px;\n",
+      "note_color": "#0366d6",
+      "tip_color": "#28a745",
+      "important_color": "#e36209",
+      "warning_color": "#cb2431",
+      "caution_color": "#b08800"
     }
   },
   "mint-highlight": {
@@ -1222,7 +1560,10 @@ const THEMES = {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.2em 16px;\ncolor: #1a1a1a;\nfont-size: 15px;\nfont-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;\n",
       "item_style": "margin: 0.5em 0;\npadding: 0;\nline-height: 2;\nfont-size: 15px;\n",
       "ul_prefix": "• ",
-      "ol_prefix": "{n}. "
+      "ol_prefix": "{n}. ",
+      "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
+      "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #1a1a1a;\n",
+      "nested_ul_prefix": "◦ "
     },
     "code_block": {
       "style": "margin: 1.5em 16px;\npadding: 1.2em;\nbackground: #f6f8fa;\nborder-radius: 6px;\noverflow-x: auto;\nfont-size: 14px;\nline-height: 1.5;\nborder: 1px solid #e5e7eb;\n",
@@ -1240,9 +1581,12 @@ const THEMES = {
     },
     "image": {
       "container_style": "margin: 1.5em 0;\ntext-align: center;\n",
-      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 4px;\n"
+      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 4px;\n",
+      "caption_style": "text-align: center;\nfont-size: 0.85em;\ncolor: #26a69a;\nmargin-top: 0.5em;\n"
     },
     "table": {
+      "wrapper_style": "overflow-x: auto;\nmargin: 1.5em 8px;\n",
+      "tr_odd_style": "background: rgba(0, 137, 123, 0.04);\n",
       "style": "margin: 1.5em 16px;\nwidth: calc(100% - 32px);\nborder-collapse: collapse;\nfont-size: 15px;\n",
       "th_style": "background: #00897b;\ncolor: #fff;\npadding: 10px 14px;\ntext-align: left;\nfont-weight: 600;\n",
       "td_style": "border-bottom: 1px solid #e5e7eb;\npadding: 10px 14px;\ncolor: #1a1a1a;\n"
@@ -1259,7 +1603,27 @@ const THEMES = {
     "strikethrough": {
       "style": "text-decoration: line-through;\ncolor: #9ca3af;\n"
     },
-    "decorations": {}
+    "decorations": {
+      "h2_prefix": "▍"
+    },
+    "footnote": {
+      "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
+      "ref_style": "color: inherit;\ntext-decoration: none;\nborder-bottom: 1px dashed #00897b;\npadding-bottom: 1px;\n",
+      "section_style": "margin-top: 2.5em;\npadding-top: 1.8em;\nborder-top: 1px solid #e0f2f1;\n",
+      "list_style": "list-style-type: decimal;\nmargin: 0;\npadding-left: 1.5em;\n",
+      "item_style": "font-size: 0.85em;\ncolor: #888888;\nline-height: 1.6;\nmargin-bottom: 0.3em;\n",
+      "backref_style": "color: #00897b;\ntext-decoration: none;\nmargin-left: 0.3em;\n"
+    },
+    "gfm_alert": {
+      "container_style": "margin: 1.5em 8px;\npadding: 12px 16px;\nborder-radius: 4px;\n",
+      "title_style": "font-weight: 600;\nmargin-bottom: 8px;\ndisplay: flex;\nalign-items: center;\ngap: 6px;\n",
+      "content_style": "color: #1a1a1a;\nline-height: 1.6;\nfont-size: 14px;\n",
+      "note_color": "#00897b",
+      "tip_color": "#26a69a",
+      "important_color": "#f59e0b",
+      "warning_color": "#ef4444",
+      "caution_color": "#ff8f00"
+    }
   },
   "mint": {
     "name": "薄荷清新",
@@ -1302,7 +1666,10 @@ const THEMES = {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.2em 8px;\ncolor: #333333;\nfont-size: 15px;\n",
       "item_style": "margin: 0.5em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #333333;\n",
       "ul_prefix": "✦ ",
-      "ol_prefix": "{n}. "
+      "ol_prefix": "{n}. ",
+      "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
+      "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #333333;\n",
+      "nested_ul_prefix": "◦ "
     },
     "code_block": {
       "style": "margin: 1.5em 8px;\npadding: 1.2em;\nbackground-color: #e8f8f5;\nborder-top: 3px solid #1abc9c;\nborder-radius: 8px;\noverflow-x: auto;\nfont-size: 14px;\nline-height: 1.5;\n",
@@ -1320,9 +1687,12 @@ const THEMES = {
     },
     "image": {
       "container_style": "margin: 1.5em 0;\ntext-align: center;\nline-height: 1.6;\nfont-size: 14px;\ncolor: #1e8449;\n",
-      "img_style": "max-width: 100%;\ndisplay: block;\nmargin: 0.5em auto;\nborder-radius: 8px;\nbox-shadow: 0 3px 12px rgba(26, 188, 156, 0.12);\n"
+      "img_style": "max-width: 100%;\ndisplay: block;\nmargin: 0.5em auto;\nborder-radius: 8px;\nbox-shadow: 0 3px 12px rgba(26, 188, 156, 0.12);\n",
+      "caption_style": "text-align: center;\nfont-size: 0.85em;\ncolor: #52b78b;\nmargin-top: 0.5em;\n"
     },
     "table": {
+      "wrapper_style": "overflow-x: auto;\nmargin: 1.5em 8px;\n",
+      "tr_odd_style": "background: rgba(26, 188, 156, 0.05);\n",
       "style": "width: 100%;\nborder-collapse: collapse;\nmargin: 1.5em 0;\nfont-size: 14px;\noverflow: hidden;\n",
       "th_style": "padding: 10px 14px;\ntext-align: left;\nfont-weight: 700;\ncolor: #ffffff;\nbackground-color: #1abc9c;\nborder: 1px solid #16a085;\n",
       "td_style": "padding: 8px 14px;\nborder: 1px solid #a9dfbf;\ncolor: #333333;\nbackground-color: #ffffff;\n"
@@ -1355,7 +1725,26 @@ const THEMES = {
       "margin": "0"
     },
     "decorations": {
-      "ul_prefix": "✦ "
+      "ul_prefix": "✦ ",
+      "h2_prefix": "◆ "
+    },
+    "footnote": {
+      "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
+      "ref_style": "color: inherit;\ntext-decoration: none;\nborder-bottom: 1px dashed #1abc9c;\npadding-bottom: 1px;\n",
+      "section_style": "margin-top: 2.5em;\npadding-top: 1.8em;\nborder-top: 1px solid #d5f5e3;\n",
+      "list_style": "list-style-type: decimal;\nmargin: 0;\npadding-left: 1.5em;\n",
+      "item_style": "font-size: 0.85em;\ncolor: #95a5a6;\nline-height: 1.6;\nmargin-bottom: 0.3em;\n",
+      "backref_style": "color: #16a085;\ntext-decoration: none;\nmargin-left: 0.3em;\n"
+    },
+    "gfm_alert": {
+      "container_style": "margin: 1.5em 8px;\npadding: 12px 16px;\nborder-radius: 4px;\n",
+      "title_style": "font-weight: 600;\nmargin-bottom: 8px;\ndisplay: flex;\nalign-items: center;\ngap: 6px;\n",
+      "content_style": "color: #333333;\nline-height: 1.6;\nfont-size: 14px;\n",
+      "note_color": "#1abc9c",
+      "tip_color": "#2ecc71",
+      "important_color": "#f39c12",
+      "warning_color": "#e74c3c",
+      "caution_color": "#e67e22"
     }
   },
   "mono": {
@@ -1400,7 +1789,10 @@ const THEMES = {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.5em 0;\ncolor: #222;\nfont-size: 15px;\nfont-family: Georgia, 'Noto Serif', serif;\n",
       "item_style": "margin: 0.6em 0;\npadding: 0;\nline-height: 1.9;\nfont-size: 15px;\n",
       "ul_prefix": "— ",
-      "ol_prefix": "{n}. "
+      "ol_prefix": "{n}. ",
+      "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
+      "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #222222;\n",
+      "nested_ul_prefix": "◦ "
     },
     "code_block": {
       "style": "margin: 2em 0;\npadding: 1.5em;\nbackground: #fafafa;\nborder-radius: 0;\noverflow-x: auto;\nfont-size: 13.5px;\nline-height: 1.7;\nborder-left: 2px solid #000;\n",
@@ -1418,15 +1810,18 @@ const THEMES = {
     },
     "image": {
       "container_style": "margin: 2.5em 0;\ntext-align: center;\n",
-      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 0;\n"
+      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 0;\n",
+      "caption_style": "text-align: center;\nfont-size: 0.8em;\ncolor: #888888;\nmargin-top: 0.5em;\nletter-spacing: 0.03em;\n"
     },
     "table": {
+      "wrapper_style": "overflow-x: auto;\nmargin: 1.5em 8px;\n",
+      "tr_odd_style": "background: rgba(0, 0, 0, 0.03);\n",
       "style": "margin: 2em 0;\nwidth: 100%;\nborder-collapse: collapse;\nfont-size: 14px;\nfont-family: 'Helvetica Neue', Helvetica, sans-serif;\n",
       "th_style": "background: transparent;\ncolor: #000;\npadding: 12px 14px;\ntext-align: left;\nfont-weight: 400;\nletter-spacing: 0.08em;\ntext-transform: uppercase;\nborder-bottom: 2px solid #000;\nfont-size: 12px;\n",
       "td_style": "border-bottom: 1px solid #e0e0e0;\npadding: 12px 14px;\ncolor: #333;\n"
     },
     "hr": {
-      "style": "border: none;\nheight: 0;\nmargin: 3.5em auto;\nwidth: 30px;\nborder-top: 2px solid #000;\n"
+      "style": ""
     },
     "bold": {
       "style": "font-weight: 800;\ncolor: #000;\n"
@@ -1441,7 +1836,27 @@ const THEMES = {
       "background": "#ffffff",
       "padding": "20px"
     },
-    "decorations": {}
+    "decorations": {
+      "hr_text": "—"
+    },
+    "footnote": {
+      "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
+      "ref_style": "color: inherit;\ntext-decoration: none;\nborder-bottom: 1px dashed #000000;\npadding-bottom: 1px;\n",
+      "section_style": "margin-top: 2.5em;\npadding-top: 1.8em;\nborder-top: 1px solid #e0e0e0;\n",
+      "list_style": "list-style-type: decimal;\nmargin: 0;\npadding-left: 1.5em;\n",
+      "item_style": "font-size: 0.85em;\ncolor: #999999;\nline-height: 1.6;\nmargin-bottom: 0.3em;\n",
+      "backref_style": "color: #000000;\ntext-decoration: none;\nmargin-left: 0.3em;\n"
+    },
+    "gfm_alert": {
+      "container_style": "margin: 1.5em 8px;\npadding: 12px 16px;\nborder-radius: 4px;\n",
+      "title_style": "font-weight: 600;\nmargin-bottom: 8px;\ndisplay: flex;\nalign-items: center;\ngap: 6px;\n",
+      "content_style": "color: #222222;\nline-height: 1.6;\nfont-size: 14px;\n",
+      "note_color": "#000000",
+      "tip_color": "#333333",
+      "important_color": "#666666",
+      "warning_color": "#444444",
+      "caution_color": "#888888"
+    }
   },
   "ocean": {
     "name": "深海",
@@ -1484,7 +1899,10 @@ const THEMES = {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.2em 8px;\ncolor: #1c2833;\nfont-size: 15px;\n",
       "item_style": "margin: 0.5em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #1c2833;\n",
       "ul_prefix": "◆ ",
-      "ol_prefix": "{n}. "
+      "ol_prefix": "{n}. ",
+      "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
+      "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #1c2833;\n",
+      "nested_ul_prefix": "◦ "
     },
     "code_block": {
       "style": "margin: 1.5em 8px;\npadding: 1.2em;\nbackground-color: #eaf2f8;\nborder-top: 3px solid #2e86c1;\nborder-radius: 8px;\noverflow-x: auto;\nfont-size: 14px;\nline-height: 1.5;\n",
@@ -1502,15 +1920,18 @@ const THEMES = {
     },
     "image": {
       "container_style": "margin: 1.5em 0;\ntext-align: center;\nline-height: 1.6;\nfont-size: 14px;\ncolor: #5d6d7e;\n",
-      "img_style": "max-width: 100%;\ndisplay: block;\nmargin: 0.5em auto;\nborder-radius: 8px;\nbox-shadow: 0 3px 12px rgba(12, 35, 64, 0.12);\n"
+      "img_style": "max-width: 100%;\ndisplay: block;\nmargin: 0.5em auto;\nborder-radius: 8px;\nbox-shadow: 0 3px 12px rgba(12, 35, 64, 0.12);\n",
+      "caption_style": "text-align: center;\nfont-size: 0.85em;\ncolor: #5dade2;\nmargin-top: 0.5em;\n"
     },
     "table": {
+      "wrapper_style": "overflow-x: auto;\nmargin: 1.5em 8px;\n",
+      "tr_odd_style": "background: rgba(26, 82, 118, 0.05);\n",
       "style": "width: 100%;\nborder-collapse: collapse;\nmargin: 1.5em 0;\nfont-size: 14px;\noverflow: hidden;\n",
       "th_style": "padding: 10px 14px;\ntext-align: left;\nfont-weight: 700;\ncolor: #ffffff;\nbackground: linear-gradient(135deg, #0c2340, #1a5276);\nborder: 1px solid #154360;\n",
       "td_style": "padding: 8px 14px;\nborder: 1px solid #d6eaf8;\ncolor: #1c2833;\nbackground-color: #ffffff;\n"
     },
     "hr": {
-      "style": "border: none;\nheight: 2px;\nmargin: 2em 0;\nbackground: linear-gradient(to right, #0c2340, #2e86c1, #85c1e9, #2e86c1, #0c2340);\nborder-radius: 2px;\n"
+      "style": ""
     },
     "bold": {
       "style": "font-weight: 700;\ncolor: #0c2340;\n"
@@ -1536,7 +1957,28 @@ const THEMES = {
       "padding": "16px",
       "margin": "0"
     },
-    "decorations": {}
+    "decorations": {
+      "h2_prefix": "◆ ",
+      "hr_text": "~ ◆ ~"
+    },
+    "footnote": {
+      "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
+      "ref_style": "color: inherit;\ntext-decoration: none;\nborder-bottom: 1px dashed #2e86c1;\npadding-bottom: 1px;\n",
+      "section_style": "margin-top: 2.5em;\npadding-top: 1.8em;\nborder-top: 1px solid #aed6f1;\n",
+      "list_style": "list-style-type: decimal;\nmargin: 0;\npadding-left: 1.5em;\n",
+      "item_style": "font-size: 0.85em;\ncolor: #85929e;\nline-height: 1.6;\nmargin-bottom: 0.3em;\n",
+      "backref_style": "color: #2e86c1;\ntext-decoration: none;\nmargin-left: 0.3em;\n"
+    },
+    "gfm_alert": {
+      "container_style": "margin: 1.5em 8px;\npadding: 12px 16px;\nborder-radius: 4px;\n",
+      "title_style": "font-weight: 600;\nmargin-bottom: 8px;\ndisplay: flex;\nalign-items: center;\ngap: 6px;\n",
+      "content_style": "color: #1c2833;\nline-height: 1.6;\nfont-size: 14px;\n",
+      "note_color": "#1a5276",
+      "tip_color": "#17a589",
+      "important_color": "#d4a017",
+      "warning_color": "#c0392b",
+      "caution_color": "#e67e22"
+    }
   },
   "sakura": {
     "name": "樱花粉",
@@ -1584,7 +2026,10 @@ const THEMES = {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.2em 0;\ncolor: #4a3540;\nfont-size: 15px;\nfont-family: 'PingFang SC', sans-serif;\n",
       "item_style": "margin: 0.6em 0;\npadding: 0;\nline-height: 1.85;\nfont-size: 15px;\n",
       "ul_prefix": "♡ ",
-      "ol_prefix": "{n}. "
+      "ol_prefix": "{n}. ",
+      "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
+      "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #4a3540;\n",
+      "nested_ul_prefix": "◦ "
     },
     "code_block": {
       "style": "margin: 1.5em 0;\npadding: 1.2em;\nbackground-color: #fdf2f4;\nborder-radius: 12px;\noverflow-x: auto;\nfont-size: 13.5px;\nline-height: 1.6;\nborder: 1px solid #f5dce0;\n",
@@ -1602,15 +2047,18 @@ const THEMES = {
     },
     "image": {
       "container_style": "margin: 1.5em 0;\ntext-align: center;\n",
-      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 12px;\nbox-shadow: 0 4px 16px rgba(219, 112, 147, 0.1);\n"
+      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 12px;\nbox-shadow: 0 4px 16px rgba(219, 112, 147, 0.1);\n",
+      "caption_style": "text-align: center;\nfont-size: 0.85em;\ncolor: #e08090;\nmargin-top: 0.5em;\n"
     },
     "table": {
+      "wrapper_style": "overflow-x: auto;\nmargin: 1.5em 8px;\n",
+      "tr_odd_style": "background: rgba(212, 96, 110, 0.04);\n",
       "style": "margin: 1.5em 0;\nwidth: 100%;\nborder-collapse: collapse;\nfont-size: 14.5px;\nborder-radius: 12px;\noverflow: hidden;\n",
       "th_style": "background-color: #fdeef1;\ncolor: #c9505e;\npadding: 12px 14px;\ntext-align: left;\nfont-weight: 700;\nborder-bottom: 2px solid #f0c4cb;\n",
       "td_style": "border-bottom: 1px solid #f5e0e4;\npadding: 10px 14px;\ncolor: #4a3540;\n"
     },
     "hr": {
-      "style": "border: none;\nheight: 0;\nmargin: 2.5em auto;\nwidth: 60%;\nborder-top: 2px dashed #f0c4cb;\n"
+      "style": ""
     },
     "bold": {
       "style": "font-weight: 800;\ncolor: #d4606e;\n"
@@ -1621,7 +2069,28 @@ const THEMES = {
     "strikethrough": {
       "style": "text-decoration: line-through;\ncolor: #ccc;\n"
     },
-    "decorations": {}
+    "decorations": {
+      "h2_prefix": "🌸 ",
+      "hr_text": "· 🌸 ·"
+    },
+    "footnote": {
+      "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
+      "ref_style": "color: inherit;\ntext-decoration: none;\nborder-bottom: 1px dashed #d4606e;\npadding-bottom: 1px;\n",
+      "section_style": "margin-top: 2.5em;\npadding-top: 1.8em;\nborder-top: 1px solid #f0c4cb;\n",
+      "list_style": "list-style-type: decimal;\nmargin: 0;\npadding-left: 1.5em;\n",
+      "item_style": "font-size: 0.85em;\ncolor: #b08090;\nline-height: 1.6;\nmargin-bottom: 0.3em;\n",
+      "backref_style": "color: #d4606e;\ntext-decoration: none;\nmargin-left: 0.3em;\n"
+    },
+    "gfm_alert": {
+      "container_style": "margin: 1.5em 8px;\npadding: 12px 16px;\nborder-radius: 4px;\n",
+      "title_style": "font-weight: 600;\nmargin-bottom: 8px;\ndisplay: flex;\nalign-items: center;\ngap: 6px;\n",
+      "content_style": "color: #4a3540;\nline-height: 1.6;\nfont-size: 14px;\n",
+      "note_color": "#d4606e",
+      "tip_color": "#e08090",
+      "important_color": "#c9505e",
+      "warning_color": "#b04050",
+      "caution_color": "#f0a0b0"
+    }
   },
   "sanguo": {
     "name": "三国风",
@@ -1666,7 +2135,10 @@ const THEMES = {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.2em 8px;\ncolor: #3a2a1a;\nfont-size: 15px;\n",
       "item_style": "margin: 0.5em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\n",
       "ul_prefix": "◆ ",
-      "ol_prefix": "{n}、"
+      "ol_prefix": "{n}、",
+      "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
+      "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #3a2a1a;\n",
+      "nested_ul_prefix": "◦ "
     },
     "code_block": {
       "style": "margin: 1.5em 8px;\npadding: 1.2em;\nbackground: linear-gradient(180deg, #f5edd6, #f0e6cc);\nborder-radius: 4px;\noverflow-x: auto;\nfont-size: 14px;\nline-height: 1.5;\nborder: 1px solid #d8c9a8;\nborder-top: 3px solid #d4513a;\n",
@@ -1684,15 +2156,18 @@ const THEMES = {
     },
     "image": {
       "container_style": "margin: 1.5em 0;\ntext-align: center;\n",
-      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 4px;\nbox-shadow: 0 4px 12px rgba(106, 66, 38, 0.12);\nborder: 2px solid #d8c9a8;\n"
+      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 4px;\nbox-shadow: 0 4px 12px rgba(106, 66, 38, 0.12);\nborder: 2px solid #d8c9a8;\n",
+      "caption_style": "text-align: center;\nfont-size: 0.85em;\ncolor: #c5a06e;\nmargin-top: 0.5em;\n"
     },
     "table": {
+      "wrapper_style": "overflow-x: auto;\nmargin: 1.5em 8px;\n",
+      "tr_odd_style": "background: rgba(212, 81, 58, 0.04);\n",
       "style": "margin: 1.5em 8px;\nwidth: calc(100% - 16px);\nborder-collapse: collapse;\nfont-size: 15px;\n",
       "th_style": "background: linear-gradient(135deg, #d4513a, #b83a28);\ncolor: #fff5e8;\npadding: 12px;\ntext-align: left;\nfont-weight: 600;\n",
       "td_style": "border: 1px solid #d8c9a8;\npadding: 10px;\ncolor: #3a2a1a;\nbackground: rgba(253, 248, 239, 0.5);\n"
     },
     "hr": {
-      "style": "border: none;\nheight: 2px;\nmargin: 2em 8px;\nbackground: linear-gradient(to right, transparent, #c5a06e, #d4513a, #5ba0d0, #c5a06e, transparent);\n"
+      "style": ""
     },
     "bold": {
       "style": "font-weight: bold;\ncolor: #d4513a;\n"
@@ -1707,7 +2182,28 @@ const THEMES = {
       "background": "#ebe3d0",
       "padding": "16px"
     },
-    "decorations": {}
+    "decorations": {
+      "h2_prefix": "⚔ ",
+      "hr_text": "— ⚔ —"
+    },
+    "footnote": {
+      "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
+      "ref_style": "color: inherit;\ntext-decoration: none;\nborder-bottom: 1px dashed #d4513a;\npadding-bottom: 1px;\n",
+      "section_style": "margin-top: 2.5em;\npadding-top: 1.8em;\nborder-top: 1px solid #c5a06e;\n",
+      "list_style": "list-style-type: decimal;\nmargin: 0;\npadding-left: 1.5em;\n",
+      "item_style": "font-size: 0.85em;\ncolor: #8b7d6b;\nline-height: 1.6;\nmargin-bottom: 0.3em;\n",
+      "backref_style": "color: #d4513a;\ntext-decoration: none;\nmargin-left: 0.3em;\n"
+    },
+    "gfm_alert": {
+      "container_style": "margin: 1.5em 8px;\npadding: 12px 16px;\nborder-radius: 4px;\n",
+      "title_style": "font-weight: 600;\nmargin-bottom: 8px;\ndisplay: flex;\nalign-items: center;\ngap: 6px;\n",
+      "content_style": "color: #3a2a1a;\nline-height: 1.6;\nfont-size: 14px;\n",
+      "note_color": "#5ba0d0",
+      "tip_color": "#5c8a3a",
+      "important_color": "#c5a06e",
+      "warning_color": "#d4513a",
+      "caution_color": "#b83a28"
+    }
   },
   "sunset": {
     "name": "暮色",
@@ -1750,7 +2246,10 @@ const THEMES = {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.2em 8px;\ncolor: #2d2d2d;\nfont-size: 15px;\n",
       "item_style": "margin: 0.5em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #2d2d2d;\n",
       "ul_prefix": "• ",
-      "ol_prefix": "{n}. "
+      "ol_prefix": "{n}. ",
+      "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
+      "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #2d2d2d;\n",
+      "nested_ul_prefix": "◦ "
     },
     "code_block": {
       "style": "margin: 1.5em 8px;\npadding: 1.2em;\nbackground-color: #fef9e7;\nborder-top: 3px solid #f39c12;\nborder-radius: 8px;\noverflow-x: auto;\nfont-size: 14px;\nline-height: 1.5;\n",
@@ -1768,15 +2267,18 @@ const THEMES = {
     },
     "image": {
       "container_style": "margin: 1.5em 0;\ntext-align: center;\nline-height: 1.6;\nfont-size: 14px;\ncolor: #a04000;\n",
-      "img_style": "max-width: 100%;\ndisplay: block;\nmargin: 0.5em auto;\nborder-radius: 8px;\nbox-shadow: 0 3px 12px rgba(231, 76, 60, 0.12);\n"
+      "img_style": "max-width: 100%;\ndisplay: block;\nmargin: 0.5em auto;\nborder-radius: 8px;\nbox-shadow: 0 3px 12px rgba(231, 76, 60, 0.12);\n",
+      "caption_style": "text-align: center;\nfont-size: 0.85em;\ncolor: #c39bd3;\nmargin-top: 0.5em;\n"
     },
     "table": {
+      "wrapper_style": "overflow-x: auto;\nmargin: 1.5em 8px;\n",
+      "tr_odd_style": "background: rgba(243, 156, 18, 0.04);\n",
       "style": "width: 100%;\nborder-collapse: collapse;\nmargin: 1.5em 0;\nfont-size: 14px;\noverflow: hidden;\n",
       "th_style": "padding: 10px 14px;\ntext-align: left;\nfont-weight: 700;\ncolor: #ffffff;\nbackground: linear-gradient(135deg, #e74c3c, #8e44ad);\nborder: 1px solid #c0392b;\n",
       "td_style": "padding: 8px 14px;\nborder: 1px solid #f5cba7;\ncolor: #2d2d2d;\nbackground-color: #ffffff;\n"
     },
     "hr": {
-      "style": "border: none;\nheight: 2px;\nmargin: 2em 0;\nbackground: linear-gradient(to right, transparent, #f39c12, #e74c3c, #8e44ad, transparent);\nborder-radius: 2px;\n"
+      "style": ""
     },
     "bold": {
       "style": "font-weight: 700;\ncolor: #e74c3c;\n"
@@ -1802,7 +2304,28 @@ const THEMES = {
       "padding": "16px",
       "margin": "0"
     },
-    "decorations": {}
+    "decorations": {
+      "h2_prefix": "◉ ",
+      "hr_text": "· · ·"
+    },
+    "footnote": {
+      "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
+      "ref_style": "color: inherit;\ntext-decoration: none;\nborder-bottom: 1px dashed #e74c3c;\npadding-bottom: 1px;\n",
+      "section_style": "margin-top: 2.5em;\npadding-top: 1.8em;\nborder-top: 1px solid #f5cdc1;\n",
+      "list_style": "list-style-type: decimal;\nmargin: 0;\npadding-left: 1.5em;\n",
+      "item_style": "font-size: 0.85em;\ncolor: #999999;\nline-height: 1.6;\nmargin-bottom: 0.3em;\n",
+      "backref_style": "color: #e74c3c;\ntext-decoration: none;\nmargin-left: 0.3em;\n"
+    },
+    "gfm_alert": {
+      "container_style": "margin: 1.5em 8px;\npadding: 12px 16px;\nborder-radius: 4px;\n",
+      "title_style": "font-weight: 600;\nmargin-bottom: 8px;\ndisplay: flex;\nalign-items: center;\ngap: 6px;\n",
+      "content_style": "color: #2d2d2d;\nline-height: 1.6;\nfont-size: 14px;\n",
+      "note_color": "#8e44ad",
+      "tip_color": "#27ae60",
+      "important_color": "#f39c12",
+      "warning_color": "#e74c3c",
+      "caution_color": "#e67e22"
+    }
   },
   "sunshine": {
     "name": "暖阳橙",
@@ -1845,7 +2368,10 @@ const THEMES = {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.2em 0;\ncolor: #3a2a1e;\nfont-size: 15px;\n",
       "item_style": "margin: 0.6em 0;\npadding: 0;\nline-height: 1.85;\nfont-size: 15px;\n",
       "ul_prefix": "☀ ",
-      "ol_prefix": "{n}. "
+      "ol_prefix": "{n}. ",
+      "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
+      "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #3a2a1e;\n",
+      "nested_ul_prefix": "◦ "
     },
     "code_block": {
       "style": "margin: 1.5em 0;\npadding: 1.2em;\nbackground-color: #fef8ee;\nborder-radius: 10px;\noverflow-x: auto;\nfont-size: 13.5px;\nline-height: 1.6;\nborder: 1px solid #fcd9a8;\n",
@@ -1863,9 +2389,12 @@ const THEMES = {
     },
     "image": {
       "container_style": "margin: 1.5em 0;\ntext-align: center;\n",
-      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 10px;\nbox-shadow: 0 4px 12px rgba(234, 138, 30, 0.1);\n"
+      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 10px;\nbox-shadow: 0 4px 12px rgba(234, 138, 30, 0.1);\n",
+      "caption_style": "text-align: center;\nfont-size: 0.85em;\ncolor: #fb923c;\nmargin-top: 0.5em;\n"
     },
     "table": {
+      "wrapper_style": "overflow-x: auto;\nmargin: 1.5em 8px;\n",
+      "tr_odd_style": "background: rgba(234, 88, 12, 0.04);\n",
       "style": "margin: 1.5em 0;\nwidth: 100%;\nborder-collapse: collapse;\nfont-size: 14.5px;\nborder-radius: 10px;\noverflow: hidden;\n",
       "th_style": "background-color: #fb923c;\ncolor: #fff;\npadding: 12px 14px;\ntext-align: left;\nfont-weight: 700;\n",
       "td_style": "border-bottom: 1px solid #fcd9a8;\npadding: 10px 14px;\ncolor: #3a2a1e;\nbackground-color: rgba(254, 248, 238, 0.5);\n"
@@ -1886,7 +2415,27 @@ const THEMES = {
       "background": "#fef6e8",
       "padding": "18px"
     },
-    "decorations": {}
+    "decorations": {
+      "h2_prefix": "☀ "
+    },
+    "footnote": {
+      "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
+      "ref_style": "color: inherit;\ntext-decoration: none;\nborder-bottom: 1px dashed #ea580c;\npadding-bottom: 1px;\n",
+      "section_style": "margin-top: 2.5em;\npadding-top: 1.8em;\nborder-top: 1px solid #fcd9a8;\n",
+      "list_style": "list-style-type: decimal;\nmargin: 0;\npadding-left: 1.5em;\n",
+      "item_style": "font-size: 0.85em;\ncolor: #a08060;\nline-height: 1.6;\nmargin-bottom: 0.3em;\n",
+      "backref_style": "color: #c2410c;\ntext-decoration: none;\nmargin-left: 0.3em;\n"
+    },
+    "gfm_alert": {
+      "container_style": "margin: 1.5em 8px;\npadding: 12px 16px;\nborder-radius: 4px;\n",
+      "title_style": "font-weight: 600;\nmargin-bottom: 8px;\ndisplay: flex;\nalign-items: center;\ngap: 6px;\n",
+      "content_style": "color: #3a2a1e;\nline-height: 1.6;\nfont-size: 14px;\n",
+      "note_color": "#ea580c",
+      "tip_color": "#16a34a",
+      "important_color": "#d97706",
+      "warning_color": "#dc2626",
+      "caution_color": "#ca8a04"
+    }
   },
   "tang-poetry": {
     "name": "唐风",
@@ -1929,7 +2478,10 @@ const THEMES = {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.2em 8px;\ncolor: #3a2f20;\nfont-size: 15px;\n",
       "item_style": "margin: 0.5em 0;\npadding: 0;\nline-height: 1.8;\nfont-size: 15px;\ncolor: #3a2f20;\n",
       "ul_prefix": "◦ ",
-      "ol_prefix": "{n}、"
+      "ol_prefix": "{n}、",
+      "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
+      "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #3a2f20;\n",
+      "nested_ul_prefix": "◦ "
     },
     "code_block": {
       "style": "margin: 1.5em 8px;\npadding: 1.2em;\nbackground-color: #f2eadb;\nborder-radius: 4px;\noverflow-x: auto;\nfont-size: 14px;\nline-height: 1.5;\nborder: 1px solid #e0d5c0;\nborder-top: 3px solid #800020;\n",
@@ -1947,9 +2499,12 @@ const THEMES = {
     },
     "image": {
       "container_style": "margin: 1.5em 0;\ntext-align: center;\n",
-      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 4px;\nbox-shadow: 0 2px 8px rgba(80, 50, 20, 0.1);\nborder: 1px solid #e0d5c0;\n"
+      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 4px;\nbox-shadow: 0 2px 8px rgba(80, 50, 20, 0.1);\nborder: 1px solid #e0d5c0;\n",
+      "caption_style": "text-align: center;\nfont-size: 0.85em;\ncolor: #9a7b30;\nmargin-top: 0.5em;\nfont-style: italic;\n"
     },
     "table": {
+      "wrapper_style": "overflow-x: auto;\nmargin: 1.5em 8px;\n",
+      "tr_odd_style": "background: rgba(128, 0, 32, 0.03);\n",
       "style": "margin: 1.5em 0;\nwidth: 100%;\nborder-collapse: collapse;\nfont-size: 15px;\n",
       "th_style": "background: #800020;\ncolor: #ffffff;\npadding: 10px 14px;\ntext-align: left;\nfont-weight: 600;\n",
       "td_style": "border: 1px solid #e0d5c0;\npadding: 10px 14px;\ncolor: #3a2f20;\nbackground: #f8f2e5;\n"
@@ -1986,6 +2541,24 @@ const THEMES = {
       "hr_text": "— ◆ —",
       "blockquote_prefix": "「",
       "blockquote_suffix": "」"
+    },
+    "footnote": {
+      "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
+      "ref_style": "color: inherit;\ntext-decoration: none;\nborder-bottom: 1px dashed #800020;\npadding-bottom: 1px;\n",
+      "section_style": "margin-top: 2.5em;\npadding-top: 1.8em;\nborder-top: 1px solid #d8c9a0;\n",
+      "list_style": "list-style-type: decimal;\nmargin: 0;\npadding-left: 1.5em;\n",
+      "item_style": "font-size: 0.85em;\ncolor: #8b7d6b;\nline-height: 1.6;\nmargin-bottom: 0.3em;\n",
+      "backref_style": "color: #800020;\ntext-decoration: none;\nmargin-left: 0.3em;\n"
+    },
+    "gfm_alert": {
+      "container_style": "margin: 1.5em 8px;\npadding: 12px 16px;\nborder-radius: 4px;\n",
+      "title_style": "font-weight: 600;\nmargin-bottom: 8px;\ndisplay: flex;\nalign-items: center;\ngap: 6px;\n",
+      "content_style": "color: #3a2f20;\nline-height: 1.6;\nfont-size: 14px;\n",
+      "note_color": "#800020",
+      "tip_color": "#5c8a3a",
+      "important_color": "#c49b3c",
+      "warning_color": "#a0522d",
+      "caution_color": "#8b6914"
     }
   },
   "vogue": {
@@ -2029,7 +2602,10 @@ const THEMES = {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.2em 0;\ncolor: #333333;\nfont-family: Georgia, 'Times New Roman', serif;\nfont-size: 16px;\n",
       "item_style": "margin: 0.5em 0;\npadding: 0;\nline-height: 1.8;\nfont-size: 16px;\n",
       "ul_prefix": "— ",
-      "ol_prefix": "{n}. "
+      "ol_prefix": "{n}. ",
+      "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
+      "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #333333;\n",
+      "nested_ul_prefix": "◦ "
     },
     "code_block": {
       "style": "margin: 1.5em 0;\npadding: 1.2em;\nbackground-color: #f5f5f5;\nborder-radius: 0px;\noverflow-x: auto;\nfont-size: 14px;\nline-height: 1.5;\nborder: 1px solid #e0e0e0;\n",
@@ -2047,9 +2623,12 @@ const THEMES = {
     },
     "image": {
       "container_style": "margin: 2em 0;\ntext-align: center;\nline-height: 1.6;\nfont-size: 13px;\ncolor: #999999;\nfont-family: Georgia, 'Times New Roman', serif;\nfont-style: italic;\n",
-      "img_style": "max-width: 100%;\ndisplay: block;\nmargin: 1.5em auto;\nborder-radius: 0px;\nbox-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);\n"
+      "img_style": "max-width: 100%;\ndisplay: block;\nmargin: 1.5em auto;\nborder-radius: 0px;\nbox-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);\n",
+      "caption_style": "text-align: center;\nfont-size: 0.8em;\ncolor: #999999;\nmargin-top: 0.5em;\nfont-style: italic;\nfont-family: Georgia, 'Times New Roman', serif;\nletter-spacing: 0.05em;\n"
     },
     "table": {
+      "wrapper_style": "overflow-x: auto;\nmargin: 1.5em 8px;\n",
+      "tr_odd_style": "background: rgba(0, 0, 0, 0.03);\n",
       "style": "width: 100%;\nborder-collapse: collapse;\nmargin: 1.5em 0;\nfont-family: Georgia, 'Times New Roman', serif;\nfont-size: 15px;\n",
       "th_style": "padding: 12px 15px;\ntext-align: left;\nfont-weight: 600;\ncolor: #000000;\nborder-bottom: 2px solid #000000;\nletter-spacing: 0.08em;\n",
       "td_style": "padding: 10px 15px;\nborder-bottom: 1px solid #e0e0e0;\ncolor: #333333;\n"
@@ -2077,7 +2656,7 @@ const THEMES = {
       "avatar_right_style": "background-color: #000000;\ncolor: #ffffff;\n"
     },
     "decorations": {
-      "h2_prefix": "",
+      "h2_prefix": "/ ",
       "blockquote_prefix": "",
       "blockquote_suffix": "",
       "hr_text": ""
@@ -2086,6 +2665,24 @@ const THEMES = {
       "background": "#f5f5f0",
       "padding": "16px",
       "margin": "0"
+    },
+    "footnote": {
+      "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
+      "ref_style": "color: inherit;\ntext-decoration: none;\nborder-bottom: 1px dashed #000000;\npadding-bottom: 1px;\n",
+      "section_style": "margin-top: 2.5em;\npadding-top: 1.8em;\nborder-top: 1px solid #e0e0e0;\n",
+      "list_style": "list-style-type: decimal;\nmargin: 0;\npadding-left: 1.5em;\n",
+      "item_style": "font-size: 0.85em;\ncolor: #999999;\nline-height: 1.6;\nmargin-bottom: 0.3em;\n",
+      "backref_style": "color: #000000;\ntext-decoration: none;\nmargin-left: 0.3em;\n"
+    },
+    "gfm_alert": {
+      "container_style": "margin: 1.5em 8px;\npadding: 12px 16px;\nborder-radius: 4px;\n",
+      "title_style": "font-weight: 600;\nmargin-bottom: 8px;\ndisplay: flex;\nalign-items: center;\ngap: 6px;\n",
+      "content_style": "color: #333333;\nline-height: 1.6;\nfont-size: 14px;\n",
+      "note_color": "#000000",
+      "tip_color": "#444444",
+      "important_color": "#666666",
+      "warning_color": "#333333",
+      "caution_color": "#888888"
     }
   },
   "xiaohongshu": {
@@ -2129,7 +2726,10 @@ const THEMES = {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.2em 0;\ncolor: #333333;\nfont-size: 15px;\n",
       "item_style": "margin: 0.5em 0;\npadding: 0;\nline-height: 1.9;\nfont-size: 15px;\nletter-spacing: 0.05em;\n",
       "ul_prefix": "💕 ",
-      "ol_prefix": "{n}. "
+      "ol_prefix": "{n}. ",
+      "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
+      "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #333333;\n",
+      "nested_ul_prefix": "◦ "
     },
     "code_block": {
       "style": "margin: 1.5em 0;\npadding: 1.2em;\nbackground-color: #fff5f7;\nborder-radius: 12px;\noverflow-x: auto;\nfont-size: 14px;\nline-height: 1.5;\nborder: 1px solid #ffe0e6;\n",
@@ -2147,9 +2747,12 @@ const THEMES = {
     },
     "image": {
       "container_style": "margin: 1.5em 0;\ntext-align: center;\nline-height: 1.6;\nfont-size: 14px;\ncolor: #ff6b81;\n",
-      "img_style": "max-width: 100%;\ndisplay: block;\nmargin: 1.5em auto;\nborder-radius: 16px;\nbox-shadow: 0 4px 16px rgba(255, 36, 66, 0.12);\n"
+      "img_style": "max-width: 100%;\ndisplay: block;\nmargin: 1.5em auto;\nborder-radius: 16px;\nbox-shadow: 0 4px 16px rgba(255, 36, 66, 0.12);\n",
+      "caption_style": "text-align: center;\nfont-size: 0.85em;\ncolor: #ff6b81;\nmargin-top: 0.5em;\n"
     },
     "table": {
+      "wrapper_style": "overflow-x: auto;\nmargin: 1.5em 8px;\n",
+      "tr_odd_style": "background: rgba(255, 36, 66, 0.03);\n",
       "style": "width: 100%;\nborder-collapse: collapse;\nmargin: 1.5em 0;\nfont-size: 15px;\nborder-radius: 12px;\noverflow: hidden;\n",
       "th_style": "padding: 12px 15px;\ntext-align: left;\nfont-weight: 600;\ncolor: #ffffff;\nbackground: linear-gradient(135deg, #ff2442, #ff6b81);\n",
       "td_style": "padding: 10px 15px;\nborder-bottom: 1px solid #ffe0e6;\ncolor: #333333;\n"
@@ -2178,7 +2781,7 @@ const THEMES = {
     },
     "decorations": {
       "h2_prefix": "✨ ",
-      "blockquote_prefix": "",
+      "blockquote_prefix": "💡 ",
       "blockquote_suffix": "",
       "hr_text": ""
     },
@@ -2186,6 +2789,24 @@ const THEMES = {
       "background": "#fff5f5",
       "padding": "16px",
       "margin": "0"
+    },
+    "footnote": {
+      "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
+      "ref_style": "color: inherit;\ntext-decoration: none;\nborder-bottom: 1px dashed #ff2442;\npadding-bottom: 1px;\n",
+      "section_style": "margin-top: 2.5em;\npadding-top: 1.8em;\nborder-top: 1px solid #ffe0e6;\n",
+      "list_style": "list-style-type: decimal;\nmargin: 0;\npadding-left: 1.5em;\n",
+      "item_style": "font-size: 0.85em;\ncolor: #999999;\nline-height: 1.6;\nmargin-bottom: 0.3em;\n",
+      "backref_style": "color: #ff2442;\ntext-decoration: none;\nmargin-left: 0.3em;\n"
+    },
+    "gfm_alert": {
+      "container_style": "margin: 1.5em 8px;\npadding: 12px 16px;\nborder-radius: 4px;\n",
+      "title_style": "font-weight: 600;\nmargin-bottom: 8px;\ndisplay: flex;\nalign-items: center;\ngap: 6px;\n",
+      "content_style": "color: #333333;\nline-height: 1.6;\nfont-size: 14px;\n",
+      "note_color": "#ff2442",
+      "tip_color": "#ff6b81",
+      "important_color": "#ff8c00",
+      "warning_color": "#dc143c",
+      "caution_color": "#ff4d6a"
     }
   },
   "zen-garden": {
@@ -2229,7 +2850,10 @@ const THEMES = {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.5em 8px;\ncolor: #444444;\nfont-size: 15px;\n",
       "item_style": "margin: 0.6em 0;\npadding: 0;\nline-height: 1.85;\nfont-size: 15px;\ncolor: #444444;\n",
       "ul_prefix": "– ",
-      "ol_prefix": "{n}. "
+      "ol_prefix": "{n}. ",
+      "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
+      "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #444444;\n",
+      "nested_ul_prefix": "◦ "
     },
     "code_block": {
       "style": "margin: 1.8em 8px;\npadding: 1.4em;\nbackground-color: #f5f5f3;\nborder-radius: 4px;\noverflow-x: auto;\nfont-size: 14px;\nline-height: 1.6;\nborder: 1px solid #e8e8e6;\n",
@@ -2247,15 +2871,18 @@ const THEMES = {
     },
     "image": {
       "container_style": "margin: 2em 0;\ntext-align: center;\n",
-      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 2px;\n"
+      "img_style": "max-width: 100%;\nmargin: 1em auto;\ndisplay: block;\nborder-radius: 2px;\n",
+      "caption_style": "text-align: center;\nfont-size: 0.85em;\ncolor: #999999;\nmargin-top: 0.5em;\nletter-spacing: 0.08em;\n"
     },
     "table": {
+      "wrapper_style": "overflow-x: auto;\nmargin: 1.5em 8px;\n",
+      "tr_odd_style": "background: rgba(0,0,0,0.02);\n",
       "style": "margin: 1.8em 0;\nwidth: 100%;\nborder-collapse: collapse;\nfont-size: 15px;\n",
       "th_style": "background: #f0f0ee;\ncolor: #2a2a2a;\npadding: 10px 14px;\ntext-align: left;\nfont-weight: 500;\nborder-bottom: 1px solid #cccccc;\n",
       "td_style": "border-bottom: 1px solid #e8e8e6;\npadding: 10px 14px;\ncolor: #444444;\n"
     },
     "hr": {
-      "style": "border: none;\nheight: 1px;\nmargin: 3em 0;\nbackground: #d8d8d6;\n"
+      "style": ""
     },
     "bold": {
       "style": "font-weight: 600;\n"
@@ -2283,7 +2910,26 @@ const THEMES = {
     },
     "decorations": {
       "h2_prefix": "· ",
-      "ul_prefix": "– "
+      "ul_prefix": "– ",
+      "hr_text": "· · · · ·"
+    },
+    "footnote": {
+      "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
+      "ref_style": "color: inherit;\ntext-decoration: none;\nborder-bottom: 1px dashed #999999;\npadding-bottom: 1px;\n",
+      "section_style": "margin-top: 2.5em;\npadding-top: 1.8em;\nborder-top: 1px solid #e0e0e0;\n",
+      "list_style": "list-style-type: decimal;\nmargin: 0;\npadding-left: 1.5em;\n",
+      "item_style": "font-size: 0.85em;\ncolor: #999999;\nline-height: 1.6;\nmargin-bottom: 0.3em;\n",
+      "backref_style": "color: #333333;\ntext-decoration: none;\nmargin-left: 0.3em;\n"
+    },
+    "gfm_alert": {
+      "container_style": "margin: 1.5em 8px;\npadding: 12px 16px;\nborder-radius: 4px;\n",
+      "title_style": "font-weight: 600;\nmargin-bottom: 8px;\ndisplay: flex;\nalign-items: center;\ngap: 6px;\n",
+      "content_style": "color: #444444;\nline-height: 1.6;\nfont-size: 14px;\n",
+      "note_color": "#555555",
+      "tip_color": "#666666",
+      "important_color": "#888888",
+      "warning_color": "#333333",
+      "caution_color": "#999999"
     }
   }
 };

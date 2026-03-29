@@ -39,16 +39,14 @@ def hex_to_rgb(hex_color: str) -> str:
     return f"{int(hex_color[0:2], 16)}, {int(hex_color[2:4], 16)}, {int(hex_color[4:6], 16)}"
 
 
-def _build_alert_html(alert_color: str, alert_icon: str, alert_label: str, content_html: str) -> str:
+def _build_alert_html(alert_type: str, alert_color: str, alert_icon: str, alert_label: str, content_html: str) -> str:
     return f"""
-<div style="margin: 1.5em 0; padding: 12px 16px; border-left: 4px solid {alert_color};
-            background: rgba({hex_to_rgb(alert_color)}, 0.05); border-radius: 4px;">
-  <div style="color: {alert_color}; font-weight: 600; margin-bottom: 8px;
-            display: flex; align-items: center; gap: 6px;">
+<div data-inkpress-alert="{alert_type}" data-alert-color="{alert_color}">
+  <div data-inkpress-alert-title="{alert_type}">
     <span>{alert_icon}</span>
     <span>{alert_label}</span>
   </div>
-  <div style="color: #555; line-height: 1.6;">{content_html}</div>
+  <div data-inkpress-alert-content="{alert_type}">{content_html}</div>
 </div>"""
 
 
@@ -177,7 +175,7 @@ def preprocess_markdown(text: str) -> Tuple[str, dict]:
                     alert_content.append(lines[i][1:].strip())
                     i += 1
                 content_html = unwrap_p_tag(markdown.markdown("\n".join(alert_content)))
-                result.append(make_placeholder(_build_alert_html(alert_color, alert_icon, alert_label, content_html)))
+                result.append(make_placeholder(_build_alert_html(alert_type, alert_color, alert_icon, alert_label, content_html)))
             else:
                 result.append(lines[i])
                 i += 1

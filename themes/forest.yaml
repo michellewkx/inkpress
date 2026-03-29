@@ -122,6 +122,21 @@ list:
   ul_prefix: "🌿 "
   ol_prefix: "{n}. "
 
+  nested_container_style: |
+    list-style: none;
+    padding: 0 0 0 1.5em;
+    margin: 0.3em 0;
+    font-size: 15px;
+
+  nested_item_style: |
+    margin: 0.3em 0;
+    padding: 0;
+    line-height: 1.75;
+    font-size: 15px;
+    color: #2d3a2e;
+
+  nested_ul_prefix: "◦ "
+
 # 代码块样式
 code_block:
   style: |
@@ -190,8 +205,23 @@ image:
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(34, 120, 74, 0.08);
 
+
+  caption_style: |
+    text-align: center;
+    font-size: 0.85em;
+    color: #6b8f71;
+    margin-top: 0.5em;
+    font-style: italic;
+
 # 表格样式
 table:
+  wrapper_style: |
+    overflow-x: auto;
+    margin: 1.5em 8px;
+
+  tr_odd_style: |
+    background: rgba(45, 106, 79, 0.04);
+
   style: |
     margin: 1.5em 0;
     width: 100%;
@@ -210,13 +240,9 @@ table:
     padding: 10px 14px;
     color: #2d3a2e;
 
-# 分隔线样式
+# 分隔线样式 - 留空，使用 hr_text 装饰
 hr:
-  style: |
-    border: none;
-    height: 2px;
-    margin: 2.5em 0;
-    background-color: #b7e4c7;
+  style: ""
 
 # 粗体样式
 bold:
@@ -238,4 +264,61 @@ strikethrough:
     color: #a8b8a0;
 
 # 装饰配置
-decorations: {}
+decorations:
+  h2_prefix: "🌿 "
+  hr_text: "— 🌱 —"
+
+# 脚注样式
+footnote:
+  sup_style: |
+    font-size: 0.75em;
+    line-height: 0;
+    vertical-align: super;
+    margin: 0;
+    padding: 0;
+  ref_style: |
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dashed #2d6a4f;
+    padding-bottom: 1px;
+  section_style: |
+    margin-top: 2.5em;
+    padding-top: 1.8em;
+    border-top: 1px solid #d8ead5;
+  list_style: |
+    list-style-type: decimal;
+    margin: 0;
+    padding-left: 1.5em;
+  item_style: |
+    font-size: 0.85em;
+    color: #6b8f71;
+    line-height: 1.6;
+    margin-bottom: 0.3em;
+  backref_style: |
+    color: #2d6a4f;
+    text-decoration: none;
+    margin-left: 0.3em;
+
+# GFM 提示框样式
+gfm_alert:
+  container_style: |
+    margin: 1.5em 8px;
+    padding: 12px 16px;
+    border-radius: 4px;
+  title_style: |
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  content_style: |
+    color: #2d3a2e;
+    line-height: 1.6;
+    font-size: 14px;
+  note_color: "#2d6a4f"
+  tip_color: "#40916c"
+  important_color: "#b8860b"
+  warning_color: "#a0522d"
+  caution_color: "#cd853f"
+
+# 图片说明样式

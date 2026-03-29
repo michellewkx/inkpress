@@ -58,6 +58,8 @@ class InkpressRenderer:
         html = self._style_code_blocks(html)
         html = self._style_inline_code(html)
         html = self._style_blockquotes(html)
+        html = self._style_footnotes(html)
+        html = self._style_gfm_alerts(html)
         html = self._style_links(html)
         html = self._style_images(html)
         html = self._style_tables(html)
@@ -99,35 +101,119 @@ class InkpressRenderer:
 
     def _style_lists(self, html: str) -> str:
         list_config = self.config.get("list", {})
-        container_style = list_config.get("container_style", "")
-        item_style = list_config.get("item_style", "")
+        container_style = list_config.get("container_style", "").strip()
+        item_style = list_config.get("item_style", "").strip()
         ul_prefix = list_config.get("ul_prefix", "• ")
         ol_prefix = list_config.get("ol_prefix", "{n}. ")
+        nested_container_style = list_config.get("nested_container_style", "").strip()
+        nested_item_style = list_config.get("nested_item_style", "").strip() or item_style
+        nested_ul_prefix = list_config.get("nested_ul_prefix", "◦ ")
 
         if not container_style:
             return html
 
-        def extract_li_items(content: str, strip_pattern) -> list:
-            items = []
-            for li_match in re.finditer(r"<li>(.*?)</li>", content, re.DOTALL):
-                li_content = li_match.group(1).strip()
-                li_content = re.sub(r"<p[^>]*>(.*?)</p>", r"\1", li_content, flags=re.DOTALL)
-                li_content = strip_pattern.sub("", li_content)
-                items.append(li_content)
-            return items
+        def find_matching_close(s, tag, start):
+            open_tag = f"<{tag}"
+            close_tag = f"</{tag}>"
+            depth = 1
+            pos = start
+            while depth > 0 and pos < len(s):
+                next_open = s.find(open_tag, pos)
+                next_close = s.find(close_tag, pos)
+                if next_close == -1:
+                    break
+                if next_open != -1 and next_open < next_close:
+                    depth += 1
+                    pos = next_open + len(open_tag)
+                else:
+                    depth -= 1
+                    if depth == 0:
+                        return next_close
+                    pos = next_close + len(close_tag)
+            return -1
 
-        for match in re.finditer(r"<ul>(.*?)</ul>", html, re.DOTALL):
-            items = extract_li_items(match.group(1), UL_PREFIX_PATTERN)
-            items_html = "\n".join(f'  <li style="{item_style}">{ul_prefix}{line}</li>' for line in items)
-            html = html.replace(match.group(0), f'<ul style="{container_style}">\n{items_html}\n</ul>', 1)
+        def style_list(content, tag, is_nested=False):
+            cs = nested_container_style if (is_nested and nested_container_style) else container_style
+            ist = nested_item_style if is_nested else item_style
 
-        for match in re.finditer(r"<ol>(.*?)</ol>", html, re.DOTALL):
-            items = extract_li_items(match.group(1), OL_PREFIX_PATTERN)
-            items_html = "\n".join(
-                f'  <li style="{item_style}">{ol_prefix.replace("{n}", str(i + 1))}{line}</li>'
-                for i, line in enumerate(items)
-            )
-            html = html.replace(match.group(0), f'<ol style="{container_style}">\n{items_html}\n</ol>', 1)
+            # Extract <li> blocks using tag counting (handles nested <li> inside sublists)
+            li_blocks = []
+            search_pos = 0
+            while True:
+                li_start = content.find("<li>", search_pos)
+                if li_start == -1:
+                    break
+                inner_start = li_start + 4
+                li_end = find_matching_close(content, "li", inner_start)
+                if li_end == -1:
+                    break
+                li_blocks.append(content[inner_start:li_end])
+                search_pos = li_end + 5  # len("</li>")
+
+            items_html = []
+            for counter, li_text in enumerate(li_blocks):
+                li_text = li_text.strip()
+
+                # Extract nested sublists before cleaning
+                nested_html = ""
+                for nested_tag in ("ul", "ol"):
+                    nested_open = f"<{nested_tag}>"
+                    idx = li_text.find(nested_open)
+                    if idx != -1:
+                        end_idx = find_matching_close(li_text, nested_tag, idx + len(nested_open))
+                        if end_idx != -1:
+                            nested_content = li_text[idx + len(nested_open):end_idx]
+                            nested_html = style_list(nested_content, nested_tag, is_nested=True)
+                            li_text = li_text[:idx] + li_text[end_idx + len(f"</{nested_tag}>"):]
+
+                li_text = re.sub(r"<p[^>]*>(.*?)</p>", r"\1", li_text, flags=re.DOTALL).strip()
+                li_text = UL_PREFIX_PATTERN.sub("", li_text)
+                li_text = OL_PREFIX_PATTERN.sub("", li_text)
+
+                if tag == "ul":
+                    pfx = nested_ul_prefix if is_nested else ul_prefix
+                else:
+                    pfx = ol_prefix.replace("{n}", str(counter + 1))
+
+                li_out = f'  <li style="{ist}">{pfx}{li_text}'
+                if nested_html:
+                    li_out += f"\n{nested_html}"
+                li_out += "</li>"
+                items_html.append(li_out)
+
+            return f'<{tag} style="{cs}">\n' + "\n".join(items_html) + f"\n</{tag}>"
+
+        # Process top-level UL blocks
+        pos = 0
+        while True:
+            idx = html.find("<ul>", pos)
+            if idx == -1:
+                break
+            end_idx = find_matching_close(html, "ul", idx + 4)
+            if end_idx == -1:
+                break
+            inner = html[idx + 4:end_idx]
+            replacement = style_list(inner, "ul", is_nested=False)
+            html = html[:idx] + replacement + html[end_idx + 5:]
+            pos = idx + len(replacement)
+
+        # Process top-level OL blocks
+        pos = 0
+        while True:
+            idx = html.find("<ol>", pos)
+            if idx == -1:
+                break
+            # Skip footnote <ol> (inside doc-footnotes section)
+            if 'role="doc-footnotes"' in html[max(0, idx - 200):idx]:
+                pos = idx + 4
+                continue
+            end_idx = find_matching_close(html, "ol", idx + 4)
+            if end_idx == -1:
+                break
+            inner = html[idx + 4:end_idx]
+            replacement = style_list(inner, "ol", is_nested=False)
+            html = html[:idx] + replacement + html[end_idx + 5:]
+            pos = idx + len(replacement)
 
         return html
 
@@ -192,6 +278,107 @@ class InkpressRenderer:
 
         return re.sub(r"<blockquote>(.*?)</blockquote>", replace_blockquote, html, flags=re.DOTALL)
 
+    def _style_footnotes(self, html: str) -> str:
+        fn_config = self.config.get("footnote", {})
+        if not fn_config:
+            return html
+
+        sup_style = fn_config.get("sup_style", "").strip()
+        ref_style = fn_config.get("ref_style", "").strip()
+        section_style = fn_config.get("section_style", "").strip()
+        list_style = fn_config.get("list_style", "").strip()
+        item_style = fn_config.get("item_style", "").strip()
+        backref_style = fn_config.get("backref_style", "").strip()
+
+        # Style footnote sup references
+        if sup_style:
+            html = re.sub(r'<sup id="fnref:', f'<sup style="{sup_style}" id="fnref:', html)
+
+        # Style and reformat footnote ref anchors: "1" -> "[1]"
+        if ref_style:
+            html = re.sub(
+                r'<a class="footnote-ref" href="([^"]+)">(\d+)</a>',
+                f'<a href="\\1" style="{ref_style}">[\\2]</a>',
+                html,
+            )
+
+        # Transform footnote section: <div class="footnote"><hr /> -> <section role="doc-footnotes">
+        if section_style:
+            html = re.sub(
+                r'<div class="footnote">\s*<hr\s*/?>',
+                f'<section role="doc-footnotes" style="{section_style}">',
+                html,
+                flags=re.DOTALL,
+            )
+            html = re.sub(r"</ol>\s*</div>\s*$", "</ol>\n</section>", html)
+
+        # Style footnote ol
+        if list_style:
+            html = re.sub(
+                r'(<section role="doc-footnotes"[^>]*>)\s*<ol>',
+                f"\\1\n<ol style=\"{list_style}\">",
+                html,
+            )
+
+        # Style footnote li items
+        if item_style:
+            html = re.sub(r'<li id="fn:(\d+)">', f'<li id="fn:\\1" style="{item_style}">', html)
+
+        # Style backref anchors
+        if backref_style:
+            html = re.sub(
+                r'<a class="footnote-backref"([^>]*)>',
+                f'<a class="footnote-backref" style="{backref_style}"\\1>',
+                html,
+            )
+
+        return html
+
+    def _style_gfm_alerts(self, html: str) -> str:
+        alert_config = self.config.get("gfm_alert", {})
+        container_style = alert_config.get(
+            "container_style", "margin: 1.5em 0; padding: 12px 16px; border-radius: 4px;"
+        ).strip()
+        title_style = alert_config.get(
+            "title_style",
+            "font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;",
+        ).strip()
+        content_style = alert_config.get("content_style", "color: #555; line-height: 1.6;").strip()
+
+        default_colors = {
+            "NOTE": "#1677ff",
+            "TIP": "#52c41a",
+            "IMPORTANT": "#fa8c16",
+            "WARNING": "#f5222d",
+            "CAUTION": "#a0d911",
+        }
+
+        for alert_type, default_color in default_colors.items():
+            color = alert_config.get(f"{alert_type.lower()}_color", default_color)
+            hex_color = color.lstrip("#")
+            rgb = f"{int(hex_color[0:2], 16)}, {int(hex_color[2:4], 16)}, {int(hex_color[4:6], 16)}"
+
+            type_container = f"{container_style} border-left: 4px solid {color}; background: rgba({rgb}, 0.05);"
+            type_title = f"{title_style} color: {color};"
+
+            html = re.sub(
+                f'<div data-inkpress-alert="{alert_type}" data-alert-color="[^"]*">',
+                f'<div style="{type_container}">',
+                html,
+            )
+            html = re.sub(
+                f'<div data-inkpress-alert-title="{alert_type}">',
+                f'<div style="{type_title}">',
+                html,
+            )
+            html = re.sub(
+                f'<div data-inkpress-alert-content="{alert_type}">',
+                f'<div style="{content_style}">',
+                html,
+            )
+
+        return html
+
     def _style_links(self, html: str) -> str:
         style = self._get_style("link")
         if style:
@@ -202,11 +389,21 @@ class InkpressRenderer:
         image_config = self.config.get("image", {})
         container_style = image_config.get("container_style", "")
         img_style = image_config.get("img_style", "")
+        caption_style = image_config.get("caption_style", "").strip()
 
         if container_style:
+            def replace_image(m):
+                img_tag = m.group(1)
+                alt_match = re.search(r'alt="([^"]*)"', img_tag)
+                alt_text = alt_match.group(1) if alt_match else ""
+                caption_html = ""
+                if caption_style and alt_text:
+                    caption_html = f'<figcaption style="{caption_style}">{alt_text}</figcaption>'
+                return f'<figure style="{container_style}">{img_tag}{caption_html}</figure>'
+
             html = re.sub(
-                r"<p(?![^>]*style=)([^>]*?)>\s*(<img[^>]+>)\s*</p>",
-                f'<figure style="{container_style}">\\2</figure>',
+                r"<p[^>]*>\s*(<img[^>]+>)\s*</p>",
+                replace_image,
                 html,
             )
         if img_style:
@@ -218,6 +415,8 @@ class InkpressRenderer:
         style = table_config.get("style", "")
         th_style = table_config.get("th_style", "")
         td_style = table_config.get("td_style", "")
+        tr_odd_style = table_config.get("tr_odd_style", "").strip()
+        wrapper_style = table_config.get("wrapper_style", "").strip()
 
         if style:
             html = re.sub(r"<table\b[^>]*>", f'<table style="{style}">', html)
@@ -225,6 +424,34 @@ class InkpressRenderer:
             html = re.sub(r"<th\b[^>]*>", f'<th style="{th_style}">', html)
         if td_style:
             html = re.sub(r"<td\b[^>]*>", f'<td style="{td_style}">', html)
+
+        # Zebra striping: add tr_odd_style to <td> in odd rows (0-indexed: 0, 2, 4...)
+        if tr_odd_style:
+            def add_zebra(m):
+                tbody_content = m.group(1)
+                rows = re.findall(r"<tr>(.*?)</tr>", tbody_content, re.DOTALL)
+                styled_rows = []
+                for i, row_content in enumerate(rows):
+                    if i % 2 == 0:
+                        row_content = re.sub(
+                            r'<td([^>]*?)style="([^"]*)"',
+                            lambda dm: f'<td{dm.group(1)}style="{dm.group(2)} {tr_odd_style}"',
+                            row_content,
+                        )
+                    styled_rows.append(f"<tr>{row_content}</tr>")
+                return "<tbody>" + "\n".join(styled_rows) + "</tbody>"
+
+            html = re.sub(r"<tbody>(.*?)</tbody>", add_zebra, html, flags=re.DOTALL)
+
+        # Wrap tables in a div for overflow handling
+        if wrapper_style:
+            html = re.sub(
+                r"(<table[^>]*>.*?</table>)",
+                f'<div style="{wrapper_style}">\\1</div>',
+                html,
+                flags=re.DOTALL,
+            )
+
         return html
 
     def _style_hr(self, html: str) -> str:
