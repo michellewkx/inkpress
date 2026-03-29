@@ -25,7 +25,7 @@ const I18N = {
     'gallery.oriental': '东方',
     'gallery.magazine': '杂志',
     'gallery.social': '社交',
-    'gallery.preview': '预览全文',
+    'gallery.preview': '在线编辑',
     'install.title': '快速开始',
     'install.desc': '通过 pip 安装，秒级启动',
     'editor.title': '在线编辑器',
@@ -34,8 +34,6 @@ const I18N = {
     'editor.copyRich': '复制到微信',
     'editor.input': 'MARKDOWN 输入',
     'editor.preview': '实时预览',
-    'preview.back': '← 返回主题',
-    'preview.edit': '在编辑器中打开',
     'toast.copied': '已复制到剪贴板',
     'toast.copiedText': '已复制 HTML 文本',
     'toast.pipCopied': '已复制安装命令',
@@ -61,7 +59,7 @@ const I18N = {
     'gallery.oriental': 'Oriental',
     'gallery.magazine': 'Magazine',
     'gallery.social': 'Social',
-    'gallery.preview': 'Full Preview',
+    'gallery.preview': 'Open Editor',
     'install.title': 'Quick Start',
     'install.desc': 'Install via pip, start in seconds',
     'editor.title': 'Editor',
@@ -70,8 +68,6 @@ const I18N = {
     'editor.copyRich': 'Copy for WeChat',
     'editor.input': 'MARKDOWN',
     'editor.preview': 'PREVIEW',
-    'preview.back': '← Themes',
-    'preview.edit': 'Open in Editor',
     'toast.copied': 'Copied to clipboard',
     'toast.copiedText': 'HTML text copied',
     'toast.pipCopied': 'Install command copied',
@@ -318,7 +314,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initTabs();
   initGallery();
   initEditor();
-  initPreviewModal();
   initInstall();
   initKeyboard();
   applyI18n();
@@ -370,13 +365,13 @@ function renderTabs() {
 // ============ Gallery ============
 function initGallery() {
   renderGallery();
-  // Keyboard support for cards — Enter/Space opens preview
+  // Keyboard support for cards — Enter/Space opens editor
   document.getElementById('themeGrid').addEventListener('keydown', e => {
     if (e.key === 'Enter' || e.key === ' ') {
       const card = e.target.closest('.card');
       if (card) {
         e.preventDefault();
-        openPreviewModal(card.dataset.theme);
+        openEditorWithTheme(card.dataset.theme);
       }
     }
   });
@@ -397,7 +392,7 @@ function renderGallery() {
     const bgColor = theme.body?.background || theme.container?.background || '#f9f9f9';
 
     html += `
-      <div class="card card-anim" data-theme="${name}" style="animation-delay:${Math.min(visibleCount * 0.06, 0.5)}s" onclick="openPreviewModal('${name}')" tabindex="0" role="button" aria-label="${theme.name || name}">
+      <div class="card card-anim" data-theme="${name}" style="animation-delay:${Math.min(visibleCount * 0.06, 0.5)}s" onclick="openEditorWithTheme('${name}')" tabindex="0" role="button" aria-label="${theme.name || name}">
         <div class="card-body">
           <div class="card-prev" style="background:${bgColor}">
             <div class="card-prev-in" style="background:${theme.container?.background || '#fff'};${theme.container?.border ? 'border:' + theme.container.border + ';' : ''}${theme.container?.border_radius ? 'border-radius:' + theme.container.border_radius + ';' : 'border-radius:8px;'}">
@@ -485,6 +480,14 @@ function initEditor() {
   });
 }
 
+function openEditorWithTheme(name) {
+  const theme = THEMES[name];
+  if (!theme) return;
+  currentTheme = name;
+  document.getElementById('editorThemeSelect').value = name;
+  openEditor();
+}
+
 function openEditor() {
   const overlay = document.getElementById('editorOverlay');
   overlay.style.display = 'flex';
@@ -547,70 +550,6 @@ function downloadHTML() {
   URL.revokeObjectURL(a.href);
 }
 
-// ============ Preview Full-Screen ============
-function initPreviewModal() {
-  document.getElementById('pmCloseBtn').addEventListener('click', closePreviewModal);
-  document.getElementById('pmEditBtn').addEventListener('click', () => {
-    const name = document.getElementById('previewModal').dataset.theme;
-    closePreviewModal();
-    if (name) {
-      currentTheme = name;
-      document.getElementById('editorThemeSelect').value = name;
-    }
-    openEditor();
-  });
-
-  // Theme selector in preview
-  const pmSelect = document.getElementById('pmThemeSelect');
-  let selectHtml = '';
-  for (const [name, theme] of Object.entries(THEMES)) {
-    selectHtml += `<option value="${name}">${theme.name || name}</option>`;
-  }
-  pmSelect.innerHTML = selectHtml;
-  pmSelect.addEventListener('change', () => {
-    const name = pmSelect.value;
-    const modal = document.getElementById('previewModal');
-    modal.dataset.theme = name;
-    const theme = THEMES[name];
-    document.getElementById('previewModalTitle').textContent = theme.name || name;
-    renderPreviewModal(name);
-  });
-}
-
-function renderPreviewModal(name) {
-  const theme = THEMES[name];
-  if (!theme) return;
-  const renderer = new InkpressRenderer(theme);
-  document.getElementById('previewModalBody').innerHTML = renderer.render(SAMPLE_MD);
-}
-
-function openPreviewModal(name) {
-  const theme = THEMES[name];
-  if (!theme) return;
-
-  const modal = document.getElementById('previewModal');
-  modal.dataset.theme = name;
-  document.getElementById('previewModalTitle').textContent = theme.name || name;
-  document.getElementById('pmThemeSelect').value = name;
-
-  renderPreviewModal(name);
-
-  modal.style.display = 'flex';
-  requestAnimationFrame(() => modal.classList.add('open'));
-  document.body.style.overflow = 'hidden';
-}
-
-function closePreviewModal() {
-  const modal = document.getElementById('previewModal');
-  modal.classList.remove('open');
-  setTimeout(() => {
-    modal.style.display = 'none';
-    if (!document.getElementById('editorOverlay').classList.contains('open')) {
-      document.body.style.overflow = '';
-    }
-  }, 300);
-}
-
 // ============ Install ============
 function initInstall() {
   document.getElementById('installCopy').addEventListener('click', () => {
@@ -625,9 +564,7 @@ function initKeyboard() {
   document.addEventListener('keydown', e => {
     // Escape to close modals
     if (e.key === 'Escape') {
-      if (document.getElementById('previewModal').classList.contains('open')) {
-        closePreviewModal();
-      } else if (document.getElementById('editorOverlay').classList.contains('open')) {
+      if (document.getElementById('editorOverlay').classList.contains('open')) {
         closeEditor();
       }
       return;
