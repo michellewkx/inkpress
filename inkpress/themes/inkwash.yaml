@@ -1,0 +1,335 @@
+# Inkwash theme
+# 传统水墨意境，宣纸质感，墨色留白
+
+name: "水墨丹青"
+description: "传统水墨意境，宣纸质感，墨色留白"
+series: "oriental"
+tags: ["水墨", "丹青", "宣纸", "东方"]
+
+# 容器样式
+container:
+  max_width: "677px"
+  padding: "24px 20px"
+  background: "#f7f3ec"
+  border_radius: "0"
+  box_shadow: "none"
+  border: "1px solid #d6cfc3"
+
+# H1 样式
+h1:
+  style: |
+    padding: 0.6em 0;
+    margin: 1.8em 0 1.5em;
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 1.4;
+    color: #1a1a1a;
+    text-align: center;
+    letter-spacing: 0.25em;
+    border-top: 3px double #1a1a1a;
+    border-bottom: 3px double #1a1a1a;
+    font-family: 'STKaiti', 'KaiTi', 'AR PL UKai', serif;
+
+# H2 样式
+h2:
+  style: |
+    margin: 2.5em 0 1em;
+    padding: 0.4em 0 0.5em;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #1a1a1a;
+    text-align: center;
+    border-bottom: 1px solid #8c7b6b;
+    letter-spacing: 0.12em;
+    font-family: 'STKaiti', 'KaiTi', 'AR PL UKai', serif;
+
+# H3 样式
+h3:
+  style: |
+    margin: 2em 0 0.8em;
+    padding: 0 0 0.3em 0;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #b5302a;
+    letter-spacing: 0.08em;
+    border-bottom: 1px dashed #c4b8a8;
+    font-family: 'STKaiti', 'KaiTi', 'AR PL UKai', serif;
+
+# H4 样式
+h4:
+  style: |
+    margin: 1.5em 0 0.5em;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #3a3a3a;
+    letter-spacing: 0.06em;
+    font-family: 'STKaiti', 'KaiTi', 'AR PL UKai', serif;
+
+# H5 样式
+h5:
+  style: |
+    margin: 1.2em 0 0.4em;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #4a4a4a;
+    font-family: 'STKaiti', 'KaiTi', 'AR PL UKai', serif;
+
+# H6 样式
+h6:
+  style: |
+    margin: 1em 0 0.3em;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #666;
+    font-family: 'STKaiti', 'KaiTi', 'AR PL UKai', serif;
+
+# 段落样式
+paragraph:
+  style: |
+    margin: 1.4em 0;
+    letter-spacing: 0.06em;
+    color: #2a2a2a;
+    text-align: justify;
+    line-height: 2;
+    font-size: 15.5px;
+    font-family: 'STSong', 'SimSun', 'Noto Serif CJK SC', 'Source Han Serif SC', serif;
+
+# 列表样式
+list:
+  container_style: |
+    list-style: none;
+    padding: 0;
+    margin: 1.2em 0;
+    color: #2a2a2a;
+    font-size: 15px;
+    font-family: 'STSong', 'SimSun', 'Noto Serif CJK SC', serif;
+
+  item_style: |
+    margin: 0.6em 0;
+    padding: 0;
+    line-height: 1.9;
+    font-size: 15px;
+
+  ul_prefix: "・"
+  ol_prefix: "{n}、"
+
+  nested_container_style: |
+    list-style: none;
+    padding: 0 0 0 1.5em;
+    margin: 0.3em 0;
+    font-size: 15px;
+
+  nested_item_style: |
+    margin: 0.3em 0;
+    padding: 0;
+    line-height: 1.75;
+    font-size: 15px;
+    color: #2a2a2a;
+
+  nested_ul_prefix: "◦ "
+
+# 代码块样式
+code_block:
+  style: |
+    margin: 1.8em 0;
+    padding: 1.2em 1.5em;
+    background: #f0ebe2;
+    border-radius: 0;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.6;
+    border: 1px solid #c4b8a8;
+    border-left: 4px solid #1a1a1a;
+
+  code_inner_style: |
+    background: none;
+    padding: 0;
+    font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+    font-size: 13.5px;
+    color: #2a2a2a;
+    line-height: 1.6;
+
+# 内联代码样式
+inline_code:
+  style: |
+    font-size: 88%;
+    color: #b5302a;
+    background: rgba(181, 48, 42, 0.06);
+    padding: 2px 6px;
+    border-radius: 0;
+    font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+    border-bottom: 1px solid rgba(181, 48, 42, 0.2);
+
+# 引用样式
+blockquote:
+  style: |
+    margin: 1.8em 0;
+    padding: 1.2em 1.5em 1.2em 2em;
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid #8c7b6b;
+    border-bottom: 1px solid #8c7b6b;
+    background: rgba(140, 123, 107, 0.04);
+    color: #3a3a3a;
+
+  p_inner_style: |
+    margin: 0;
+    color: #3a3a3a;
+    line-height: 2;
+    font-style: normal;
+    font-family: 'STKaiti', 'KaiTi', 'AR PL UKai', serif;
+    letter-spacing: 0.06em;
+
+# 链接样式
+link:
+  style: |
+    color: #b5302a;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(181, 48, 42, 0.3);
+
+# 图片样式
+image:
+  container_style: |
+    margin: 2em 0;
+    text-align: center;
+
+  img_style: |
+    max-width: 100%;
+    margin: 1em auto;
+    display: block;
+    border-radius: 0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    border: 1px solid #c4b8a8;
+
+
+  caption_style: |
+    text-align: center;
+    font-size: 0.85em;
+    color: #8c7b6b;
+    margin-top: 0.5em;
+    letter-spacing: 0.1em;
+
+# 表格样式
+table:
+  wrapper_style: |
+    overflow-x: auto;
+    margin: 1.5em 8px;
+
+  tr_odd_style: |
+    background: rgba(26, 26, 26, 0.03);
+
+  style: |
+    margin: 1.8em 0;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14.5px;
+
+  th_style: |
+    background: #1a1a1a;
+    color: #f0ebe2;
+    padding: 12px 14px;
+    text-align: left;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    font-family: 'STKaiti', 'KaiTi', serif;
+
+  td_style: |
+    border-bottom: 1px solid #c4b8a8;
+    padding: 10px 14px;
+    color: #2a2a2a;
+    background: rgba(247, 243, 236, 0.5);
+
+# 分隔线样式
+hr:
+  style: ""
+
+# 粗体样式
+bold:
+  style: |
+    font-weight: 900;
+    color: #1a1a1a;
+
+# 斜体样式
+italic:
+  style: |
+    font-style: normal;
+    color: #b5302a;
+    font-family: 'STKaiti', 'KaiTi', 'AR PL UKai', serif;
+
+# 删除线样式
+strikethrough:
+  style: |
+    text-decoration: line-through;
+    color: #999;
+
+# 页面背景
+body:
+  background: "#eae4d9"
+  padding: "20px"
+
+# 装饰配置
+decorations:
+  h2_prefix: "◇ "
+  hr_text: "—— ◇ ——"
+  blockquote_prefix: "「"
+  blockquote_suffix: "」"
+
+# 脚注样式
+footnote:
+  sup_style: |
+    font-size: 0.75em;
+    line-height: 0;
+    vertical-align: super;
+    margin: 0;
+    padding: 0;
+  ref_style: |
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dashed #b5302a;
+    padding-bottom: 1px;
+  section_style: |
+    margin-top: 2.5em;
+    padding-top: 1.8em;
+    border-top: 1px solid #d5cfc5;
+  list_style: |
+    list-style-type: decimal;
+    margin: 0;
+    padding-left: 1.5em;
+  item_style: |
+    font-size: 0.85em;
+    color: #888888;
+    line-height: 1.6;
+    margin-bottom: 0.3em;
+  backref_style: |
+    color: #b5302a;
+    text-decoration: none;
+    margin-left: 0.3em;
+
+# GFM 提示框样式
+gfm_alert:
+  container_style: |
+    margin: 1.5em 8px;
+    padding: 12px 16px;
+    border-radius: 4px;
+  title_style: |
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  content_style: |
+    color: #2a2a2a;
+    line-height: 1.6;
+    font-size: 14px;
+  note_color: "#1a1a1a"
+  tip_color: "#4a6741"
+  important_color: "#8b7355"
+  warning_color: "#b5302a"
+  caution_color: "#8c7b6b"
+
+# 图片说明样式

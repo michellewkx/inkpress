@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "inkpress"
+version = "0.1.0"
+description = "Markdown typography engine for WeChat, Xiaohongshu and more — 25 themes, zero external dependencies, fully offline."
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.8"
+authors = [
+    {name = "inkpress contributors"}
+]
+keywords = ["markdown", "wechat", "typography", "themes", "weixin", "公众号", "排版"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Text Processing :: Markup :: Markdown",
+    "Topic :: Text Processing :: Markup :: HTML",
+]
+dependencies = [
+    "markdown>=3.6",
+    "pygments>=2.17",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+server = ["fastapi>=0.100", "uvicorn>=0.23"]
+
+[project.urls]
+Homepage = "https://github.com/michellewkx/inkpress"
+Documentation = "https://github.com/michellewkx/inkpress#readme"
+Repository = "https://github.com/michellewkx/inkpress"
+Showcase = "https://michellewkx.github.io/inkpress"
+
+[project.scripts]
+inkpress = "inkpress.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["inkpress*"]
+
+[tool.setuptools.package-data]
+inkpress = ["themes/*.yaml"]

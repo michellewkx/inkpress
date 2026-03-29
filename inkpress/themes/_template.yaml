@@ -1,0 +1,458 @@
+# ============================================================================
+# inkpress 主题模板
+# ============================================================================
+# 复制此文件并重命名为你的主题名称（如 my-theme.yaml）来创建新主题。
+#
+# 重要：本模板包含 inkpress 支持的所有样式键（key）。
+# 为确保完整的主题覆盖，请为每个键提供有效的 CSS 值。
+# 缺失的键将回退到引擎内置默认值，可能导致样式不一致。
+#
+# 所有 style 值均为内联 CSS 字符串（WeChat 会剥离 class 和 <style> 标签）。
+# 使用 YAML 多行字符串语法（|）编写多行 CSS 属性。
+#
+# 配色建议（替换为你自己的配色方案）：
+#   主色(primary)      — 标题、强调、链接等核心颜色
+#   文字色(text)       — 正文文字颜色
+#   背景色(bg)         — 容器与页面背景
+#   辅助色(secondary)  — 引用、次要文字等
+#   边框色(border)     — 表格、分隔线等边框颜色
+# ============================================================================
+
+# ── 元数据 ──────────────────────────────────────────────────────────────────
+name: "主题名称"
+description: "一句话描述主题风格和适用场景"
+series: "系列名称"                           # 如 classic, modern, chinese 等
+tags: ["标签1", "标签2", "标签3"]             # 用于分类和搜索
+
+# ── 外层容器 ─────────────────────────────────────────────────────────────────
+# 包裹全部内容的 <section> 容器
+container:
+  max_width: "677px"                         # 内容最大宽度
+  padding: "16px"                            # 容器内边距
+  background: "#ffffff"                      # 容器背景色
+  border_radius: "12px"                      # 容器圆角
+  box_shadow: "0 2px 12px rgba(0,0,0,0.08)" # 容器阴影（留空则无阴影）
+  border: ""                                 # 容器边框（如 "1px solid #e8e8e8"，留空则无边框）
+
+# ── 页面背景 ─────────────────────────────────────────────────────────────────
+# <body> 标签的样式
+body:
+  background: "#f5f5f5"                      # 页面背景色
+  padding: "16px"                            # 页面内边距
+  margin: "0"                                # 页面外边距
+
+# ── 标题 H1–H6 ──────────────────────────────────────────────────────────────
+
+# H1 — 通常作为文章大标题，可使用背景色块、居中等醒目样式
+h1:
+  style: |
+    margin: 1.8em 8px 1em;
+    padding: 0.9em 1.6em;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.3;
+    color: #ffffff;
+    text-align: center;
+    background: #2c3e50;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(44, 62, 80, 0.2);
+    letter-spacing: 0.05em;
+
+# H2 — 章节标题，常用左边框 + 底部虚线
+h2:
+  style: |
+    margin: 2em 8px 0.75em;
+    padding: 0px 0px 0.5em 14px;
+    border-left: 4px solid #3498db;
+    border-bottom: 1px dashed #3498db;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #2c3e50;
+
+# H3 — 子章节标题
+h3:
+  style: |
+    margin: 1.8em 8px 0.6em;
+    padding: 0px 0px 0.4em 12px;
+    border-left: 4px solid #3498db;
+    border-bottom: 1px dashed rgba(52, 152, 219, 0.4);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #2c3e50;
+
+# H4 — 小节标题
+h4:
+  style: |
+    margin: 1.5em 8px 0.5em;
+    padding-left: 12px;
+    border-left: 3px solid #5dade2;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #34495e;
+
+# H5 — 次级标题
+h5:
+  style: |
+    margin: 1.2em 8px 0.4em;
+    padding-left: 10px;
+    border-left: 3px solid #85c1e9;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #34495e;
+
+# H6 — 最小级别标题
+h6:
+  style: |
+    margin: 1em 8px 0.3em;
+    padding-left: 8px;
+    border-left: 2px solid #aed6f1;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #5d6d7e;
+
+# ── 段落 ─────────────────────────────────────────────────────────────────────
+paragraph:
+  style: |
+    margin: 1.2em 8px;
+    color: #2c3e50;
+    font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+    letter-spacing: 0.1em;
+    text-align: justify;
+
+# ── 列表 ─────────────────────────────────────────────────────────────────────
+list:
+  # 顶层列表容器（<ul> / <ol>）样式
+  container_style: |
+    list-style: none;
+    padding: 0;
+    margin: 1.2em 8px;
+    color: #2c3e50;
+    font-size: 15px;
+
+  # 顶层列表项（<li>）样式
+  item_style: |
+    margin: 0.5em 0;
+    padding: 0;
+    line-height: 1.75;
+    font-size: 15px;
+    color: #2c3e50;
+
+  # 无序列表前缀符号
+  ul_prefix: "• "
+
+  # 有序列表前缀模板，{n} 会被替换为序号数字
+  ol_prefix: "{n}. "
+
+  # 嵌套列表容器样式
+  nested_container_style: |
+    list-style: none;
+    padding: 0 0 0 1.5em;
+    margin: 0.3em 0;
+    font-size: 15px;
+
+  # 嵌套列表项样式（留空则继承 item_style）
+  nested_item_style: |
+    margin: 0.3em 0;
+    padding: 0;
+    line-height: 1.75;
+    font-size: 15px;
+    color: #2c3e50;
+
+  # 嵌套无序列表前缀符号
+  nested_ul_prefix: "◦ "
+
+# ── 代码块 ────────────────────────────────────────────────────────────────────
+# <pre> 标签样式
+code_block:
+  style: |
+    margin: 1.5em 8px;
+    padding: 1.2em;
+    background-color: #f8f9fa;
+    border-top: 3px solid #3498db;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 14px;
+    line-height: 1.5;
+
+  # <pre> 内 <code> 标签样式
+  code_inner_style: |
+    background: none;
+    padding: 0;
+    font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+    font-size: 14px;
+    color: #2c3e50;
+    line-height: 1.5;
+
+# ── 内联代码 ──────────────────────────────────────────────────────────────────
+# 行内 `code` 样式（注意：不要与 code_block 的 code_inner_style 冲突）
+inline_code:
+  style: |
+    font-size: 90%;
+    color: #3498db;
+    background-color: rgba(52, 152, 219, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+
+# ── 引用块 ────────────────────────────────────────────────────────────────────
+blockquote:
+  # <blockquote> 外层样式
+  style: |
+    margin: 1.5em 8px;
+    padding: 1em 1em 1em 1.5em;
+    border-left: 4px solid #3498db;
+    border-radius: 4px;
+    background-color: #f0f4f8;
+    color: #5d6d7e;
+    font-style: italic;
+
+  # 引用块内 <p> 标签样式
+  p_inner_style: |
+    margin: 0;
+    color: #5d6d7e;
+    line-height: 1.75;
+    font-style: italic;
+
+# ── 链接 ─────────────────────────────────────────────────────────────────────
+link:
+  style: |
+    color: #3498db;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(52, 152, 219, 0.3);
+
+# ── 图片 ─────────────────────────────────────────────────────────────────────
+image:
+  # <figure> 容器样式
+  container_style: |
+    margin: 1.5em 0;
+    text-align: center;
+    line-height: 1.6;
+    font-size: 14px;
+    color: #7f8c8d;
+
+  # <img> 标签样式
+  img_style: |
+    max-width: 100%;
+    display: block;
+    margin: 0.5em auto;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.1);
+
+  # <figcaption> 图片说明文字样式（使用 alt 文本作为说明）
+  caption_style: |
+    text-align: center;
+    font-size: 0.85em;
+    color: #7f8c8d;
+    margin-top: 0.5em;
+
+# ── 表格 ─────────────────────────────────────────────────────────────────────
+table:
+  # 表格外层 <div> 包裹容器，用于处理横向溢出滚动
+  wrapper_style: |
+    overflow-x: auto;
+    margin: 1.5em 8px;
+
+  # <table> 标签样式
+  style: |
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5em 0;
+    font-size: 14px;
+    border-radius: 6px;
+    overflow: hidden;
+
+  # <th> 表头单元格样式
+  th_style: |
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #3498db;
+    border: 1px solid #2e86c1;
+
+  # <td> 表体单元格样式
+  td_style: |
+    padding: 8px 14px;
+    border: 1px solid #d5dbdb;
+    color: #2c3e50;
+    background-color: #ffffff;
+
+  # 奇数行 <td> 的附加样式（斑马纹效果）
+  tr_odd_style: |
+    background: rgba(52, 152, 219, 0.04);
+
+# ── 分隔线 ────────────────────────────────────────────────────────────────────
+hr:
+  style: |
+    border: none;
+    height: 2px;
+    margin: 2em 0;
+    background: linear-gradient(to right, transparent, #3498db, #2c3e50, #3498db, transparent);
+    border-radius: 2px;
+
+# ── 粗体 ─────────────────────────────────────────────────────────────────────
+bold:
+  style: |
+    font-weight: 700;
+    color: #2980b9;
+
+# ── 斜体 ─────────────────────────────────────────────────────────────────────
+italic:
+  style: |
+    font-style: italic;
+    color: #5d6d7e;
+
+# ── 删除线 ────────────────────────────────────────────────────────────────────
+strikethrough:
+  style: |
+    text-decoration: line-through;
+    color: #95a5a6;
+
+# ── 装饰配置 ──────────────────────────────────────────────────────────────────
+# 用于在特定元素前后插入装饰性文字或符号
+decorations:
+  h2_prefix: ""                              # H2 标题前缀（如 "✦ "、"# " 等）
+  blockquote_prefix: ""                      # 引用块内文字前缀（如 "「"）
+  blockquote_suffix: ""                      # 引用块内文字后缀（如 "」"）
+  hr_text: ""                                # 替代 <hr> 的装饰文字（如 "· · ·"，设置后 hr.style 将被忽略）
+
+# ── 脚注 ─────────────────────────────────────────────────────────────────────
+footnote:
+  # 脚注上标 <sup> 样式
+  sup_style: |
+    font-size: 0.75em;
+    line-height: 0;
+    vertical-align: super;
+    margin: 0;
+    padding: 0;
+
+  # 脚注引用链接 <a> 样式（正文中的 [1] 标记）
+  ref_style: |
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dashed #3498db;
+    padding-bottom: 1px;
+
+  # 脚注区域 <section> 样式（页面底部的脚注列表区域）
+  section_style: |
+    margin-top: 2.5em;
+    padding-top: 1.8em;
+    border-top: 1px solid #d5e8f5;
+
+  # 脚注有序列表 <ol> 样式
+  list_style: |
+    list-style-type: decimal;
+    margin: 0;
+    padding-left: 1.5em;
+
+  # 脚注列表项 <li> 样式
+  item_style: |
+    font-size: 0.85em;
+    color: #95a5a6;
+    line-height: 1.6;
+    margin-bottom: 0.3em;
+
+  # 脚注回链 <a> 样式（脚注末尾的 ↩ 链接）
+  backref_style: |
+    color: #3498db;
+    text-decoration: none;
+    margin-left: 0.3em;
+
+# ── GFM 提示框 ───────────────────────────────────────────────────────────────
+# GitHub 风格的提示框（> [!NOTE]、> [!TIP] 等语法）
+gfm_alert:
+  # 提示框容器样式（border-left 和 background 会由引擎根据类型颜色自动追加）
+  container_style: |
+    margin: 1.5em 8px;
+    padding: 12px 16px;
+    border-radius: 4px;
+
+  # 提示框标题行样式（color 会由引擎根据类型颜色自动追加）
+  title_style: |
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+  # 提示框内容区域样式
+  content_style: |
+    color: #2c3e50;
+    line-height: 1.6;
+    font-size: 14px;
+
+  # 五种提示类型的主题色（必须为 6 位十六进制颜色值）
+  note_color: "#3498db"                      # NOTE 类型 — 信息提示
+  tip_color: "#27ae60"                       # TIP 类型 — 建议提示
+  important_color: "#f39c12"                 # IMPORTANT 类型 — 重要提示
+  warning_color: "#e74c3c"                   # WARNING 类型 — 警告提示
+  caution_color: "#e67e22"                   # CAUTION 类型 — 注意提示
+
+# ── 对话气泡 ──────────────────────────────────────────────────────────────────
+# 使用 :::dialogue 语法渲染的聊天对话样式
+dialogue:
+  # 对话整体容器样式
+  container_style: |
+    margin: 2em 0;
+    padding: 18px;
+    background-color: #f0f4f8;
+    border-radius: 10px;
+    border: 1px solid #d5dbdb;
+
+  # 对话标题样式
+  title_style: |
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: #2c3e50;
+    text-align: center;
+
+  # 左侧气泡样式（对方消息）
+  bubble_left_style: |
+    background-color: #ffffff;
+    color: #2c3e50;
+    padding: 10px 14px;
+    border-radius: 10px;
+    max-width: 65%;
+    word-wrap: break-word;
+    border: 1px solid #d5dbdb;
+
+  # 右侧气泡样式（己方消息）
+  bubble_right_style: |
+    background-color: #3498db;
+    color: #ffffff;
+    padding: 10px 14px;
+    border-radius: 10px;
+    max-width: 65%;
+    word-wrap: break-word;
+    box-shadow: 0 2px 6px rgba(52, 152, 219, 0.25);
+
+  # 头像通用样式（尺寸、形状、布局）
+  avatar_style: |
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+    margin: 0 10px;
+
+  # 左侧头像配色
+  avatar_left_style: |
+    background-color: #d5dbdb;
+    color: #2c3e50;
+
+  # 右侧头像配色
+  avatar_right_style: |
+    background-color: #3498db;
+    color: #ffffff;

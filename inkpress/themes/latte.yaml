@@ -1,0 +1,325 @@
+# Latte theme
+# 手账日记风，暖棕牛皮纸质感，圆润亲切
+
+name: "拿铁日常"
+description: "手账日记风，暖棕牛皮纸质感，圆润亲切"
+series: "classic"
+tags: ["咖啡", "暖棕", "手账", "日记"]
+
+# 容器样式
+container:
+  max_width: "677px"
+  padding: "24px 22px"
+  background: "#faf4eb"
+  border_radius: "16px"
+  box_shadow: "0 6px 24px rgba(160, 114, 78, 0.1)"
+  border: "2px dashed #dcc9b0"
+
+# H1 样式
+h1:
+  style: |
+    padding: 0.7em 0;
+    margin: 1.5em 0 1.2em;
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1.3;
+    color: #5c3d2e;
+    text-align: center;
+    letter-spacing: 0.05em;
+    border-bottom: 3px double #c4956a;
+    font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, sans-serif;
+
+# H2 样式
+h2:
+  style: |
+    margin: 2.2em 0 1em;
+    padding: 0.5em 1em;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #5c3d2e;
+    background: rgba(196, 149, 106, 0.1);
+    border-radius: 20px;
+    text-align: center;
+    font-family: 'PingFang SC', -apple-system, sans-serif;
+
+# H3 样式
+h3:
+  style: |
+    margin: 2em 0 0.8em;
+    padding: 0.3em 0 0.3em 0;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #a0724e;
+    font-family: 'PingFang SC', -apple-system, sans-serif;
+
+# H4 样式
+h4:
+  style: |
+    margin: 1.5em 0 0.5em;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #7a5a47;
+
+# H5 样式
+h5:
+  style: |
+    margin: 1.2em 0 0.4em;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #8b6b56;
+
+# H6 样式
+h6:
+  style: |
+    margin: 1em 0 0.3em;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #9c7c65;
+
+# 段落样式
+paragraph:
+  style: |
+    margin: 1.3em 0;
+    letter-spacing: 0.03em;
+    color: #4a3728;
+    text-align: justify;
+    line-height: 1.9;
+    font-size: 15px;
+    font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+
+# 列表样式
+list:
+  container_style: |
+    list-style: none;
+    padding: 0;
+    margin: 1.2em 0;
+    color: #4a3728;
+    font-size: 15px;
+    font-family: 'PingFang SC', -apple-system, sans-serif;
+
+  item_style: |
+    margin: 0.6em 0;
+    padding: 0;
+    line-height: 1.8;
+    font-size: 15px;
+
+  ul_prefix: "☕ "
+  ol_prefix: "{n}. "
+
+  nested_container_style: |
+    list-style: none;
+    padding: 0 0 0 1.5em;
+    margin: 0.3em 0;
+    font-size: 15px;
+
+  nested_item_style: |
+    margin: 0.3em 0;
+    padding: 0;
+    line-height: 1.75;
+    font-size: 15px;
+    color: #4a3728;
+
+  nested_ul_prefix: "◦ "
+
+# 代码块样式
+code_block:
+  style: |
+    margin: 1.5em 0;
+    padding: 1.2em 1.5em;
+    background: #f5ede2;
+    border-radius: 12px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.6;
+    border: 1px dashed #dcc9b0;
+
+  code_inner_style: |
+    background: none;
+    padding: 0;
+    font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+    font-size: 13.5px;
+    color: #6b4c3b;
+    line-height: 1.6;
+
+# 内联代码样式
+inline_code:
+  style: |
+    font-size: 88%;
+    color: #a0724e;
+    background: rgba(196, 149, 106, 0.12);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-family: 'SFMono-Regular', Consolas, monospace;
+
+# 引用样式
+blockquote:
+  style: |
+    margin: 1.8em 0;
+    padding: 1.2em 1.5em;
+    border-left: none;
+    background: #f5ede2;
+    color: #5c3d2e;
+    border-radius: 12px;
+    border: 1px dashed #dcc9b0;
+    box-shadow: 2px 2px 0 rgba(160, 114, 78, 0.08);
+
+  p_inner_style: |
+    margin: 0;
+    color: #5c3d2e;
+    line-height: 1.85;
+    font-style: normal;
+    font-family: 'PingFang SC', -apple-system, sans-serif;
+
+# 链接样式
+link:
+  style: |
+    color: #a0724e;
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(160, 114, 78, 0.4);
+
+# 图片样式
+image:
+  container_style: |
+    margin: 1.5em 0;
+    text-align: center;
+
+  img_style: |
+    max-width: 100%;
+    margin: 1em auto;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 4px 4px 0 rgba(160, 114, 78, 0.1);
+    border: 2px solid #ecdfd2;
+
+
+  caption_style: |
+    text-align: center;
+    font-size: 0.85em;
+    color: #a0724e;
+    margin-top: 0.5em;
+    font-style: italic;
+
+# 表格样式
+table:
+  wrapper_style: |
+    overflow-x: auto;
+    margin: 1.5em 8px;
+
+  tr_odd_style: |
+    background: rgba(160, 114, 78, 0.05);
+
+  style: |
+    margin: 1.5em 0;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14.5px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #dcc9b0;
+
+  th_style: |
+    background: #f0e0cc;
+    color: #5c3d2e;
+    padding: 12px 14px;
+    text-align: left;
+    font-weight: 700;
+    border-bottom: 2px solid #c4956a;
+    font-family: 'PingFang SC', sans-serif;
+
+  td_style: |
+    border-bottom: 1px dashed #e0d0c0;
+    padding: 10px 14px;
+    color: #4a3728;
+    background: rgba(250, 244, 235, 0.5);
+
+# 分隔线样式 - 留空，使用 hr_text 装饰
+hr:
+  style: ""
+
+# 粗体样式
+bold:
+  style: |
+    font-weight: 800;
+    color: #a0724e;
+
+# 斜体样式
+italic:
+  style: |
+    font-style: italic;
+    color: #b08968;
+
+# 删除线样式
+strikethrough:
+  style: |
+    text-decoration: line-through;
+    color: #c4b5a5;
+
+# 页面背景
+body:
+  background: "#f0e8db"
+  padding: "20px"
+
+# 装饰配置
+decorations:
+  h2_prefix: "☕ "
+  hr_text: "· · ·"
+
+# 脚注样式
+footnote:
+  sup_style: |
+    font-size: 0.75em;
+    line-height: 0;
+    vertical-align: super;
+    margin: 0;
+    padding: 0;
+  ref_style: |
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dashed #a0724e;
+    padding-bottom: 1px;
+  section_style: |
+    margin-top: 2.5em;
+    padding-top: 1.8em;
+    border-top: 1px solid #dcc9b0;
+  list_style: |
+    list-style-type: decimal;
+    margin: 0;
+    padding-left: 1.5em;
+  item_style: |
+    font-size: 0.85em;
+    color: #a09080;
+    line-height: 1.6;
+    margin-bottom: 0.3em;
+  backref_style: |
+    color: #a0724e;
+    text-decoration: none;
+    margin-left: 0.3em;
+
+# GFM 提示框样式
+gfm_alert:
+  container_style: |
+    margin: 1.5em 8px;
+    padding: 12px 16px;
+    border-radius: 4px;
+  title_style: |
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  content_style: |
+    color: #4a3728;
+    line-height: 1.6;
+    font-size: 14px;
+  note_color: "#7a5a47"
+  tip_color: "#5c8a3a"
+  important_color: "#b8860b"
+  warning_color: "#a0522d"
+  caution_color: "#cd853f"
+
+# 图片说明样式

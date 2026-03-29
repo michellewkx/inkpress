@@ -1,0 +1,344 @@
+# Bauhaus theme
+# 大胆几何，原色色块，现代主义设计
+
+name: "包豪斯"
+description: "大胆几何，原色色块，现代主义设计"
+series: "magazine"
+tags: ["几何", "原色", "现代主义", "包豪斯"]
+
+# 容器样式
+container:
+  max_width: "677px"
+  padding: "20px"
+  background: "#fafafa"
+  border_radius: "0"
+  box_shadow: "none"
+  border: "4px solid #1d3557"
+
+# H1 样式
+h1:
+  style: |
+    padding: 0.8em 1.5em;
+    margin: 1.5em 0 1.5em;
+    background: #e63946;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 1.3;
+    color: #ffffff;
+    text-align: left;
+    border-radius: 0;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'Helvetica Neue', 'Arial Black', Helvetica, sans-serif;
+    border-left: 12px solid #f4a261;
+
+# H2 样式
+h2:
+  style: |
+    margin: 2.5em 0 1em;
+    padding: 0.5em 1em;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.3;
+    color: #fafafa;
+    background: #1d3557;
+    font-family: 'Helvetica Neue', 'Arial Black', Helvetica, sans-serif;
+    letter-spacing: 0.06em;
+    border-left: 8px solid #e63946;
+
+# H3 样式
+h3:
+  style: |
+    margin: 2em 0 0.8em;
+    padding: 0.4em 0 0.4em 14px;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.3;
+    color: #1d3557;
+    border-left: 6px solid #f4a261;
+    border-bottom: 3px solid #e63946;
+    font-family: 'Helvetica Neue', 'Arial Black', Helvetica, sans-serif;
+
+# H4 样式
+h4:
+  style: |
+    margin: 1.5em 0 0.5em;
+    padding: 0.3em 0 0.3em 12px;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.3;
+    color: #e63946;
+    border-left: 5px solid #457b9d;
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+
+# H5 样式
+h5:
+  style: |
+    margin: 1.2em 0 0.4em;
+    padding-left: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #457b9d;
+    border-left: 4px solid #f4a261;
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+
+# H6 样式
+h6:
+  style: |
+    margin: 1em 0 0.3em;
+    padding-left: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #666;
+    border-left: 3px solid #1d3557;
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+
+# 段落样式
+paragraph:
+  style: |
+    margin: 1.3em 0;
+    letter-spacing: 0.02em;
+    color: #1a1a1a;
+    text-align: justify;
+    line-height: 1.85;
+    font-size: 15px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+# 列表样式
+list:
+  container_style: |
+    list-style: none;
+    padding: 0;
+    margin: 1.2em 0;
+    color: #1a1a1a;
+    font-size: 15px;
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+
+  item_style: |
+    margin: 0.6em 0;
+    padding: 0 0 0 0;
+    line-height: 1.75;
+    font-size: 15px;
+
+  ul_prefix: "■ "
+  ol_prefix: "{n}. "
+
+  nested_container_style: |
+    list-style: none;
+    padding: 0 0 0 1.5em;
+    margin: 0.3em 0;
+    font-size: 15px;
+
+  nested_item_style: |
+    margin: 0.3em 0;
+    padding: 0;
+    line-height: 1.75;
+    font-size: 15px;
+    color: #1a1a1a;
+
+  nested_ul_prefix: "◦ "
+
+# 代码块样式
+code_block:
+  style: |
+    margin: 1.5em 0;
+    padding: 1.2em;
+    background: #1d3557;
+    border-radius: 0;
+    overflow-x: auto;
+    font-size: 14px;
+    line-height: 1.5;
+    border-left: 6px solid #e63946;
+
+  code_inner_style: |
+    background: none;
+    padding: 0;
+    font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #f1faee;
+
+# 内联代码样式
+inline_code:
+  style: |
+    font-size: 90%;
+    color: #e63946;
+    background: rgba(230, 57, 70, 0.08);
+    padding: 2px 8px;
+    border-radius: 0;
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    border: 1px solid rgba(230, 57, 70, 0.2);
+
+# 引用样式
+blockquote:
+  style: |
+    margin: 1.8em 0;
+    padding: 1.2em 1.5em;
+    border-left: 8px solid #f4a261;
+    background: #1d3557;
+    color: #f1faee;
+    border-radius: 0;
+
+  p_inner_style: |
+    margin: 0;
+    color: #f1faee;
+    line-height: 1.8;
+    font-style: normal;
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+
+# 链接样式
+link:
+  style: |
+    color: #457b9d;
+    text-decoration: none;
+    border-bottom: 2px solid #e63946;
+    font-weight: 600;
+
+# 图片样式
+image:
+  container_style: |
+    margin: 2em 0;
+    text-align: center;
+
+  img_style: |
+    max-width: 100%;
+    margin: 1em auto;
+    display: block;
+    border-radius: 0;
+    border: 4px solid #1d3557;
+    box-shadow: 8px 8px 0 #e63946;
+
+
+  caption_style: |
+    text-align: center;
+    font-size: 0.8em;
+    color: #457b9d;
+    margin-top: 0.5em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+
+# 表格样式
+table:
+  wrapper_style: |
+    overflow-x: auto;
+    margin: 1.5em 8px;
+
+  tr_odd_style: |
+    background: rgba(29, 53, 87, 0.06);
+
+  style: |
+    margin: 1.5em 0;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14.5px;
+    border: 2px solid #1d3557;
+
+  th_style: |
+    background: #e63946;
+    color: #fff;
+    padding: 12px 14px;
+    text-align: left;
+    font-weight: 800;
+    border: 2px solid #1d3557;
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+
+  td_style: |
+    border: 2px solid #1d3557;
+    padding: 10px 14px;
+    color: #1a1a1a;
+
+# 分隔线样式
+hr:
+  style: |
+    border: none;
+    height: 4px;
+    margin: 2.5em 0;
+    background: linear-gradient(to right, #e63946 33%, #f4a261 33% 66%, #457b9d 66%);
+
+# 粗体样式
+bold:
+  style: |
+    font-weight: 900;
+    color: #e63946;
+
+# 斜体样式
+italic:
+  style: |
+    font-style: italic;
+    color: #457b9d;
+
+# 删除线样式
+strikethrough:
+  style: |
+    text-decoration: line-through;
+    color: #999;
+    text-decoration-color: #e63946;
+    text-decoration-thickness: 2px;
+
+# 页面背景
+body:
+  background: "#f0f0f0"
+  padding: "16px"
+
+# 装饰配置
+decorations:
+  h2_prefix: "■ "
+
+# 脚注样式
+footnote:
+  sup_style: |
+    font-size: 0.75em;
+    line-height: 0;
+    vertical-align: super;
+    margin: 0;
+    padding: 0;
+  ref_style: |
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dashed #e63946;
+    padding-bottom: 1px;
+  section_style: |
+    margin-top: 2.5em;
+    padding-top: 1.8em;
+    border-top: 1px solid #1d3557;
+  list_style: |
+    list-style-type: decimal;
+    margin: 0;
+    padding-left: 1.5em;
+  item_style: |
+    font-size: 0.85em;
+    color: #888888;
+    line-height: 1.6;
+    margin-bottom: 0.3em;
+  backref_style: |
+    color: #e63946;
+    text-decoration: none;
+    margin-left: 0.3em;
+
+# GFM 提示框样式
+gfm_alert:
+  container_style: |
+    margin: 1.5em 8px;
+    padding: 12px 16px;
+    border-radius: 4px;
+  title_style: |
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  content_style: |
+    color: #1a1a1a;
+    line-height: 1.6;
+    font-size: 14px;
+  note_color: "#457b9d"
+  tip_color: "#2d6a4f"
+  important_color: "#f4a261"
+  warning_color: "#e63946"
+  caution_color: "#ff8c42"
+
+# 图片说明样式

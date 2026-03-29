@@ -19,3 +19,6 @@ node_modules/
 *.log
 output/
 reference/
+dist/
+*.egg-info/
+build/

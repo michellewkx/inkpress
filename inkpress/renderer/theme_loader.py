@@ -18,8 +18,16 @@ class ThemeLoader:
 
     def __init__(self, themes_dir: Optional[str] = None):
         if themes_dir is None:
-            current_dir = Path(__file__).parent.parent
-            themes_dir = current_dir / ".." / "themes"
+            # Look for themes inside the package first (pip install)
+            pkg_themes = Path(__file__).parent.parent / "themes"
+            # Fallback: themes/ at repo root (dev mode)
+            repo_themes = Path(__file__).parent.parent.parent / "themes"
+            if pkg_themes.is_dir():
+                themes_dir = pkg_themes
+            elif repo_themes.is_dir():
+                themes_dir = repo_themes
+            else:
+                themes_dir = pkg_themes  # will fail gracefully later
         self.themes_dir = Path(themes_dir).resolve()
         self.user_themes_dir = Path.home() / ".inkpress" / "themes"
         self._themes_cache: Dict[str, dict] = {}

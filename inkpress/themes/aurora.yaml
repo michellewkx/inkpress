@@ -1,0 +1,459 @@
+# Aurora theme
+# 紫色渐变系，毛玻璃效果
+
+name: "极光"
+description: "紫色渐变系，毛玻璃效果，梦幻极光色彩"
+series: "classic"
+tags: ["紫色", "磨砂", "优雅"]
+
+# 容器样式 - 添加毛玻璃效果
+container:
+  max_width: "677px"
+  padding: "16px"
+  background: "linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.95))"
+  border_radius: "20px"
+  box_shadow: "0 8px 32px rgba(99, 102, 241, 0.12), 0 2px 8px rgba(168, 85, 247, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8)"
+  backdrop_filter: "blur(20px)"
+
+# H1 样式 - 高级渐变+多重阴影
+h1:
+  style: |
+    padding: 1em 2.2em;
+    margin: 2em 0 1.5em;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 30%, #a855f7 60%, #ec4899 100%);
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.3;
+    color: #ffffff;
+    text-align: center;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(168, 85, 247, 0.35), 0 2px 8px rgba(99, 102, 241, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-clip: padding-box;
+
+# H2 样式 - 渐变背景+精致阴影
+h2:
+  style: |
+    margin: 2.5em 0 1.2em;
+    padding: 0.8em 1.6em;
+    background: linear-gradient(135deg, #3b82f6 0%, #6366f1 40%, #8b5cf6 100%);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #ffffff;
+    text-align: center;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(139, 92, 246, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    letter-spacing: 0.3px;
+
+# H3 样式 - 渐变边框+悬停效果
+h3:
+  style: |
+    margin: 2em 0 1em;
+    padding: 0.5em 0 0.5em 18px;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #6366f1;
+    border-left: 5px solid;
+    border-image: linear-gradient(to bottom, #6366f1, #a855f7, #ec4899) 1;
+    border-bottom: 2px solid transparent;
+    border-image-bottom: linear-gradient(to right, #6366f1, #a855f7, transparent) 1;
+    background: linear-gradient(to right, rgba(99, 102, 241, 0.08), rgba(168, 85, 247, 0.05), transparent);
+    letter-spacing: 0.2px;
+
+# H4 样式 - 精致边框
+h4:
+  style: |
+    margin: 1.8em 0 0.8em;
+    padding: 0.4em 0 0.4em 14px;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #8b5cf6;
+    border-left: 4px solid #a855f7;
+    background: linear-gradient(to right, rgba(168, 85, 247, 0.08), rgba(236, 72, 153, 0.04), transparent);
+    letter-spacing: 0.2px;
+
+# H5 样式 - 简约高级
+h5:
+  style: |
+    margin: 1.5em 0 0.6em;
+    padding: 0.3em 0 0.3em 12px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #6366f1;
+    border-left: 3px solid #6366f1;
+    background: rgba(99, 102, 241, 0.04);
+
+# H6 样式 - 精致点缀
+h6:
+  style: |
+    margin: 1.2em 0 0.5em;
+    padding: 0.2em 0 0.2em 10px;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #a855f7;
+    border-left: 2px solid #ec4899;
+    background: rgba(236, 72, 153, 0.04);
+
+# 段落样式 - 优化阅读体验
+paragraph:
+  style: |
+    margin: 1.4em 0;
+    letter-spacing: 0.03em;
+    color: #1e293b;
+    text-align: justify;
+    line-height: 1.85;
+    font-size: 15.5px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.02);
+
+# 列表样式 - 现代化设计
+list:
+  container_style: |
+    list-style: none;
+    padding: 0;
+    margin: 1.8em 0;
+    color: #1e293b;
+    font-size: 15.5px;
+
+  item_style: |
+    margin: 0.6em 0;
+    padding: 0;
+    line-height: 1.8;
+    font-size: 15.5px;
+    position: relative;
+    padding-left: 20px;
+  item_style_before: |
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #a855f7;
+    font-weight: bold;
+    font-size: 1.2em;
+    line-height: 1.8;
+
+  ul_prefix: ""
+  ol_prefix: "{n}."
+
+  nested_container_style: |
+    list-style: none;
+    padding: 0 0 0 1.5em;
+    margin: 0.3em 0;
+    font-size: 15px;
+
+  nested_item_style: |
+    margin: 0.3em 0;
+    padding: 0;
+    line-height: 1.75;
+    font-size: 15px;
+    color: #1e293b;
+
+  nested_ul_prefix: "◦ "
+
+# 代码块样式 - 高级渐变边框+毛玻璃效果
+code_block:
+  style: |
+    font-size: 14px;
+    overflow-x: auto;
+    border-radius: 12px;
+    padding: 1.4em;
+    line-height: 1.6;
+    margin: 1.8em 0;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.03), rgba(168, 85, 247, 0.03), rgba(236, 72, 153, 0.03));
+    border: 2px solid transparent;
+    border-image: linear-gradient(135deg, #6366f1, #a855f7, #ec4899) 1;
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+
+  code_inner_style: |
+    background: none;
+    padding: 0;
+    font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, Menlo, monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #334155;
+
+# 内联代码样式 - 渐变背景+精致边框
+inline_code:
+  style: |
+    font-size: 88%;
+    color: #6366f1;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
+    padding: 3px 10px;
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, Menlo, monospace;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    box-shadow: 0 2px 4px rgba(99, 102, 241, 0.05);
+
+# 引用样式 - 毛玻璃+渐变
+blockquote:
+  style: |
+    font-style: normal;
+    padding: 1.2em 1.8em;
+    border-left: 5px solid transparent;
+    border-image: linear-gradient(to bottom, #6366f1, #a855f7, #ec4899) 1;
+    color: #475569;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(168, 85, 247, 0.05), rgba(236, 72, 153, 0.03));
+    border-radius: 12px;
+    margin: 1.8em 0;
+    box-shadow: 0 2px 12px rgba(168, 85, 247, 0.08);
+    border-right: 1px solid rgba(168, 85, 247, 0.1);
+    border-bottom: 1px solid rgba(168, 85, 247, 0.1);
+    border-top: 1px solid rgba(99, 102, 241, 0.1);
+
+  p_inner_style: |
+    margin: 0;
+    font-style: normal;
+    color: #475569;
+    line-height: 1.75;
+
+# 链接样式 - 渐变下划线+悬停效果
+link:
+  style: |
+    color: #6366f1;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    border-image: linear-gradient(to right, rgba(99, 102, 241, 0), #6366f1, #a855f7, #ec4899, rgba(236, 72, 153, 0)) 1;
+    transition: all 0.3s ease;
+    position: relative;
+
+# 图片样式 - 高级阴影+圆角
+image:
+  container_style: |
+    margin: 2em 0;
+    text-align: center;
+    line-height: 1.6;
+    font-size: 15.5px;
+    color: #64748b;
+
+  img_style: |
+    max-width: 100%;
+    border-radius: 16px;
+    margin: 1.5em auto;
+    display: block;
+    box-shadow: 0 8px 32px rgba(99, 102, 241, 0.15), 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(168, 85, 247, 0.15);
+
+
+  caption_style: |
+    text-align: center;
+    font-size: 0.85em;
+    color: #a78bfa;
+    margin-top: 0.5em;
+
+# 表格样式 - 高级设计
+table:
+  wrapper_style: |
+    overflow-x: auto;
+    margin: 1.5em 8px;
+
+  tr_odd_style: |
+    background: rgba(99, 102, 241, 0.04);
+
+  style: |
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 1.8em 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(168, 85, 247, 0.15);
+
+  th_style: |
+    padding: 14px 18px;
+    text-align: left;
+    font-weight: 700;
+    border-bottom: 2px solid rgba(168, 85, 247, 0.2);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
+    color: #6366f1;
+    letter-spacing: 0.5px;
+
+  td_style: |
+    padding: 12px 18px;
+    border-bottom: 1px solid rgba(168, 85, 247, 0.08);
+    color: #334155;
+    background: rgba(255, 255, 255, 0.5);
+
+# 分隔线样式 - 高级渐变
+hr:
+  style: |
+    height: 2px;
+    border: none;
+    margin: 3em 0;
+    background: linear-gradient(90deg, transparent, #6366f1, #8b5cf6, #a855f7, #ec4899, #8b5cf6, #6366f1, transparent);
+    border-radius: 2px;
+
+# 粗体样式 - 渐变文字
+bold:
+  style: |
+    color: #6366f1;
+    font-weight: 700;
+    background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 1px 2px rgba(99, 102, 241, 0.1);
+
+# 斜体样式 - 精致紫色
+italic:
+  style: |
+    color: #a855f7;
+    font-style: italic;
+    font-weight: 500;
+
+# 删除线样式
+strikethrough:
+  style: |
+    text-decoration: line-through;
+    color: #94a3b8;
+
+# 对话样式 - 高级毛玻璃效果
+dialogue:
+  # 对话容器样式 - 毛玻璃+渐变边框
+  container_style: |
+    margin: 2.5em 0;
+    padding: 24px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(248, 250, 252, 0.8));
+    border-radius: 20px;
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    box-shadow: 0 8px 32px rgba(168, 85, 247, 0.12), 0 2px 8px rgba(99, 102, 241, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+
+  # 对话标题样式 - 渐变文字
+  title_style: |
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #6366f1;
+    text-align: center;
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+  # 对话消息容器样式
+  message_style: |
+    display: flex;
+    margin-bottom: 18px;
+    align-items: flex-start;
+
+  # 左侧对话气泡样式 - 毛玻璃
+  bubble_left_style: |
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.95));
+    color: #1e293b;
+    padding: 12px 16px;
+    border-radius: 18px;
+    max-width: 65%;
+    word-wrap: break-word;
+    border: 1px solid rgba(168, 85, 247, 0.15);
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.06);
+    backdrop-filter: blur(5px);
+
+  # 右侧对话气泡样式 - 高级渐变
+  bubble_right_style: |
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 40%, #a855f7 70%, #ec4899 100%);
+    color: #ffffff;
+    padding: 12px 16px;
+    border-radius: 18px;
+    max-width: 65%;
+    word-wrap: break-word;
+    box-shadow: 0 4px 16px rgba(168, 85, 247, 0.3), 0 2px 4px rgba(99, 102, 241, 0.2);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+
+  # 头像样式
+  avatar_style: |
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 15px;
+    flex-shrink: 0;
+    margin: 0 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  # 头像左侧样式 - 渐变边框
+  avatar_left_style: |
+    background: linear-gradient(135deg, #e0e7ff, #ddd6fe);
+    color: #6366f1;
+    border: 2px solid rgba(99, 102, 241, 0.3);
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.15);
+
+  # 头像右侧样式 - 高级渐变
+  avatar_right_style: |
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+    color: #ffffff;
+    border: 2px solid rgba(168, 85, 247, 0.5);
+    box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+
+# 页面背景 - 高级渐变
+body:
+  background: "linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e0e7ff 100%)"
+  padding: "20px"
+  margin: "0"
+
+# 装饰配置
+decorations:
+  h2_prefix: "✦ "
+
+# 脚注样式
+footnote:
+  sup_style: |
+    font-size: 0.75em;
+    line-height: 0;
+    vertical-align: super;
+    margin: 0;
+    padding: 0;
+  ref_style: |
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dashed #6366f1;
+    padding-bottom: 1px;
+  section_style: |
+    margin-top: 2.5em;
+    padding-top: 1.8em;
+    border-top: 1px solid #e0e7ff;
+  list_style: |
+    list-style-type: decimal;
+    margin: 0;
+    padding-left: 1.5em;
+  item_style: |
+    font-size: 0.85em;
+    color: #94a3b8;
+    line-height: 1.6;
+    margin-bottom: 0.3em;
+  backref_style: |
+    color: #6366f1;
+    text-decoration: none;
+    margin-left: 0.3em;
+
+# GFM 提示框样式
+gfm_alert:
+  container_style: |
+    margin: 1.5em 8px;
+    padding: 12px 16px;
+    border-radius: 4px;
+  title_style: |
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  content_style: |
+    color: #1e293b;
+    line-height: 1.6;
+    font-size: 14px;
+  note_color: "#6366f1"
+  tip_color: "#a855f7"
+  important_color: "#f59e0b"
+  warning_color: "#ef4444"
+  caution_color: "#ec4899"

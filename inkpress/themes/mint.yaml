@@ -1,0 +1,388 @@
+# Mint theme
+# 清新薄荷绿色系，轻松活泼
+
+name: "薄荷清新"
+description: "清新薄荷绿色系，轻松活泼，适合生活和健康内容"
+series: "social"
+tags: ["薄荷", "绿色", "清新"]
+
+# 容器样式
+container:
+  max_width: "677px"
+  padding: "16px"
+  background: "#f0faf7"
+  border_radius: "14px"
+  box_shadow: "0 4px 18px rgba(26, 188, 156, 0.08)"
+
+# H1 样式 - 薄荷绿背景
+h1:
+  style: |
+    margin: 1.8em 8px 1em;
+    padding: 1em 1.8em;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.3;
+    color: #ffffff;
+    text-align: center;
+    background: #1abc9c;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(26, 188, 156, 0.3);
+    letter-spacing: 0.06em;
+
+# H2 样式 - 青绿左边框
+h2:
+  style: |
+    margin: 2em 8px 0.75em;
+    padding: 0px 0px 0.5em 14px;
+    border-left: 4px solid #16a085;
+    border-bottom: 1px dashed rgba(22, 160, 133, 0.35);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #0e6655;
+
+# H3 样式
+h3:
+  style: |
+    margin: 1.8em 8px 0.6em;
+    padding: 0px 0px 0.4em 12px;
+    border-left: 4px solid #1abc9c;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #117a65;
+
+# H4 样式
+h4:
+  style: |
+    margin: 1.5em 8px 0.5em;
+    padding-left: 12px;
+    border-left: 3px solid #2ecc71;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #148f77;
+
+# H5 样式
+h5:
+  style: |
+    margin: 1.2em 8px 0.4em;
+    padding-left: 10px;
+    border-left: 3px solid #76d7c4;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #17a589;
+
+# H6 样式
+h6:
+  style: |
+    margin: 1em 8px 0.3em;
+    padding-left: 8px;
+    border-left: 2px solid #a9dfbf;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #1e8449;
+
+# 段落样式
+paragraph:
+  style: |
+    margin: 1.2em 8px;
+    color: #333333;
+    font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+    letter-spacing: 0.06em;
+    text-align: justify;
+
+# 列表样式
+list:
+  container_style: |
+    list-style: none;
+    padding: 0;
+    margin: 1.2em 8px;
+    color: #333333;
+    font-size: 15px;
+
+  item_style: |
+    margin: 0.5em 0;
+    padding: 0;
+    line-height: 1.75;
+    font-size: 15px;
+    color: #333333;
+
+  ul_prefix: "✦ "
+  ol_prefix: "{n}. "
+
+  nested_container_style: |
+    list-style: none;
+    padding: 0 0 0 1.5em;
+    margin: 0.3em 0;
+    font-size: 15px;
+
+  nested_item_style: |
+    margin: 0.3em 0;
+    padding: 0;
+    line-height: 1.75;
+    font-size: 15px;
+    color: #333333;
+
+  nested_ul_prefix: "◦ "
+
+# 代码块样式
+code_block:
+  style: |
+    margin: 1.5em 8px;
+    padding: 1.2em;
+    background-color: #e8f8f5;
+    border-top: 3px solid #1abc9c;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 14px;
+    line-height: 1.5;
+
+  code_inner_style: |
+    background: none;
+    padding: 0;
+    font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+    font-size: 14px;
+    color: #0e6655;
+    line-height: 1.5;
+
+# 内联代码样式
+inline_code:
+  style: |
+    font-size: 90%;
+    color: #16a085;
+    background-color: rgba(26, 188, 156, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+
+# 引用样式 - 翡翠绿左边框
+blockquote:
+  style: |
+    margin: 1.5em 8px;
+    padding: 1em 1em 1em 1.5em;
+    border-left: 4px solid #2ecc71;
+    border-radius: 6px;
+    background-color: #d5f5e3;
+    color: #1e8449;
+
+  p_inner_style: |
+    margin: 0;
+    color: #1e8449;
+    line-height: 1.75;
+    font-style: normal;
+
+# 链接样式
+link:
+  style: |
+    color: #1abc9c;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(26, 188, 156, 0.4);
+
+# 图片样式
+image:
+  container_style: |
+    margin: 1.5em 0;
+    text-align: center;
+    line-height: 1.6;
+    font-size: 14px;
+    color: #1e8449;
+
+  img_style: |
+    max-width: 100%;
+    display: block;
+    margin: 0.5em auto;
+    border-radius: 8px;
+    box-shadow: 0 3px 12px rgba(26, 188, 156, 0.12);
+
+
+  caption_style: |
+    text-align: center;
+    font-size: 0.85em;
+    color: #52b78b;
+    margin-top: 0.5em;
+
+# 表格样式
+table:
+  wrapper_style: |
+    overflow-x: auto;
+    margin: 1.5em 8px;
+
+  tr_odd_style: |
+    background: rgba(26, 188, 156, 0.05);
+
+  style: |
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5em 0;
+    font-size: 14px;
+    overflow: hidden;
+
+  th_style: |
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #1abc9c;
+    border: 1px solid #16a085;
+
+  td_style: |
+    padding: 8px 14px;
+    border: 1px solid #a9dfbf;
+    color: #333333;
+    background-color: #ffffff;
+
+# 分隔线样式 - 薄荷渐变
+hr:
+  style: |
+    border: none;
+    height: 2px;
+    margin: 2em 0;
+    background: linear-gradient(to right, transparent, #1abc9c, #2ecc71, #1abc9c, transparent);
+    border-radius: 2px;
+
+# 粗体样式
+bold:
+  style: |
+    font-weight: 700;
+    color: #16a085;
+
+# 斜体样式
+italic:
+  style: |
+    font-style: italic;
+    color: #1e8449;
+
+# 删除线样式
+strikethrough:
+  style: |
+    text-decoration: line-through;
+    color: #aab7b8;
+
+# 对话样式
+dialogue:
+  container_style: |
+    margin: 2em 0;
+    padding: 18px;
+    background-color: #d5f5e3;
+    border-radius: 12px;
+    border: 1px solid #a9dfbf;
+
+  title_style: |
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: #0e6655;
+    text-align: center;
+
+  message_style: |
+    display: flex;
+    margin-bottom: 14px;
+    align-items: flex-start;
+
+  bubble_left_style: |
+    background-color: #ffffff;
+    color: #333333;
+    padding: 10px 14px;
+    border-radius: 10px;
+    max-width: 65%;
+    word-wrap: break-word;
+    border: 1px solid #a9dfbf;
+
+  bubble_right_style: |
+    background: linear-gradient(135deg, #1abc9c, #16a085);
+    color: #ffffff;
+    padding: 10px 14px;
+    border-radius: 10px;
+    max-width: 65%;
+    word-wrap: break-word;
+    box-shadow: 0 2px 8px rgba(26, 188, 156, 0.3);
+
+  avatar_style: |
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+    margin: 0 10px;
+
+  avatar_left_style: |
+    background-color: #d5f5e3;
+    color: #16a085;
+    border: 1px solid #a9dfbf;
+
+  avatar_right_style: |
+    background: linear-gradient(135deg, #1abc9c, #16a085);
+    color: #ffffff;
+
+# 页面背景
+body:
+  background: "#d0ece7"
+  padding: "16px"
+  margin: "0"
+
+# 装饰配置
+decorations:
+  ul_prefix: "✦ "
+  h2_prefix: "◆ "
+
+# 脚注样式
+footnote:
+  sup_style: |
+    font-size: 0.75em;
+    line-height: 0;
+    vertical-align: super;
+    margin: 0;
+    padding: 0;
+  ref_style: |
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dashed #1abc9c;
+    padding-bottom: 1px;
+  section_style: |
+    margin-top: 2.5em;
+    padding-top: 1.8em;
+    border-top: 1px solid #d5f5e3;
+  list_style: |
+    list-style-type: decimal;
+    margin: 0;
+    padding-left: 1.5em;
+  item_style: |
+    font-size: 0.85em;
+    color: #95a5a6;
+    line-height: 1.6;
+    margin-bottom: 0.3em;
+  backref_style: |
+    color: #16a085;
+    text-decoration: none;
+    margin-left: 0.3em;
+
+# GFM 提示框样式
+gfm_alert:
+  container_style: |
+    margin: 1.5em 8px;
+    padding: 12px 16px;
+    border-radius: 4px;
+  title_style: |
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  content_style: |
+    color: #333333;
+    line-height: 1.6;
+    font-size: 14px;
+  note_color: "#1abc9c"
+  tip_color: "#2ecc71"
+  important_color: "#f39c12"
+  warning_color: "#e74c3c"
+  caution_color: "#e67e22"

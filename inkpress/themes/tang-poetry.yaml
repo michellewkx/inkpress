@@ -1,0 +1,394 @@
+# 唐风 - 唐代诗词古典风格
+# 以古旧羊皮纸质感、深酒红与金色为核心，重现盛唐的华贵典雅
+
+name: "唐风"
+description: "唐代诗词古典风格，羊皮纸质感配以深酒红与金色点缀，华贵而不失典雅"
+series: "oriental"
+tags: ["中国风", "诗词", "古典"]
+
+# 容器样式 - 仿古卷轴羊皮纸
+container:
+  max_width: "677px"
+  padding: "8px"
+  background: "#f5efe0"
+  border_radius: "12px"
+  box_shadow: "0 2px 12px rgba(80, 50, 20, 0.08)"
+
+# H1 样式 - 深酒红色，金色调渐变底衬，宋体气质
+h1:
+  style: |
+    padding: 1em 2em;
+    margin: 2em 0 1.2em;
+    background: linear-gradient(135deg, #f5efe0 0%, #f0e6ce 50%, #f5efe0 100%);
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1.3;
+    color: #800020;
+    text-align: center;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(128, 0, 32, 0.08);
+    border-top: 2px solid #c49b3c;
+    border-bottom: 2px solid #c49b3c;
+    letter-spacing: 0.15em;
+
+# H2 样式 - 酒红左边框配金色底线
+h2:
+  style: |
+    margin: 2em 8px 0.75em 0;
+    padding: 0.5em 1em 0.5em 16px;
+    border-left: 4px solid #800020;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.3;
+    color: #800020;
+    background: linear-gradient(to right, rgba(196, 155, 60, 0.08), rgba(196, 155, 60, 0.03), transparent);
+    border-bottom: 1px solid rgba(196, 155, 60, 0.3);
+
+# H3 样式 - 金色左边框
+h3:
+  style: |
+    margin: 2em 8px 0.75em 0;
+    padding: 0.4em 0.8em 0.3em 14px;
+    border-left: 4px solid #c49b3c;
+    border-bottom: 1px dashed rgba(196, 155, 60, 0.3);
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.3;
+    color: #5a2010;
+
+# H4 样式 - 酒红边框
+h4:
+  style: |
+    margin: 1.5em 8px 0.5em 0;
+    padding-left: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.3;
+    color: #6a2020;
+    border-left: 3px solid #800020;
+
+# H5 样式
+h5:
+  style: |
+    margin: 1.2em 8px 0.4em 0;
+    padding-left: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1.3;
+    color: #7a3020;
+    border-left: 2px solid #c49b3c;
+
+# H6 样式
+h6:
+  style: |
+    margin: 1em 8px 0.3em 0;
+    padding-left: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.3;
+    color: #8a5040;
+    border-left: 1px solid #c49b3c;
+
+# 段落样式 - 深棕色，宽松间距，古卷气质
+paragraph:
+  style: |
+    margin: 1.2em 8px;
+    text-align: justify;
+    line-height: 1.85;
+    font-family: 'PingFang SC', 'STSong', 'Songti SC', 'KaiTi', serif;
+    font-size: 15px;
+    letter-spacing: 0.06em;
+    color: #3a2f20;
+
+# 列表样式
+list:
+  container_style: |
+    list-style: none;
+    padding: 0;
+    margin: 1.2em 8px;
+    color: #3a2f20;
+    font-size: 15px;
+
+  item_style: |
+    margin: 0.5em 0;
+    padding: 0;
+    line-height: 1.8;
+    font-size: 15px;
+    color: #3a2f20;
+
+  ul_prefix: "◦ "
+  ol_prefix: "{n}、"
+
+  nested_container_style: |
+    list-style: none;
+    padding: 0 0 0 1.5em;
+    margin: 0.3em 0;
+    font-size: 15px;
+
+  nested_item_style: |
+    margin: 0.3em 0;
+    padding: 0;
+    line-height: 1.75;
+    font-size: 15px;
+    color: #3a2f20;
+
+  nested_ul_prefix: "◦ "
+
+# 代码块样式 - 暖色羊皮纸底
+code_block:
+  style: |
+    margin: 1.5em 8px;
+    padding: 1.2em;
+    background-color: #f2eadb;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 14px;
+    line-height: 1.5;
+    border: 1px solid #e0d5c0;
+    border-top: 3px solid #800020;
+
+  code_inner_style: |
+    background: none;
+    padding: 0;
+    font-family: 'Courier New', Menlo, monospace;
+    font-size: 14px;
+    color: #3a2f20;
+    line-height: 1.5;
+
+# 内联代码样式 - 酒红色文字，浅金底色
+inline_code:
+  style: |
+    background-color: rgba(196, 155, 60, 0.1);
+    color: #800020;
+    font-family: 'Courier New', Menlo, monospace;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 90%;
+    border: 1px solid rgba(196, 155, 60, 0.2);
+
+# 引用样式 - 金色左边框，羊皮纸底色，典雅
+blockquote:
+  style: |
+    margin: 1.5em 0 2em;
+    padding: 1em 1.5em;
+    border-left: 4px solid #c49b3c;
+    background: #f2eadb;
+    color: #4a3a28;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(80, 50, 20, 0.06);
+
+  p_inner_style: |
+    margin: 0;
+    color: #4a3a28;
+    line-height: 1.8;
+    font-style: normal;
+    font-size: 15px;
+
+# 链接样式 - 酒红色
+link:
+  style: |
+    color: #800020;
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(128, 0, 32, 0.4);
+
+# 图片样式
+image:
+  container_style: |
+    margin: 1.5em 0;
+    text-align: center;
+
+  img_style: |
+    max-width: 100%;
+    margin: 1em auto;
+    display: block;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(80, 50, 20, 0.1);
+    border: 1px solid #e0d5c0;
+
+
+  caption_style: |
+    text-align: center;
+    font-size: 0.85em;
+    color: #9a7b30;
+    margin-top: 0.5em;
+    font-style: italic;
+
+# 表格样式
+table:
+  wrapper_style: |
+    overflow-x: auto;
+    margin: 1.5em 8px;
+
+  tr_odd_style: |
+    background: rgba(128, 0, 32, 0.03);
+
+  style: |
+    margin: 1.5em 0;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+
+  th_style: |
+    background: #800020;
+    color: #ffffff;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+
+  td_style: |
+    border: 1px solid #e0d5c0;
+    padding: 10px 14px;
+    color: #3a2f20;
+    background: #f8f2e5;
+
+# 分隔线样式 - 留空，使用 hr_text 装饰
+hr:
+  style: ""
+
+# 粗体样式 - 深酒红色
+bold:
+  style: |
+    font-weight: bold;
+    color: #800020;
+
+# 斜体样式 - 金色调
+italic:
+  style: |
+    font-style: italic;
+    color: #9a7b30;
+
+# 删除线样式
+strikethrough:
+  style: |
+    text-decoration: line-through;
+    color: #999999;
+
+# 对话样式 - 古卷配色
+dialogue:
+  container_style: |
+    margin: 2em 0;
+    padding: 20px;
+    background: linear-gradient(to bottom, #f5efe0, #f0e8d5);
+    border-radius: 8px;
+    border: 1px solid #e0d5c0;
+    box-shadow: 0 2px 8px rgba(80, 50, 20, 0.06);
+
+  title_style: |
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #800020;
+    text-align: center;
+    letter-spacing: 0.1em;
+
+  message_style: |
+    display: flex;
+    margin-bottom: 16px;
+    align-items: flex-start;
+
+  bubble_left_style: |
+    background: #f8f2e5;
+    color: #4a3a28;
+    padding: 12px 16px;
+    border-radius: 12px;
+    max-width: 65%;
+    word-wrap: break-word;
+    border: 1px solid #e0d5c0;
+
+  bubble_right_style: |
+    background: linear-gradient(135deg, #800020, #9a1030);
+    color: #ffffff;
+    padding: 12px 16px;
+    border-radius: 12px;
+    max-width: 65%;
+    word-wrap: break-word;
+    box-shadow: 0 2px 6px rgba(128, 0, 32, 0.2);
+
+  avatar_style: |
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    flex-shrink: 0;
+    margin: 0 12px;
+
+  avatar_left_style: |
+    background: #e0d5c0;
+    color: #800020;
+    border: 2px solid #d0c5a8;
+
+  avatar_right_style: |
+    background: linear-gradient(135deg, #800020, #9a1030);
+    color: #ffffff;
+
+# 页面背景
+body:
+  background: "#ede6d5"
+  padding: "16px"
+  margin: "0"
+
+# 装饰配置
+decorations:
+  h2_prefix: "❖ "
+  hr_text: "— ◆ —"
+  blockquote_prefix: "「"
+  blockquote_suffix: "」"
+
+# 脚注样式
+footnote:
+  sup_style: |
+    font-size: 0.75em;
+    line-height: 0;
+    vertical-align: super;
+    margin: 0;
+    padding: 0;
+  ref_style: |
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dashed #800020;
+    padding-bottom: 1px;
+  section_style: |
+    margin-top: 2.5em;
+    padding-top: 1.8em;
+    border-top: 1px solid #d8c9a0;
+  list_style: |
+    list-style-type: decimal;
+    margin: 0;
+    padding-left: 1.5em;
+  item_style: |
+    font-size: 0.85em;
+    color: #8b7d6b;
+    line-height: 1.6;
+    margin-bottom: 0.3em;
+  backref_style: |
+    color: #800020;
+    text-decoration: none;
+    margin-left: 0.3em;
+
+# GFM 提示框样式
+gfm_alert:
+  container_style: |
+    margin: 1.5em 8px;
+    padding: 12px 16px;
+    border-radius: 4px;
+  title_style: |
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  content_style: |
+    color: #3a2f20;
+    line-height: 1.6;
+    font-size: 14px;
+  note_color: "#800020"
+  tip_color: "#5c8a3a"
+  important_color: "#c49b3c"
+  warning_color: "#a0522d"
+  caution_color: "#8b6914"
+
+# 图片说明样式
