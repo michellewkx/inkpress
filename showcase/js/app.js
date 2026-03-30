@@ -37,7 +37,7 @@ const I18N = {
     'editor.modeCard': '卡片',
     'editor.exportCards': '导出图片',
     'editor.exporting': '导出中...',
-    'toast.cardExported': '已导出 {n} 张图片',
+    'toast.cardExported': '已打包导出 {n} 张图片',
     'editor.input': 'MARKDOWN 输入',
     'editor.preview': '实时预览',
     'toast.copied': '已复制到剪贴板',
@@ -77,7 +77,7 @@ const I18N = {
     'editor.modeCard': 'Card',
     'editor.exportCards': 'Export Cards',
     'editor.exporting': 'Exporting...',
-    'toast.cardExported': '{n} cards exported',
+    'toast.cardExported': '{n} cards exported as ZIP',
     'editor.input': 'MARKDOWN',
     'editor.preview': 'PREVIEW',
     'toast.copied': 'Copied to clipboard',
@@ -655,7 +655,7 @@ let _cardRenderTimer = null;
 
 function renderCardPreview() {
   clearTimeout(_cardRenderTimer);
-  _cardRenderTimer = setTimeout(_doRenderCard, 400);
+  _cardRenderTimer = setTimeout(_doRenderCard, 800);
 }
 
 function _doRenderCard() {
@@ -869,7 +869,7 @@ function _doRenderCard() {
         const canvas = await html2canvas(pageEls[i], {
           width: ${w},
           height: ${h},
-          scale: 2,
+          scale: 1,
           useCORS: true,
           backgroundColor: null,
           logging: false,
@@ -963,17 +963,43 @@ function _displayCardImages(images, w, h) {
 
   grid.innerHTML = html;
 
+  // Click to zoom
+  grid.querySelectorAll('.card-page').forEach(page => {
+    page.addEventListener('click', () => {
+      const img = page.querySelector('img');
+      if (img) openCardLightbox(img.src);
+    });
+  });
+
   // Store full-res image data for export
   grid._cardImages = images;
   grid._cardDimensions = { w, h };
 }
 
-// ============ Card Export ============
+// ============ Card Lightbox ============
+function openCardLightbox(src) {
+  let overlay = document.getElementById('cardLightbox');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.id = 'cardLightbox';
+    overlay.style.cssText = 'position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;cursor:zoom-out;opacity:0;transition:opacity 0.2s;';
+    overlay.innerHTML = '<img style="max-width:90vw;max-height:90vh;border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,0.4);object-fit:contain;transition:transform 0.2s;" />';
+    overlay.addEventListener('click', () => {
+      overlay.style.opacity = '0';
+      setTimeout(() => { overlay.style.display = 'none'; }, 200);
+    });
+    document.body.appendChild(overlay);
+  }
+  const img = overlay.querySelector('img');
+  img.src = src;
+  overlay.style.display = 'flex';
+  requestAnimationFrame(() => { overlay.style.opacity = '1'; });
+}
+
+// ============ Card Export (ZIP) ============
 async function exportCards() {
-  const grid = document.getElementById('cardGrid');
-  const images = grid._cardImages;
-  if (!images || !images.length) {
-    showToast('No cards to export');
+  if (typeof JSZip === 'undefined') {
+    showToast('JSZip not loaded');
     return;
   }
 
@@ -983,19 +1009,29 @@ async function exportCards() {
   btn.disabled = true;
 
   try {
-    for (let i = 0; i < images.length; i++) {
-      if (!images[i]) continue;
-
-      const link = document.createElement('a');
-      link.download = `inkpress-${currentTheme}-${String(i + 1).padStart(2, '0')}.png`;
-      link.href = images[i];
-      link.click();
-
-      if (i < images.length - 1) {
-        await new Promise(r => setTimeout(r, 300));
-      }
+    // Re-render in iframe at high-res export scale
+    const hiResImages = await _renderCardsHiRes();
+    if (!hiResImages || !hiResImages.length) {
+      showToast('No cards to export');
+      return;
     }
-    showToast(t('toast.cardExported').replace('{n}', images.length));
+
+    const zip = new JSZip();
+    for (let i = 0; i < hiResImages.length; i++) {
+      if (!hiResImages[i]) continue;
+      // dataURL → binary
+      const base64 = hiResImages[i].split(',')[1];
+      zip.file(`inkpress-${currentTheme}-${String(i + 1).padStart(2, '0')}.png`, base64, { base64: true });
+    }
+
+    const blob = await zip.generateAsync({ type: 'blob' });
+    const link = document.createElement('a');
+    link.download = `inkpress-${currentTheme}-cards.zip`;
+    link.href = URL.createObjectURL(blob);
+    link.click();
+    URL.revokeObjectURL(link.href);
+
+    showToast(t('toast.cardExported').replace('{n}', hiResImages.length));
   } catch (e) {
     console.error('Export failed:', e);
     showToast('Export failed');
@@ -1003,6 +1039,44 @@ async function exportCards() {
     btn.textContent = origText;
     btn.disabled = false;
   }
+}
+
+// Re-render cards at export scale (2x) in a separate iframe pass
+function _renderCardsHiRes() {
+  return new Promise((resolve) => {
+    const pagedFrame = document.getElementById('pagedFrame');
+    if (!pagedFrame) { resolve([]); return; }
+
+    const iframeDoc = pagedFrame.contentDocument || pagedFrame.contentWindow.document;
+    const pages = iframeDoc.querySelectorAll('.pagedjs_page');
+    if (!pages.length) { resolve([]); return; }
+
+    const { w, h, exportScale } = getCardDimensions();
+    const h2c = pagedFrame.contentWindow.html2canvas;
+    if (!h2c) { resolve([]); return; }
+
+    // Capture each page at export scale inside the existing iframe
+    (async () => {
+      const results = [];
+      for (let i = 0; i < pages.length; i++) {
+        try {
+          const canvas = await h2c(pages[i], {
+            width: w,
+            height: h,
+            scale: exportScale,
+            useCORS: true,
+            backgroundColor: null,
+            logging: false,
+          });
+          results.push(canvas.toDataURL('image/png'));
+        } catch (e) {
+          console.error('Hi-res capture page ' + i + ' failed:', e);
+          results.push(null);
+        }
+      }
+      resolve(results);
+    })();
+  });
 }
 
 // ============ Install ============
