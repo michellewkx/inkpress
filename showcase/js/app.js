@@ -867,10 +867,10 @@ function _doRenderCard() {
           height: ${h},
           scale: 1,
           useCORS: true,
-          backgroundColor: null,
+          backgroundColor: '${containerBg}',
           logging: false,
         });
-        results.push(canvas.toDataURL('image/jpeg', 0.8));
+        results.push(canvas.toDataURL('image/jpeg', 0.85));
       } catch(e) {
         console.error('Capture page ' + i + ' failed:', e);
         results.push(null);
@@ -1061,6 +1061,10 @@ function _renderCardsHiRes() {
     const h2c = pagedFrame.contentWindow.html2canvas;
     if (!h2c) { resolve([]); return; }
 
+    // Get background color from iframe body
+    const iframeBody = iframeDoc.body;
+    const bgColor = iframeBody ? getComputedStyle(iframeBody).backgroundColor : '#fff';
+
     // Capture each page at export scale inside the existing iframe
     (async () => {
       const results = [];
@@ -1071,7 +1075,7 @@ function _renderCardsHiRes() {
             height: h,
             scale: exportScale,
             useCORS: true,
-            backgroundColor: null,
+            backgroundColor: bgColor,
             logging: false,
           });
           results.push(canvas.toDataURL('image/png'));
