@@ -850,18 +850,19 @@ function _doRenderCard() {
 <style>${cardCSS}</style>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"><\/script>
 <script>
-  window.PagedConfig = { auto: false };
+  // Let Paged.js auto-paginate, but don't rely on its callback
+  window.PagedConfig = { auto: true };
 
   async function capturePages() {
-    const pageEls = document.querySelectorAll('.pagedjs_page');
+    var pageEls = document.querySelectorAll('.pagedjs_page');
     if (!pageEls.length) {
       window.parent.postMessage({ type: 'paged-rendered', pageCount: 0, images: [] }, '*');
       return;
     }
-    const results = [];
-    for (let i = 0; i < pageEls.length; i++) {
+    var results = [];
+    for (var i = 0; i < pageEls.length; i++) {
       try {
-        const canvas = await html2canvas(pageEls[i], {
+        var canvas = await html2canvas(pageEls[i], {
           width: ${w},
           height: ${h},
           scale: 1,
@@ -869,7 +870,7 @@ function _doRenderCard() {
           backgroundColor: null,
           logging: false,
         });
-        results.push(canvas.toDataURL('image/png'));
+        results.push(canvas.toDataURL('image/jpeg', 0.8));
       } catch(e) {
         console.error('Capture page ' + i + ' failed:', e);
         results.push(null);
@@ -881,20 +882,30 @@ function _doRenderCard() {
       images: results
     }, '*');
   }
+
+  // Poll for Paged.js completion — works even if preview() rejects
+  var _lastPageCount = 0, _stableRounds = 0, _captured = false;
+  var _poll = setInterval(function() {
+    if (_captured) return;
+    var pages = document.querySelectorAll('.pagedjs_page');
+    if (pages.length > 0 && pages.length === _lastPageCount) {
+      _stableRounds++;
+      if (_stableRounds >= 3) {
+        _captured = true;
+        clearInterval(_poll);
+        capturePages();
+      }
+    } else {
+      _lastPageCount = pages.length;
+      _stableRounds = 0;
+    }
+  }, 300);
+  // Absolute timeout — stop polling after 20s
+  setTimeout(function() { clearInterval(_poll); }, 20000);
 <\/script>
 </head><body>
-<div id="inkpress-card-content">${content}</div>
+${content}
 <script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"><\/script>
-<script>
-  // Manually run Paged.js with error handling — always capture regardless of layout warnings
-  // Grab content before scripts pollute body innerHTML
-  var contentEl = document.getElementById('inkpress-card-content');
-  var contentHTML = contentEl ? contentEl.innerHTML : document.body.innerHTML;
-  var paged = new Paged.Previewer();
-  paged.preview(contentHTML, [], document.body)
-    .then(function() { capturePages(); })
-    .catch(function(e) { console.warn('Paged.js layout warning:', e); capturePages(); });
-<\/script>
 </body></html>`;
 
   // Remove old listener
@@ -911,23 +922,13 @@ function _doRenderCard() {
   };
   window.addEventListener('message', _doRenderCard._listener);
 
-  // Timeout fallback
+  // Safety net — clean up listener after 30s but don't overwrite grid
   setTimeout(() => {
     if (_doRenderCard._listener) {
       window.removeEventListener('message', _doRenderCard._listener);
       _doRenderCard._listener = null;
-      // Try extracting from iframe directly as last resort
-      const fb = document.getElementById('pagedFrame');
-      if (fb) {
-        const fbDoc = fb.contentDocument || fb.contentWindow.document;
-        const pp = fbDoc.querySelectorAll('.pagedjs_page');
-        if (pp.length) {
-          document.getElementById('cardGrid').innerHTML =
-            '<p style="color:var(--text-3);text-align:center;padding:40px;">Paged.js rendered ' + pp.length + ' pages but capture timed out. Check console.</p>';
-        }
-      }
     }
-  }, 15000);
+  }, 30000);
 
   // Create fresh iframe (avoid Paged.js state issues)
   const oldIframe = document.getElementById('pagedFrame');
