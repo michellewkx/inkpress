@@ -850,12 +850,7 @@ function _doRenderCard() {
 <style>${cardCSS}</style>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"><\/script>
 <script>
-  window.PagedConfig = {
-    auto: true,
-    after: function() {
-      capturePages();
-    }
-  };
+  window.PagedConfig = { auto: false };
 
   async function capturePages() {
     const pageEls = document.querySelectorAll('.pagedjs_page');
@@ -888,8 +883,18 @@ function _doRenderCard() {
   }
 <\/script>
 </head><body>
-${content}
+<div id="inkpress-card-content">${content}</div>
 <script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"><\/script>
+<script>
+  // Manually run Paged.js with error handling — always capture regardless of layout warnings
+  // Grab content before scripts pollute body innerHTML
+  var contentEl = document.getElementById('inkpress-card-content');
+  var contentHTML = contentEl ? contentEl.innerHTML : document.body.innerHTML;
+  var paged = new Paged.Previewer();
+  paged.preview(contentHTML, [], document.body)
+    .then(function() { capturePages(); })
+    .catch(function(e) { console.warn('Paged.js layout warning:', e); capturePages(); });
+<\/script>
 </body></html>`;
 
   // Remove old listener
@@ -922,7 +927,7 @@ ${content}
         }
       }
     }
-  }, 8000);
+  }, 15000);
 
   // Create fresh iframe (avoid Paged.js state issues)
   const oldIframe = document.getElementById('pagedFrame');
