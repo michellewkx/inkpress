@@ -470,6 +470,68 @@
     background: #f5f5f5;
   }
 
+  /* ============ Card Mode ============ */
+  .mode-tabs {
+    display: flex; gap: 1px; background: var(--border-s);
+    padding: 2px; border-radius: 8px; border: 1px solid var(--border);
+    margin-right: 8px;
+  }
+  .mode-tab {
+    padding: 4px 12px; border-radius: 6px;
+    font-size: 11px; font-weight: 600; cursor: pointer;
+    background: transparent; color: var(--text-3);
+    border: none; transition: all 0.15s; font-family: var(--sans);
+  }
+  .mode-tab:hover { color: var(--text-2); }
+  .mode-tab.active { background: var(--surface); color: var(--text); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .card-preview {
+    flex: 1; overflow: auto; padding: 24px;
+    background: #e8e8e8;
+    display: none;
+  }
+  .card-preview.active { display: block; }
+  .preview-content.active { display: block; }
+  .card-grid {
+    display: flex; flex-wrap: wrap; gap: 20px;
+    justify-content: center; align-items: flex-start;
+  }
+  .card-page {
+    width: 338px; height: 450px;
+    background: #fff; border-radius: 6px;
+    overflow: hidden; position: relative;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    flex-shrink: 0; cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card-page:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  }
+  .card-page-inner {
+    padding: 32px 28px;
+    overflow: hidden;
+    position: absolute; top: 0; left: 0;
+  }
+  .card-page-num {
+    position: absolute; bottom: 8px; right: 12px;
+    font-size: 10px; color: var(--text-3); font-family: var(--mono);
+  }
+  .card-page-cover .card-page-inner {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+  }
+  .card-export-bar {
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px; padding: 16px 0 8px;
+  }
+  .card-ratio-select {
+    padding: 5px 10px; border-radius: 6px;
+    background: var(--bg); border: 1px solid var(--border);
+    font-size: 12px; color: var(--text); font-family: var(--sans);
+    cursor: pointer; outline: none;
+  }
+
   /* ============ Install Section ============ */
   .install-section {
     padding: 48px 32px 72px; text-align: center;
@@ -617,6 +679,10 @@
         <select id="editorThemeSelect"></select>
       </div>
       <div class="editor-header-r">
+        <div class="mode-tabs">
+          <button class="mode-tab active" data-mode="article" data-i18n="editor.modeArticle">Article</button>
+          <button class="mode-tab" data-mode="card" data-i18n="editor.modeCard">Card</button>
+        </div>
         <label class="wm-toggle">
           <span class="wm-label" data-i18n="editor.watermark">Watermark</span>
           <input type="checkbox" id="watermarkToggle" checked>
@@ -625,6 +691,7 @@
         <button class="editor-btn" id="editorCopyBtn" data-i18n="editor.copy">Copy HTML</button>
         <button class="editor-btn" id="editorDownloadBtn" data-i18n="editor.download">Download</button>
         <button class="editor-btn editor-btn-p" id="editorCopyRichBtn" data-i18n="editor.copyRich">Copy for WeChat</button>
+        <button class="editor-btn editor-btn-p" id="cardExportBtn" style="display:none" data-i18n="editor.exportCards">Export Cards</button>
       </div>
     </div>
     <div class="editor-body">
@@ -634,7 +701,19 @@
       </div>
       <div class="editor-preview-pane">
         <label data-i18n="editor.preview">PREVIEW</label>
-        <div class="preview-content" id="previewFrame"></div>
+        <div class="preview-content active" id="previewFrame"></div>
+        <div class="card-preview" id="cardPreview">
+          <div class="card-export-bar">
+            <select class="card-ratio-select" id="cardRatioSelect">
+              <option value="3:4" selected>3:4 (XHS)</option>
+              <option value="4:3">4:3</option>
+              <option value="1:1">1:1</option>
+              <option value="9:16">9:16</option>
+            </select>
+          </div>
+          <div class="card-grid" id="cardGrid"></div>
+          <iframe id="pagedFrame" style="position:absolute;left:-9999px;top:0;border:none;"></iframe>
+        </div>
       </div>
     </div>
   </div>
@@ -645,6 +724,7 @@
 
 <!-- marked.js for browser-side markdown parsing -->
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script src="js/themes.js"></script>
 <script src="js/renderer.js"></script>
 <script src="js/app.js"></script>

@@ -46,6 +46,30 @@ class InkpressRenderer {
     return this.wrapHtml(html);
   }
 
+  renderContent(markdown) {
+    const [processed, placeholders] = this.preprocessMarkdown(markdown);
+    let html = marked.parse(processed);
+    for (const [key, value] of Object.entries(placeholders)) {
+      html = html.replace(new RegExp(`<p>\\s*${key}\\s*</p>`, 'g'), value);
+      html = html.replace(key, value);
+    }
+    html = this.styleHeadings(html);
+    html = this.styleParagraphs(html);
+    html = this.styleLists(html);
+    html = this.styleCodeBlocks(html);
+    html = this.styleInlineCode(html);
+    html = this.styleBlockquotes(html);
+    html = this.styleFootnotes(html);
+    html = this.styleGfmAlerts(html);
+    html = this.styleLinks(html);
+    html = this.styleImages(html);
+    html = this.styleTables(html);
+    html = this.styleHr(html);
+    html = this.styleEmphasis(html);
+    html = this.styleDialogue(html);
+    return html;
+  }
+
   // Preprocess markdown: handle GFM alerts, strikethrough, etc.
   // Mirrors Python parser.py's preprocess_markdown()
   preprocessMarkdown(text) {

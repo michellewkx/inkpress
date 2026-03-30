@@ -33,6 +33,11 @@ const I18N = {
     'editor.download': '下载',
     'editor.copyRich': '复制到微信',
     'editor.watermark': '水印',
+    'editor.modeArticle': '文章',
+    'editor.modeCard': '卡片',
+    'editor.exportCards': '导出图片',
+    'editor.exporting': '导出中...',
+    'toast.cardExported': '已导出 {n} 张图片',
     'editor.input': 'MARKDOWN 输入',
     'editor.preview': '实时预览',
     'toast.copied': '已复制到剪贴板',
@@ -68,6 +73,11 @@ const I18N = {
     'editor.download': 'Download',
     'editor.copyRich': 'Copy for WeChat',
     'editor.watermark': 'Watermark',
+    'editor.modeArticle': 'Article',
+    'editor.modeCard': 'Card',
+    'editor.exportCards': 'Export Cards',
+    'editor.exporting': 'Exporting...',
+    'toast.cardExported': '{n} cards exported',
     'editor.input': 'MARKDOWN',
     'editor.preview': 'PREVIEW',
     'toast.copied': 'Copied to clipboard',
@@ -304,6 +314,15 @@ inkpress serve --port 8000
 
 let currentTheme = 'default';
 let currentFilter = 'all';
+let currentMode = 'article'; // 'article' | 'card'
+
+const CARD_RATIOS = {
+  '3:4':  { w: 450, h: 600, exportScale: 2.4 },
+  '4:3':  { w: 450, h: 338, exportScale: 2.4 },
+  '1:1':  { w: 450, h: 450, exportScale: 2.4 },
+  '9:16': { w: 450, h: 800, exportScale: 2.4 },
+};
+
 
 // ============ Init ============
 document.addEventListener('DOMContentLoaded', () => {
@@ -446,13 +465,17 @@ function initEditor() {
   select.addEventListener('change', () => {
     currentTheme = select.value;
     history.replaceState(null, '', `#editor/${currentTheme}`);
-    renderEditorPreview();
+    if (currentMode === 'card') renderCardPreview();
+    else renderEditorPreview();
   });
 
   let debounce;
   input.addEventListener('input', () => {
     clearTimeout(debounce);
-    debounce = setTimeout(renderEditorPreview, 150);
+    debounce = setTimeout(() => {
+      if (currentMode === 'card') renderCardPreview();
+      else renderEditorPreview();
+    }, 150);
   });
 
   // Sync scroll between editor input and preview
@@ -482,6 +505,23 @@ function initEditor() {
 
   document.getElementById('watermarkToggle').addEventListener('change', renderEditorPreview);
   document.getElementById('editorCopyRichBtn').addEventListener('click', copyHTMLRich);
+
+  // Mode tabs
+  document.querySelectorAll('.mode-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      switchMode(tab.dataset.mode);
+    });
+  });
+
+  // Card ratio
+  document.getElementById('cardRatioSelect').addEventListener('change', () => {
+    if (currentMode === 'card') renderCardPreview();
+  });
+
+  // Card export
+  document.getElementById('cardExportBtn').addEventListener('click', exportCards);
 }
 
 function openEditorWithTheme(name) {
@@ -575,6 +615,394 @@ function downloadHTML() {
   a.download = `inkpress-${currentTheme}.html`;
   a.click();
   URL.revokeObjectURL(a.href);
+}
+
+// ============ Mode Switching ============
+function switchMode(mode) {
+  currentMode = mode;
+  const articlePreview = document.getElementById('previewFrame');
+  const cardPreview = document.getElementById('cardPreview');
+  const articleBtns = ['editorCopyBtn', 'editorDownloadBtn', 'editorCopyRichBtn'];
+  const cardBtns = ['cardExportBtn'];
+  const wmToggle = document.querySelector('.wm-toggle');
+
+  if (mode === 'card') {
+    articlePreview.classList.remove('active');
+    articlePreview.style.display = 'none';
+    cardPreview.classList.add('active');
+    articleBtns.forEach(id => document.getElementById(id).style.display = 'none');
+    cardBtns.forEach(id => document.getElementById(id).style.display = '');
+    wmToggle.style.display = 'none';
+    renderCardPreview();
+  } else {
+    articlePreview.classList.add('active');
+    articlePreview.style.display = '';
+    cardPreview.classList.remove('active');
+    articleBtns.forEach(id => document.getElementById(id).style.display = '');
+    cardBtns.forEach(id => document.getElementById(id).style.display = 'none');
+    wmToggle.style.display = '';
+    renderEditorPreview();
+  }
+}
+
+// ============ Card Rendering (Paged.js) ============
+function getCardDimensions() {
+  const ratio = document.getElementById('cardRatioSelect').value;
+  return CARD_RATIOS[ratio] || CARD_RATIOS['3:4'];
+}
+
+let _cardRenderTimer = null;
+
+function renderCardPreview() {
+  clearTimeout(_cardRenderTimer);
+  _cardRenderTimer = setTimeout(_doRenderCard, 400);
+}
+
+function _doRenderCard() {
+  const md = document.getElementById('mdInput').value;
+  const theme = THEMES[currentTheme];
+  if (!theme) return;
+
+  // Show loading state
+  const grid = document.getElementById('cardGrid');
+  grid.innerHTML = '<p style="color:var(--text-3);text-align:center;padding:40px;">Rendering cards...</p>';
+
+  const { w, h, exportScale } = getCardDimensions();
+
+  // Use renderer to preprocess (dialogue, footnotes, GFM alerts, gallery, etc.)
+  // but don't inject inline styles — card CSS handles styling
+  const renderer = new InkpressRenderer(theme, { watermark: false });
+  const [processed, placeholders] = renderer.preprocessMarkdown(md);
+  let content = marked.parse(processed);
+
+  // Convert <hr> to page breaks BEFORE restoring placeholders
+  // (footnote section has its own <hr> inside a placeholder that we don't want converted)
+  content = content.replace(/<hr[^>]*>/g, '<div class="page-break"></div>');
+
+  // Restore placeholders
+  for (const [key, value] of Object.entries(placeholders)) {
+    content = content.replace(new RegExp(`<p>\\s*${key}\\s*</p>`, 'g'), value);
+    content = content.replace(key, value);
+  }
+
+  // Detect first h1 for cover page
+  content = content.replace(/<h1([^>]*)>(.*?)<\/h1>/,
+    '<section class="cover"><h1$1>$2</h1></section>');
+
+  // Wrap everything after cover in content div
+  const coverEnd = content.indexOf('</section>');
+  if (coverEnd !== -1) {
+    const afterCover = content.slice(coverEnd + 10);
+    content = content.slice(0, coverEnd + 10) + '<div class="content">' + afterCover + '</div>';
+  }
+
+  // Extract global font props from theme paragraph style
+  const pStyle = theme.paragraph?.style || theme.paragraph || '';
+  let fontFamily = 'system-ui, sans-serif';
+  let color = '#333';
+  let lineHeight = '1.8';
+  let fontSize = '15px';
+  for (const [prop, fallback] of [['font-family', fontFamily], ['color', color], ['line-height', lineHeight], ['font-size', fontSize]]) {
+    const m = pStyle.match(new RegExp(`${prop}:\\s*([^;]+)`));
+    if (m) {
+      if (prop === 'font-family') fontFamily = m[1].trim();
+      if (prop === 'color') color = m[1].trim();
+      if (prop === 'line-height') lineHeight = m[1].trim();
+      if (prop === 'font-size') fontSize = m[1].trim();
+    }
+  }
+
+  const containerBg = theme.container?.background || '#fff';
+
+  // Extract heading and accent colors from theme
+  const h1Style = theme.h1?.style || theme.h1 || '';
+  const h2Style = theme.h2?.style || theme.h2 || '';
+  let headingColor = color;
+  const hcm = (h2Style || h1Style).match(/color:\s*([^;]+)/);
+  if (hcm) headingColor = hcm[1].trim();
+
+  const boldStyle = theme.bold?.style || theme.bold || '';
+  let boldColor = headingColor;
+  const bcm = boldStyle.match(/color:\s*([^;]+)/);
+  if (bcm) boldColor = bcm[1].trim();
+
+  const bqStyle = theme.blockquote?.style || '';
+  let bqBorder = `4px solid ${headingColor}`;
+  const bqm = bqStyle.match(/border-left:\s*([^;]+)/);
+  if (bqm) bqBorder = bqm[1].trim();
+
+  const codeStyle = theme.code_block?.style || '';
+  let codeBg = '#f5f5f5';
+  const cbm = codeStyle.match(/background[^;]*:\s*([^;]+)/);
+  if (cbm) codeBg = cbm[1].trim();
+
+  // Build card CSS (inspired by md2rednote's generateStyles)
+  const cardCSS = `
+    @page { size: ${w}px ${h}px; margin: 30px; }
+    @page cover { margin: 0; }
+    @page cover { @top-center { content: none; } @bottom-center { content: none; } @bottom-right { content: none; } @bottom-left { content: none; } }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: ${fontFamily};
+      font-size: ${fontSize};
+      color: ${color};
+      line-height: ${lineHeight};
+      background: ${containerBg};
+    }
+    .cover {
+      page: cover;
+      break-after: page;
+      height: ${h}px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 30px;
+    }
+    .cover h1 {
+      font-size: 2.5em;
+      font-weight: 800;
+      line-height: 1.3;
+      color: ${headingColor};
+    }
+    .content { }
+    .page-break { break-after: page; }
+    h1 { font-size: 1.75em; color: ${headingColor}; margin: 0 0 0.4em 0; break-after: avoid; }
+    h2 { font-size: 1.375em; color: ${headingColor}; margin: 0.8em 0 0.3em 0; break-after: avoid; }
+    h3 { font-size: 1.125em; color: ${headingColor}; margin: 0.6em 0 0.2em 0; break-after: avoid; }
+    p { margin-bottom: 0.7em; text-align: justify; widows: 2; orphans: 2; }
+    strong, b { color: ${boldColor}; }
+    blockquote {
+      border-left: ${bqBorder};
+      padding: 4px 12px;
+      margin: 0.6em 0;
+      color: #666;
+      font-style: italic;
+      break-inside: avoid;
+    }
+    blockquote p { margin-bottom: 0.3em; }
+    pre {
+      background: ${codeBg};
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 0.8em;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      break-inside: avoid;
+      margin: 0.5em 0;
+      overflow: hidden;
+    }
+    code {
+      background: ${codeBg};
+      padding: 1px 4px;
+      border-radius: 3px;
+      font-size: 0.85em;
+      font-family: 'SF Mono', Menlo, Consolas, monospace;
+    }
+    pre code { background: none; padding: 0; font-size: inherit; }
+    ul, ol { margin: 0.4em 0; padding-left: 1.8em; }
+    li { margin-bottom: 0.3em; break-inside: avoid; }
+    table { width: 100%; border-collapse: collapse; margin: 0.5em 0; font-size: 0.9em; break-inside: avoid; }
+    th, td { padding: 5px 8px; border: 1px solid rgba(0,0,0,0.1); text-align: center; }
+    th { background: ${codeBg}; font-weight: 600; }
+    a { color: ${headingColor}; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; border-radius: 6px; margin: 0.5em 0; }
+    figure { margin: 0.5em 0; break-inside: avoid; }
+    figcaption { text-align: center; font-size: 0.85em; color: #999; margin-top: 0.3em; }
+
+    /* Footnotes */
+    .footnote { margin-top: 1.5em; padding-top: 1em; border-top: 1px solid rgba(0,0,0,0.1); break-inside: avoid; }
+    .footnote hr { display: none; }
+    .footnote ol { margin: 0; padding-left: 1.5em; font-size: 0.8em; color: #888; }
+    .footnote li { margin-bottom: 0.2em; line-height: 1.5; }
+    .footnote-ref { color: ${headingColor}; text-decoration: none; font-weight: 600; }
+    .footnote-backref { text-decoration: none; margin-left: 0.3em; }
+    sup { font-size: 0.75em; vertical-align: super; line-height: 0; }
+
+    /* GFM Alerts */
+    [data-inkpress-alert] {
+      margin: 0.8em 0; padding: 10px 14px; border-radius: 6px;
+      border-left: 4px solid; break-inside: avoid;
+    }
+    [data-inkpress-alert-title] {
+      font-weight: 600; margin-bottom: 4px; display: flex; align-items: center; gap: 5px; font-size: 0.9em;
+    }
+    [data-inkpress-alert-content] { font-size: 0.9em; color: #555; line-height: 1.5; }
+    [data-inkpress-alert="NOTE"] { border-color: #1677ff; background: rgba(22,119,255,0.06); }
+    [data-inkpress-alert="TIP"] { border-color: #52c41a; background: rgba(82,196,26,0.06); }
+    [data-inkpress-alert="IMPORTANT"] { border-color: #722ed1; background: rgba(114,46,209,0.06); }
+    [data-inkpress-alert="WARNING"] { border-color: #fa8c16; background: rgba(250,140,22,0.06); }
+    [data-inkpress-alert="CAUTION"] { border-color: #f5222d; background: rgba(245,34,45,0.06); }
+
+    /* Dialogue */
+    .dialogue-container { break-inside: avoid; margin: 0.8em 0; }
+    .dialogue-inner { background: rgba(0,0,0,0.02); }
+    .dialogue-title { color: ${headingColor}; border-color: rgba(0,0,0,0.1) !important; }
+    .dialogue-avatar-inner { background: ${headingColor}; color: #fff; }
+  `;
+
+  // Build iframe document — Paged.js paginates, then html2canvas captures each page
+  const iframeHTML = `<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<style>${cardCSS}</style>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"><\/script>
+<script>
+  window.PagedConfig = {
+    auto: true,
+    after: function() {
+      capturePages();
+    }
+  };
+
+  async function capturePages() {
+    const pageEls = document.querySelectorAll('.pagedjs_page');
+    if (!pageEls.length) {
+      window.parent.postMessage({ type: 'paged-rendered', pageCount: 0, images: [] }, '*');
+      return;
+    }
+    const results = [];
+    for (let i = 0; i < pageEls.length; i++) {
+      try {
+        const canvas = await html2canvas(pageEls[i], {
+          width: ${w},
+          height: ${h},
+          scale: 2,
+          useCORS: true,
+          backgroundColor: null,
+          logging: false,
+        });
+        results.push(canvas.toDataURL('image/png'));
+      } catch(e) {
+        console.error('Capture page ' + i + ' failed:', e);
+        results.push(null);
+      }
+    }
+    window.parent.postMessage({
+      type: 'paged-rendered',
+      pageCount: pageEls.length,
+      images: results
+    }, '*');
+  }
+<\/script>
+</head><body>
+${content}
+<script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"><\/script>
+</body></html>`;
+
+  // Remove old listener
+  if (_doRenderCard._listener) {
+    window.removeEventListener('message', _doRenderCard._listener);
+  }
+
+  // Listen for page images from iframe
+  _doRenderCard._listener = function(e) {
+    if (e.data?.type !== 'paged-rendered') return;
+    window.removeEventListener('message', _doRenderCard._listener);
+    _doRenderCard._listener = null;
+    _displayCardImages(e.data.images || [], w, h);
+  };
+  window.addEventListener('message', _doRenderCard._listener);
+
+  // Timeout fallback
+  setTimeout(() => {
+    if (_doRenderCard._listener) {
+      window.removeEventListener('message', _doRenderCard._listener);
+      _doRenderCard._listener = null;
+      // Try extracting from iframe directly as last resort
+      const fb = document.getElementById('pagedFrame');
+      if (fb) {
+        const fbDoc = fb.contentDocument || fb.contentWindow.document;
+        const pp = fbDoc.querySelectorAll('.pagedjs_page');
+        if (pp.length) {
+          document.getElementById('cardGrid').innerHTML =
+            '<p style="color:var(--text-3);text-align:center;padding:40px;">Paged.js rendered ' + pp.length + ' pages but capture timed out. Check console.</p>';
+        }
+      }
+    }
+  }, 8000);
+
+  // Create fresh iframe (avoid Paged.js state issues)
+  const oldIframe = document.getElementById('pagedFrame');
+  const newIframe = document.createElement('iframe');
+  newIframe.id = 'pagedFrame';
+  newIframe.style.cssText = 'position:absolute;left:-9999px;top:0;border:none;';
+  newIframe.style.width = w + 'px';
+  newIframe.style.height = (h * 10) + 'px'; // tall enough for all pages
+  oldIframe.replaceWith(newIframe);
+
+  const doc = newIframe.contentDocument || newIframe.contentWindow.document;
+  doc.open();
+  doc.write(iframeHTML);
+  doc.close();
+}
+
+function _displayCardImages(images, w, h) {
+  const grid = document.getElementById('cardGrid');
+  if (!images.length) {
+    grid.innerHTML = '<p style="color:var(--text-3);text-align:center;padding:40px;">No pages rendered</p>';
+    return;
+  }
+
+  const previewW = 338;
+  const previewH = Math.round(h * (previewW / w));
+  const total = images.length;
+
+  let html = '';
+  images.forEach((dataUrl, i) => {
+    if (!dataUrl) return;
+    html += `
+      <div class="card-page" data-page="${i}" style="width:${previewW}px;height:${previewH}px;">
+        <img src="${dataUrl}" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;"
+             data-full-url="${dataUrl}" data-export-w="${w}" data-export-h="${h}" />
+        <div class="card-page-num">${i + 1} / ${total}</div>
+      </div>`;
+  });
+
+  grid.innerHTML = html;
+
+  // Store full-res image data for export
+  grid._cardImages = images;
+  grid._cardDimensions = { w, h };
+}
+
+// ============ Card Export ============
+async function exportCards() {
+  const grid = document.getElementById('cardGrid');
+  const images = grid._cardImages;
+  if (!images || !images.length) {
+    showToast('No cards to export');
+    return;
+  }
+
+  const btn = document.getElementById('cardExportBtn');
+  const origText = btn.textContent;
+  btn.textContent = t('editor.exporting');
+  btn.disabled = true;
+
+  try {
+    for (let i = 0; i < images.length; i++) {
+      if (!images[i]) continue;
+
+      const link = document.createElement('a');
+      link.download = `inkpress-${currentTheme}-${String(i + 1).padStart(2, '0')}.png`;
+      link.href = images[i];
+      link.click();
+
+      if (i < images.length - 1) {
+        await new Promise(r => setTimeout(r, 300));
+      }
+    }
+    showToast(t('toast.cardExported').replace('{n}', images.length));
+  } catch (e) {
+    console.error('Export failed:', e);
+    showToast('Export failed');
+  } finally {
+    btn.textContent = origText;
+    btn.disabled = false;
+  }
 }
 
 // ============ Install ============
