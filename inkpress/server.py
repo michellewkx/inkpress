@@ -51,6 +51,7 @@ def create_app() -> FastAPI:
                 return index_file.read_text(encoding="utf-8")
             return "<h1>inkpress</h1><p>Showcase not found.</p>"
 
+        app.mount("/js", StaticFiles(directory=str(showcase_dir / "js")), name="js")
         app.mount("/static", StaticFiles(directory=str(showcase_dir)), name="static")
 
     return app

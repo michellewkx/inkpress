@@ -663,9 +663,12 @@ function _doRenderCard() {
   const theme = THEMES[currentTheme];
   if (!theme) return;
 
-  // Show loading state
+  // Show skeleton loading state
   const grid = document.getElementById('cardGrid');
-  grid.innerHTML = '<p style="color:var(--text-3);text-align:center;padding:40px;">Rendering cards...</p>';
+  const skeletonCount = 6;
+  grid.innerHTML = '<div class="card-skeleton">' +
+    Array(skeletonCount).fill('<div class="card-skeleton-item"></div>').join('') +
+    '</div>';
 
   const { w, h, exportScale } = getCardDimensions();
 
@@ -959,9 +962,10 @@ function _displayCardImages(images, w, h) {
   let html = '';
   images.forEach((dataUrl, i) => {
     if (!dataUrl) return;
+    const delay = i * 60; // staggered entrance
     html += `
-      <div class="card-page" data-page="${i}" style="width:${previewW}px;height:${previewH}px;">
-        <img src="${dataUrl}" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;"
+      <div class="card-page" data-page="${i}" style="width:${previewW}px;height:${previewH}px;animation-delay:${delay}ms;">
+        <img src="${dataUrl}" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:10px;"
              data-full-url="${dataUrl}" data-export-w="${w}" data-export-h="${h}" />
         <div class="card-page-num">${i + 1} / ${total}</div>
       </div>`;
@@ -983,23 +987,107 @@ function _displayCardImages(images, w, h) {
 }
 
 // ============ Card Lightbox ============
+let _lightboxImages = [];
+let _lightboxIndex = 0;
+
 function openCardLightbox(src) {
+  const grid = document.getElementById('cardGrid');
+  const imgs = grid.querySelectorAll('.card-page img');
+  _lightboxImages = Array.from(imgs).map(img => img.src);
+  _lightboxIndex = _lightboxImages.indexOf(src);
+  if (_lightboxIndex < 0) _lightboxIndex = 0;
+
   let overlay = document.getElementById('cardLightbox');
   if (!overlay) {
     overlay = document.createElement('div');
     overlay.id = 'cardLightbox';
-    overlay.style.cssText = 'position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;cursor:zoom-out;opacity:0;transition:opacity 0.2s;';
-    overlay.innerHTML = '<img style="max-width:90vw;max-height:90vh;border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,0.4);object-fit:contain;transition:transform 0.2s;" />';
-    overlay.addEventListener('click', () => {
-      overlay.style.opacity = '0';
-      setTimeout(() => { overlay.style.display = 'none'; }, 200);
+    overlay.style.cssText = `
+      position:fixed;inset:0;z-index:10000;
+      background:rgba(10,10,20,0.88);
+      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+      display:flex;align-items:center;justify-content:center;
+      cursor:zoom-out;opacity:0;transition:opacity 0.25s ease;
+    `;
+    overlay.innerHTML = `
+      <button id="lbPrev" style="position:absolute;left:16px;top:50%;transform:translateY(-50%);z-index:2;
+        width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,0.15);
+        background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);font-size:18px;
+        cursor:pointer;display:flex;align-items:center;justify-content:center;
+        transition:all 0.2s;backdrop-filter:blur(8px);">‹</button>
+      <img style="max-width:85vw;max-height:88vh;border-radius:10px;
+        box-shadow:0 16px 64px rgba(0,0,0,0.5);object-fit:contain;
+        transition:transform 0.3s cubic-bezier(0.16,1,0.3,1),opacity 0.2s;" />
+      <button id="lbNext" style="position:absolute;right:16px;top:50%;transform:translateY(-50%);z-index:2;
+        width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,0.15);
+        background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);font-size:18px;
+        cursor:pointer;display:flex;align-items:center;justify-content:center;
+        transition:all 0.2s;backdrop-filter:blur(8px);">›</button>
+      <div id="lbCounter" style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
+        font-size:12px;color:rgba(255,255,255,0.4);font-family:var(--mono);letter-spacing:1px;"></div>
+    `;
+    // Close on backdrop click
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.style.opacity = '0';
+        setTimeout(() => { overlay.style.display = 'none'; }, 250);
+      }
+    });
+    // Nav buttons
+    overlay.querySelector('#lbPrev').addEventListener('click', (e) => {
+      e.stopPropagation();
+      _lightboxIndex = (_lightboxIndex - 1 + _lightboxImages.length) % _lightboxImages.length;
+      _updateLightbox(overlay);
+    });
+    overlay.querySelector('#lbNext').addEventListener('click', (e) => {
+      e.stopPropagation();
+      _lightboxIndex = (_lightboxIndex + 1) % _lightboxImages.length;
+      _updateLightbox(overlay);
+    });
+    // Hover style for nav buttons
+    overlay.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('mouseenter', () => {
+        btn.style.background = 'rgba(255,255,255,0.15)';
+        btn.style.color = '#fff';
+        btn.style.borderColor = 'rgba(255,255,255,0.3)';
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.background = 'rgba(255,255,255,0.08)';
+        btn.style.color = 'rgba(255,255,255,0.7)';
+        btn.style.borderColor = 'rgba(255,255,255,0.15)';
+      });
+    });
+    // Keyboard nav
+    document.addEventListener('keydown', (e) => {
+      if (overlay.style.display === 'none' || overlay.style.opacity === '0') return;
+      if (e.key === 'ArrowLeft') { overlay.querySelector('#lbPrev').click(); }
+      if (e.key === 'ArrowRight') { overlay.querySelector('#lbNext').click(); }
+      if (e.key === 'Escape') { overlay.click(); }
     });
     document.body.appendChild(overlay);
   }
-  const img = overlay.querySelector('img');
-  img.src = src;
+  _updateLightbox(overlay);
   overlay.style.display = 'flex';
-  requestAnimationFrame(() => { overlay.style.opacity = '1'; });
+  const img = overlay.querySelector('img');
+  img.style.transform = 'scale(0.92)';
+  img.style.opacity = '0';
+  requestAnimationFrame(() => {
+    overlay.style.opacity = '1';
+    setTimeout(() => {
+      img.style.transform = 'scale(1)';
+      img.style.opacity = '1';
+    }, 50);
+  });
+}
+
+function _updateLightbox(overlay) {
+  const img = overlay.querySelector('img');
+  const counter = overlay.querySelector('#lbCounter');
+  const prev = overlay.querySelector('#lbPrev');
+  const next = overlay.querySelector('#lbNext');
+  img.src = _lightboxImages[_lightboxIndex];
+  counter.textContent = `${_lightboxIndex + 1} / ${_lightboxImages.length}`;
+  prev.style.display = _lightboxImages.length > 1 ? 'flex' : 'none';
+  next.style.display = _lightboxImages.length > 1 ? 'flex' : 'none';
 }
 
 // ============ Card Export (ZIP) ============
