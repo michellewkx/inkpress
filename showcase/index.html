@@ -486,19 +486,31 @@
   .mode-tab.active { background: var(--surface); color: var(--text); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
   .card-preview {
     flex: 1; overflow: auto; padding: 24px;
-    background:
-      radial-gradient(ellipse 80% 60% at 20% 80%, rgba(99,102,241,0.06) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 50% at 80% 20%, rgba(236,72,153,0.05) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 40% at 50% 50%, rgba(37,99,235,0.04) 0%, transparent 50%),
-      linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #1a1a2e 100%);
     display: none;
     position: relative;
+    background-color: #0c0c18;
+    background-image:
+      radial-gradient(ellipse at center, rgba(99,102,241,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse at center, rgba(236,72,153,0.14) 0%, transparent 70%),
+      radial-gradient(ellipse at center, rgba(37,99,235,0.12) 0%, transparent 65%),
+      radial-gradient(ellipse at center, rgba(16,185,129,0.07) 0%, transparent 70%);
+    background-size: 80% 70%, 65% 55%, 90% 80%, 70% 65%;
+    background-repeat: no-repeat;
+    animation: auroraFloat 25s ease-in-out infinite alternate;
+  }
+  @keyframes auroraFloat {
+    0%   { background-position: 8% 88%, 95% 10%, 50% 50%, 78% 72%; }
+    20%  { background-position: 35% 45%, 65% 42%, 72% 18%, 18% 58%; }
+    40%  { background-position: 82% 18%, 28% 78%, 32% 72%, 62% 22%; }
+    60%  { background-position: 55% 68%, 12% 28%, 88% 38%, 38% 82%; }
+    80%  { background-position: 22% 32%, 78% 62%, 45% 88%, 55% 12%; }
+    100% { background-position: 68% 55%, 42% 85%, 15% 35%, 85% 48%; }
   }
   .card-preview::before {
-    content: ''; position: absolute; inset: 0; pointer-events: none;
+    content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 1;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
     background-size: 200px 200px;
-    opacity: 0.6;
+    opacity: 0.5;
   }
   .card-preview.active { display: block; }
   .preview-content.active { display: block; }
@@ -506,6 +518,7 @@
     display: flex; flex-wrap: wrap; gap: 24px;
     justify-content: center; align-items: flex-start;
     padding: 8px 0 24px;
+    position: relative; z-index: 2;
   }
   .card-page {
     width: 338px; height: 450px;
@@ -569,19 +582,92 @@
   .card-export-bar {
     display: flex; align-items: center; justify-content: center;
     gap: 8px; padding: 16px 0 8px;
+    position: relative; z-index: 2;
   }
-  .card-ratio-select {
-    padding: 5px 10px; border-radius: 6px;
-    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
-    font-size: 12px; color: rgba(255,255,255,0.7); font-family: var(--sans);
-    cursor: pointer; outline: none;
-    transition: border-color 0.2s, color 0.2s;
+  /* Custom ratio picker */
+  .ratio-picker { position: relative; z-index: 10; }
+  .ratio-picker-btn {
+    display: flex; align-items: center; gap: 8px;
+    padding: 9px 15px; border-radius: 10px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.8);
+    font-family: var(--mono); font-size: 13px; font-weight: 500;
+    letter-spacing: 0.03em; cursor: pointer;
+    transition: all 0.25s var(--ease);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.03);
   }
-  .card-ratio-select:hover {
-    border-color: rgba(255,255,255,0.25);
-    color: rgba(255,255,255,0.9);
+  .ratio-picker-btn:hover {
+    border-color: rgba(99,102,241,0.3);
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    box-shadow: 0 2px 16px rgba(99,102,241,0.12), inset 0 1px 0 rgba(255,255,255,0.05);
   }
-  .card-ratio-select option { background: #1a1a2e; color: #fff; }
+  .ratio-picker-tag {
+    font-size: 9px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 7px; border-radius: 4px;
+    background: rgba(99,102,241,0.18);
+    color: rgba(165,135,255,0.9);
+    line-height: 1.4;
+  }
+  .ratio-picker-arrow {
+    opacity: 0.35; transition: transform 0.3s var(--ease), opacity 0.2s;
+    margin-left: -2px;
+  }
+  .ratio-picker.open .ratio-picker-arrow { transform: rotate(180deg); opacity: 0.7; }
+  .ratio-picker-menu {
+    position: absolute; top: calc(100% + 8px); left: 50%;
+    transform: translateX(-50%) translateY(6px);
+    min-width: 175px; padding: 5px;
+    border-radius: 14px;
+    background: rgba(18,18,36,0.92);
+    backdrop-filter: blur(24px) saturate(1.2); -webkit-backdrop-filter: blur(24px) saturate(1.2);
+    border: 1px solid rgba(255,255,255,0.07);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.02), 0 0 80px rgba(99,102,241,0.05);
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: all 0.25s var(--ease);
+  }
+  .ratio-picker.open .ratio-picker-menu {
+    opacity: 1; visibility: visible; pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+  .ratio-opt {
+    display: flex; align-items: center; justify-content: space-between;
+    width: 100%; padding: 9px 12px;
+    border: none; background: transparent;
+    color: rgba(255,255,255,0.55); font-family: var(--mono);
+    font-size: 13px; cursor: pointer;
+    border-radius: 9px; transition: all 0.15s;
+  }
+  .ratio-opt:hover { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.9); }
+  .ratio-opt.active { background: rgba(99,102,241,0.14); color: rgba(165,135,255,1); }
+  .ratio-opt-tag {
+    font-size: 10px; color: rgba(255,255,255,0.25); font-weight: 400;
+  }
+  .ratio-opt:hover .ratio-opt-tag { color: rgba(255,255,255,0.45); }
+  .ratio-opt.active .ratio-opt-tag { color: rgba(165,135,255,0.55); }
+  /* Export button — card mode */
+  #cardExportBtn {
+    background: linear-gradient(135deg, #4f46e5, #6d28d9);
+    border-color: rgba(109,40,217,0.3);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(79,70,229,0.25);
+    transition: all 0.3s var(--ease);
+  }
+  #cardExportBtn:hover {
+    background: linear-gradient(135deg, #6366f1, #7c3aed);
+    border-color: rgba(124,58,237,0.5);
+    box-shadow: 0 4px 20px rgba(99,102,241,0.35), 0 0 40px rgba(99,102,241,0.08);
+    transform: translateY(-1px);
+    opacity: 1;
+  }
+  #cardExportBtn:active {
+    transform: translateY(0) scale(0.97);
+    box-shadow: 0 2px 8px rgba(99,102,241,0.2);
+    transition-duration: 0.1s;
+  }
 
   /* ============ Install Section ============ */
   .install-section {
@@ -755,12 +841,19 @@
         <div class="preview-content active" id="previewFrame"></div>
         <div class="card-preview" id="cardPreview">
           <div class="card-export-bar">
-            <select class="card-ratio-select" id="cardRatioSelect">
-              <option value="3:4" selected>3:4 (XHS)</option>
-              <option value="4:3">4:3</option>
-              <option value="1:1">1:1</option>
-              <option value="9:16">9:16</option>
-            </select>
+            <div class="ratio-picker" id="ratioPicker" data-value="3:4">
+              <button class="ratio-picker-btn" type="button" id="ratioPickerBtn">
+                <span class="ratio-picker-val">3:4</span>
+                <span class="ratio-picker-tag">XHS</span>
+                <svg class="ratio-picker-arrow" width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2.5 4L5 6.5L7.5 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="ratio-picker-menu" id="ratioPickerMenu">
+                <button class="ratio-opt active" data-ratio="3:4" data-tag="XHS" type="button"><span class="ratio-opt-val">3:4</span><span class="ratio-opt-tag">XHS</span></button>
+                <button class="ratio-opt" data-ratio="4:3" data-tag="Landscape" type="button"><span class="ratio-opt-val">4:3</span><span class="ratio-opt-tag">Landscape</span></button>
+                <button class="ratio-opt" data-ratio="1:1" data-tag="Square" type="button"><span class="ratio-opt-val">1:1</span><span class="ratio-opt-tag">Square</span></button>
+                <button class="ratio-opt" data-ratio="9:16" data-tag="Story" type="button"><span class="ratio-opt-val">9:16</span><span class="ratio-opt-tag">Story</span></button>
+              </div>
+            </div>
           </div>
           <div class="card-grid" id="cardGrid"></div>
           <iframe id="pagedFrame" style="position:absolute;left:-9999px;top:0;border:none;"></iframe>

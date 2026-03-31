@@ -515,13 +515,42 @@ function initEditor() {
     });
   });
 
-  // Card ratio
-  document.getElementById('cardRatioSelect').addEventListener('change', () => {
-    if (currentMode === 'card') renderCardPreview();
-  });
+  // Custom ratio picker
+  initRatioPicker();
 
   // Card export
   document.getElementById('cardExportBtn').addEventListener('click', exportCards);
+}
+
+function initRatioPicker() {
+  const picker = document.getElementById('ratioPicker');
+  const btn = document.getElementById('ratioPickerBtn');
+  const menu = document.getElementById('ratioPickerMenu');
+  if (!picker || !btn || !menu) return;
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    picker.classList.toggle('open');
+  });
+
+  menu.querySelectorAll('.ratio-opt').forEach(opt => {
+    opt.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const ratio = opt.dataset.ratio;
+      const tag = opt.dataset.tag;
+      picker.dataset.value = ratio;
+      picker.querySelector('.ratio-picker-val').textContent = ratio;
+      picker.querySelector('.ratio-picker-tag').textContent = tag;
+      menu.querySelectorAll('.ratio-opt').forEach(o => o.classList.remove('active'));
+      opt.classList.add('active');
+      picker.classList.remove('open');
+      if (currentMode === 'card') renderCardPreview();
+    });
+  });
+
+  // Close on outside click
+  document.addEventListener('click', () => picker.classList.remove('open'));
+  picker.addEventListener('click', (e) => e.stopPropagation());
 }
 
 function openEditorWithTheme(name) {
@@ -647,7 +676,8 @@ function switchMode(mode) {
 
 // ============ Card Rendering (Paged.js) ============
 function getCardDimensions() {
-  const ratio = document.getElementById('cardRatioSelect').value;
+  const picker = document.getElementById('ratioPicker');
+  const ratio = picker ? picker.dataset.value : '3:4';
   return CARD_RATIOS[ratio] || CARD_RATIOS['3:4'];
 }
 
