@@ -440,7 +440,7 @@ const THEMES = {
       "padding": "16px"
     },
     "decorations": {
-      "h2_prefix": "▍"
+      "h2_prefix": ""
     },
     "footnote": {
       "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
