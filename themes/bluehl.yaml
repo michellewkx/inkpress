@@ -37,8 +37,8 @@ h2:
     line-height: 1.5;
     color: #1a1a1a;
     text-align: center;
-    border-top: 2px solid #1677ff;
-    border-bottom: 2px solid #1677ff;
+    border-bottom: 1px solid rgba(22, 119, 255, 0.5);
+    background: rgba(22, 119, 255, 0.04);
     letter-spacing: 0.06em;
     font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
 
@@ -232,9 +232,10 @@ table:
 hr:
   style: |
     border: none;
-    height: 2px;
-    margin: 2.5em 16px;
-    background: #1677ff;
+    height: 0;
+    width: 32%;
+    margin: 2.8em auto 2.2em;
+    border-top: 1px solid rgba(22, 119, 255, 0.28);
 
 # 粗体样式
 bold:

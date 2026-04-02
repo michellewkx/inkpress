@@ -215,7 +215,8 @@ const THEMES = {
       "margin": "0"
     },
     "decorations": {
-      "h2_prefix": "✦ "
+      "h2_prefix": "✦ ",
+      "hr_text": "· ✦ ·"
     },
     "footnote": {
       "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
@@ -327,7 +328,8 @@ const THEMES = {
       "padding": "16px"
     },
     "decorations": {
-      "h2_prefix": "■ "
+      "h2_prefix": "■ ",
+      "hr_text": "▬ ▬ ▬"
     },
     "footnote": {
       "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
@@ -369,7 +371,7 @@ const THEMES = {
       "style": "padding: 0;\nmargin: 1.5em 16px 1.2em;\nfont-size: 22px;\nfont-weight: 900;\nline-height: 1.5;\ncolor: #1a1a1a;\ntext-align: center;\nletter-spacing: 0.04em;\nfont-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;\n"
     },
     "h2": {
-      "style": "margin: 2.5em 0 1em;\npadding: 0.5em 16px;\nfont-size: 20px;\nfont-weight: 900;\nline-height: 1.5;\ncolor: #1a1a1a;\ntext-align: center;\nborder-top: 2px solid #1677ff;\nborder-bottom: 2px solid #1677ff;\nletter-spacing: 0.06em;\nfont-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;\n"
+      "style": "margin: 2.5em 0 1em;\npadding: 0.5em 16px;\nfont-size: 20px;\nfont-weight: 900;\nline-height: 1.5;\ncolor: #1a1a1a;\ntext-align: center;\nborder-bottom: 1px solid rgba(22, 119, 255, 0.5);\nbackground: rgba(22, 119, 255, 0.04);\nletter-spacing: 0.06em;\nfont-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;\n"
     },
     "h3": {
       "style": "margin: 2em 16px 0.8em;\npadding: 0.1em 0;\nfont-size: 17px;\nfont-weight: 800;\nline-height: 1.6;\ncolor: #1a1a1a;\nbackground: linear-gradient(transparent 60%, rgba(250, 204, 21, 0.4) 60%);\ndisplay: inline-block;\nfont-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;\n"
@@ -422,7 +424,7 @@ const THEMES = {
       "td_style": "border-bottom: 1px solid #e5e7eb;\npadding: 10px 14px;\ncolor: #1a1a1a;\n"
     },
     "hr": {
-      "style": "border: none;\nheight: 2px;\nmargin: 2.5em 16px;\nbackground: #1677ff;\n"
+      "style": "border: none;\nheight: 0;\nwidth: 32%;\nmargin: 2.8em auto 2.2em;\nborder-top: 1px solid rgba(22, 119, 255, 0.28);\n"
     },
     "bold": {
       "style": "font-weight: 800;\ncolor: #1677ff;\n"
@@ -794,7 +796,8 @@ const THEMES = {
       "margin": "0"
     },
     "decorations": {
-      "h2_prefix": "✦ "
+      "h2_prefix": "✦ ",
+      "hr_text": "— ✦ —"
     },
     "footnote": {
       "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
@@ -836,7 +839,7 @@ const THEMES = {
       "style": "padding: 0;\nmargin: 2em 0 1.5em;\nfont-size: 28px;\nfont-weight: 900;\nline-height: 1.35;\ncolor: #1a202c;\ntext-align: center;\nletter-spacing: 0.03em;\nfont-family: Georgia, 'Noto Serif CJK SC', 'Source Han Serif SC', 'PingFang SC', serif;\n"
     },
     "h2": {
-      "style": "margin: 2.8em 0 1.2em;\npadding: 0.6em 0;\nfont-size: 20px;\nfont-weight: 800;\nline-height: 1.4;\ncolor: #1a365d;\ntext-align: center;\nborder-top: 2px solid #1a365d;\nborder-bottom: 2px solid #1a365d;\nletter-spacing: 0.06em;\nfont-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;\n"
+      "style": "margin: 2.8em 0 1.2em;\npadding: 0.6em 0;\nfont-size: 20px;\nfont-weight: 800;\nline-height: 1.4;\ncolor: #1a365d;\ntext-align: center;\nborder-top: none;\nborder-bottom: 1px solid rgba(26, 54, 93, 0.6);\nletter-spacing: 0.06em;\nfont-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;\n"
     },
     "h3": {
       "style": "margin: 2em 0 0.8em;\npadding: 0.1em 0;\nfont-size: 17px;\nfont-weight: 800;\nline-height: 1.6;\ncolor: #1a202c;\nbackground: linear-gradient(transparent 60%, rgba(245, 158, 11, 0.28) 60%);\ndisplay: inline-block;\nletter-spacing: 0.03em;\nfont-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;\n"
@@ -889,7 +892,7 @@ const THEMES = {
       "td_style": "border-bottom: 1px solid #e8e4da;\npadding: 11px 16px;\ncolor: #1a202c;\n"
     },
     "hr": {
-      "style": "border: none;\nheight: 2px;\nmargin: 3em 0;\nbackground: #1a365d;\n"
+      "style": "border: none;\nheight: 2px;\nwidth: 60%;\nmargin: 3em auto;\nbackground: rgba(26, 54, 93, 0.3);\nborder-radius: 999px;\n"
     },
     "bold": {
       "style": "font-weight: 800;\ncolor: #1a365d;\n"
@@ -905,7 +908,8 @@ const THEMES = {
       "padding": "20px"
     },
     "decorations": {
-      "h2_prefix": "— "
+      "h2_prefix": "— ",
+      "hr_text": "· · ·"
     },
     "footnote": {
       "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
@@ -1726,7 +1730,8 @@ const THEMES = {
     },
     "decorations": {
       "ul_prefix": "✦ ",
-      "h2_prefix": "◆ "
+      "h2_prefix": "◆ ",
+      "hr_text": "— ◆ —"
     },
     "footnote": {
       "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
@@ -2416,7 +2421,8 @@ const THEMES = {
       "padding": "18px"
     },
     "decorations": {
-      "h2_prefix": "☀ "
+      "h2_prefix": "☀ ",
+      "hr_text": "· ☀ ·"
     },
     "footnote": {
       "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
@@ -2659,7 +2665,7 @@ const THEMES = {
       "h2_prefix": "/ ",
       "blockquote_prefix": "",
       "blockquote_suffix": "",
-      "hr_text": ""
+      "hr_text": "— — —"
     },
     "body": {
       "background": "#f5f5f0",

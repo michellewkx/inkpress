@@ -37,8 +37,8 @@ h2:
     line-height: 1.4;
     color: #1a365d;
     text-align: center;
-    border-top: 2px solid #1a365d;
-    border-bottom: 2px solid #1a365d;
+    border-top: none;
+    border-bottom: 1px solid rgba(26, 54, 93, 0.6);
     letter-spacing: 0.06em;
     font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
 
@@ -243,8 +243,10 @@ hr:
   style: |
     border: none;
     height: 2px;
-    margin: 3em 0;
-    background: #1a365d;
+    width: 60%;
+    margin: 3em auto;
+    background: rgba(26, 54, 93, 0.3);
+    border-radius: 999px;
 
 # 粗体样式
 bold:
@@ -273,6 +275,7 @@ body:
 # 装饰配置
 decorations:
   h2_prefix: "— "
+  hr_text: "· · ·"
 
 # 脚注样式
 footnote:

@@ -339,7 +339,7 @@ decorations:
   h2_prefix: "/ "
   blockquote_prefix: ""
   blockquote_suffix: ""
-  hr_text: ""
+  hr_text: "— — —"
 
 # 页面背景
 body:

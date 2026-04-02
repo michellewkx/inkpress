@@ -14,7 +14,7 @@
 | GFM 提示框 | NOTE / TIP / WARNING 等 | ✅ |
 | 代码高亮 | Pygments 驱动，支持 100+ 语言 | ✅ |
 | 图片说明 | 自动提取 alt 生成 figcaption | ✅ |
-| 图片画廊 | 多图横向滑动展示 | ✅ |
+| 图片轮播 | 多图横向滑动展示 | ✅ |
 | 对话功能 | 聊天气泡风格的问答展示 | ✅ |
 
 ---
@@ -128,7 +128,7 @@ document.getElementById('preview').innerHTML = html;
 
 ---
 
-## 图片画廊
+## 图片轮播
 
 :::gallery[inkpress 主题效果展示]
 ![经典主题](https://images.unsplash.com/photo-1432821596592-e2c18b78144f?w=600)

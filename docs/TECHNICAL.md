@@ -39,7 +39,7 @@ Markdown 原文
 | 1 | 删除线 | `~~text~~` | `<del>text</del>` |
 | 2 | 列表前缀修复 | 列表前无空行 | 自动插入空行（确保 python-markdown 正确解析） |
 | 3 | GFM 提示框 | `> [!TYPE]` | `<div data-inkpress-alert="TYPE">` 骨架 HTML |
-| 4 | 图片画廊 | `:::gallery[title]...:::` | 可横向滚动的图片画廊 HTML |
+| 4 | 图片轮播 | `:::gallery[title]...:::` | 可横向滚动的图片轮播 HTML |
 | 5 | 长图模式 | `:::longimage[title]...:::` | 可纵向滚动的长图容器 HTML |
 | 6 | 对话模式 | `:::dialogue[title]...:::` | 聊天气泡布局 HTML |
 

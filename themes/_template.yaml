@@ -58,7 +58,11 @@ h1:
     box-shadow: 0 3px 10px rgba(44, 62, 80, 0.2);
     letter-spacing: 0.05em;
 
-# H2 — 章节标题，常用左边框 + 底部虚线
+# H2 — 章节标题
+# 设计规范：
+# - H2 负责“结构层级感”，可以用左边框 / 底部细线 / 背景色块等方式强调
+# - 分隔线 hr 负责“段落/模块过渡”，如果 H2 已经有明显的边线或色块，hr 应该更轻、更装饰化
+# - 避免 H2 和 hr 同色同粗的整条横线重复出现（特别是双重蓝色横线）
 h2:
   style: |
     margin: 2em 8px 0.75em;
@@ -292,6 +296,10 @@ table:
 hr:
   style: |
     border: none;
+    # 设计规范：
+    # - 如果 H2 已经使用强烈的边框/背景来表现层级感，则 hr 应该更轻、更短、更淡（如渐变、虚线、缩短宽度）
+    # - 如果主题走极简风（H2 很干净），可以让 hr 稍微承担更多分隔感，但仍避免与 H2 形态完全一致
+    # - 推荐形态：局部宽度 + 渐变/虚线 + 较浅不透明度，搭配 decorations.hr_text 形成装饰效果
     height: 2px;
     margin: 2em 0;
     background: linear-gradient(to right, transparent, #3498db, #2c3e50, #3498db, transparent);
