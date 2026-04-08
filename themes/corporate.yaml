@@ -267,7 +267,7 @@ strikethrough:
 
 # 装饰配置
 decorations:
-  h2_prefix: "▎"
+  h2_prefix: ""
 
 # 脚注样式
 footnote:

@@ -91,7 +91,7 @@ const THEMES = {
       "padding": "20px"
     },
     "decorations": {
-      "h2_prefix": "§ ",
+      "h2_prefix": "",
       "hr_text": "· · ·"
     },
     "footnote": {
@@ -328,7 +328,7 @@ const THEMES = {
       "padding": "16px"
     },
     "decorations": {
-      "h2_prefix": "■ ",
+      "h2_prefix": "",
       "hr_text": "▬ ▬ ▬"
     },
     "footnote": {
@@ -561,7 +561,7 @@ const THEMES = {
       "margin": "0"
     },
     "decorations": {
-      "h2_prefix": "◈ ",
+      "h2_prefix": "",
       "ul_prefix": "○ ",
       "hr_text": "— · —"
     },
@@ -675,7 +675,7 @@ const THEMES = {
       "style": "text-decoration: line-through;\ncolor: #98a2b3;\n"
     },
     "decorations": {
-      "h2_prefix": "▎"
+      "h2_prefix": ""
     },
     "footnote": {
       "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
@@ -908,7 +908,7 @@ const THEMES = {
       "padding": "20px"
     },
     "decorations": {
-      "h2_prefix": "— ",
+      "h2_prefix": "",
       "hr_text": "· · ·"
     },
     "footnote": {
@@ -1025,7 +1025,7 @@ const THEMES = {
       "avatar_right_style": "background-color: #8b7355;\ncolor: #ffffff;\n"
     },
     "decorations": {
-      "h2_prefix": "§ ",
+      "h2_prefix": "",
       "blockquote_prefix": "「",
       "blockquote_suffix": "」",
       "hr_text": "— · —"
@@ -1257,7 +1257,7 @@ const THEMES = {
       "padding": "20px"
     },
     "decorations": {
-      "h2_prefix": "◇ ",
+      "h2_prefix": "",
       "hr_text": "—— ◇ ——",
       "blockquote_prefix": "「",
       "blockquote_suffix": "」"
@@ -1608,7 +1608,7 @@ const THEMES = {
       "style": "text-decoration: line-through;\ncolor: #9ca3af;\n"
     },
     "decorations": {
-      "h2_prefix": "▍"
+      "h2_prefix": ""
     },
     "footnote": {
       "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
@@ -1730,7 +1730,7 @@ const THEMES = {
     },
     "decorations": {
       "ul_prefix": "",
-      "h2_prefix": "◆ ",
+      "h2_prefix": "",
       "hr_text": "— ◆ —"
     },
     "footnote": {
@@ -1963,7 +1963,7 @@ const THEMES = {
       "margin": "0"
     },
     "decorations": {
-      "h2_prefix": "◆ ",
+      "h2_prefix": "",
       "hr_text": "~ ◆ ~"
     },
     "footnote": {
@@ -2310,7 +2310,7 @@ const THEMES = {
       "margin": "0"
     },
     "decorations": {
-      "h2_prefix": "◉ ",
+      "h2_prefix": "",
       "hr_text": "· · ·"
     },
     "footnote": {
@@ -2662,7 +2662,7 @@ const THEMES = {
       "avatar_right_style": "background-color: #000000;\ncolor: #ffffff;\n"
     },
     "decorations": {
-      "h2_prefix": "/ ",
+      "h2_prefix": "",
       "blockquote_prefix": "",
       "blockquote_suffix": "",
       "hr_text": "— — —"
@@ -2915,7 +2915,7 @@ const THEMES = {
       "margin": "0"
     },
     "decorations": {
-      "h2_prefix": "· ",
+      "h2_prefix": "",
       "ul_prefix": "– ",
       "hr_text": "· · · · ·"
     },

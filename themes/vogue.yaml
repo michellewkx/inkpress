@@ -336,7 +336,7 @@ dialogue:
 
 # 装饰配置
 decorations:
-  h2_prefix: "/ "
+  h2_prefix: ""
   blockquote_prefix: ""
   blockquote_suffix: ""
   hr_text: "— — —"

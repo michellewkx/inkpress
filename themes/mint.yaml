@@ -332,7 +332,7 @@ body:
 # 装饰配置
 decorations:
   ul_prefix: ""
-  h2_prefix: "◆ "
+  h2_prefix: ""
   hr_text: "— ◆ —"
 
 # 脚注样式

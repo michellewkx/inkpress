@@ -333,7 +333,7 @@ body:
 
 # 装饰配置
 decorations:
-  h2_prefix: "◈ "
+  h2_prefix: ""
   ul_prefix: "○ "
   hr_text: "— · —"
 

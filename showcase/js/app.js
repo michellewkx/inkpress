@@ -449,25 +449,82 @@ function generateCardPreview(theme) {
 }
 
 // ============ Editor ============
-function initEditor() {
-  const input = document.getElementById('mdInput');
-  const select = document.getElementById('editorThemeSelect');
+function getThemeSwatchColor(theme) {
+  const bg = theme.body?.background || theme.container?.background || '#f9f9f9';
+  // extract first hex color from gradient strings
+  const m = bg.match(/#[0-9a-fA-F]{3,8}/);
+  return m ? m[0] : bg;
+}
 
-  input.value = SAMPLE_MD;
+function initThemePicker() {
+  const picker = document.getElementById('themePicker');
+  const btn = document.getElementById('themePickerBtn');
+  const menu = document.getElementById('themePickerMenu');
+  const swatchEl = document.getElementById('themePickerSwatch');
+  const nameEl = document.getElementById('themePickerName');
 
-  // Populate theme select
+  function updatePickerDisplay() {
+    const theme = THEMES[currentTheme];
+    if (!theme) return;
+    swatchEl.style.background = getThemeSwatchColor(theme);
+    nameEl.textContent = theme.name || currentTheme;
+    menu.querySelectorAll('.theme-picker-opt').forEach(opt => {
+      opt.classList.toggle('active', opt.dataset.theme === currentTheme);
+    });
+  }
+
+  // Build menu items
   let html = '';
   for (const [name, theme] of Object.entries(THEMES)) {
-    html += `<option value="${name}" ${name === currentTheme ? 'selected' : ''}>${theme.name || name}</option>`;
+    const color = getThemeSwatchColor(theme);
+    const series = theme.series || '';
+    html += `<button class="theme-picker-opt${name === currentTheme ? ' active' : ''}" data-theme="${name}" type="button">
+      <span class="tp-swatch" style="background:${color}"></span>
+      <span>${theme.name || name}</span>
+      ${series ? `<span class="tp-series">${series}</span>` : ''}
+    </button>`;
   }
-  select.innerHTML = html;
+  menu.innerHTML = html;
 
-  select.addEventListener('change', () => {
-    currentTheme = select.value;
+  // Toggle open/close
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    picker.classList.toggle('open');
+    if (picker.classList.contains('open')) {
+      // scroll active item into view
+      const active = menu.querySelector('.theme-picker-opt.active');
+      if (active) active.scrollIntoView({ block: 'nearest' });
+    }
+  });
+
+  // Select theme
+  menu.addEventListener('click', (e) => {
+    const opt = e.target.closest('.theme-picker-opt');
+    if (!opt) return;
+    currentTheme = opt.dataset.theme;
     history.replaceState(null, '', `#editor/${currentTheme}`);
+    updatePickerDisplay();
+    picker.classList.remove('open');
     if (currentMode === 'card') renderCardPreview();
     else renderEditorPreview();
   });
+
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (!picker.contains(e.target)) picker.classList.remove('open');
+  });
+
+  updatePickerDisplay();
+  return updatePickerDisplay;
+}
+
+function initEditor() {
+  const input = document.getElementById('mdInput');
+
+  input.value = SAMPLE_MD;
+
+  // Init custom theme picker
+  const updateThemePicker = initThemePicker();
 
   let debounce;
   input.addEventListener('input', () => {
@@ -591,7 +648,17 @@ function handleRoute() {
     const themeName = parts[1];
     if (themeName && THEMES[themeName]) {
       currentTheme = themeName;
-      document.getElementById('editorThemeSelect').value = themeName;
+      // Update theme picker display
+      const swatchEl = document.getElementById('themePickerSwatch');
+      const nameEl = document.getElementById('themePickerName');
+      const theme = THEMES[themeName];
+      if (swatchEl && nameEl && theme) {
+        swatchEl.style.background = getThemeSwatchColor(theme);
+        nameEl.textContent = theme.name || themeName;
+        document.querySelectorAll('.theme-picker-opt').forEach(opt => {
+          opt.classList.toggle('active', opt.dataset.theme === themeName);
+        });
+      }
     }
     _showEditor();
   } else {

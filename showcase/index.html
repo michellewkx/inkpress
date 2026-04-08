@@ -402,11 +402,61 @@
     font-size: 14px; font-weight: 700; letter-spacing: -0.01em;
     padding-left: 12px; border-left: 1px solid var(--border);
   }
-  .editor-header-l select {
-    padding: 5px 10px; border-radius: 6px;
+  /* Custom Theme Picker */
+  .theme-picker {
+    position: relative; display: inline-flex; align-items: center;
+  }
+  .theme-picker-btn {
+    display: flex; align-items: center; gap: 8px;
+    padding: 5px 10px 5px 6px; border-radius: 8px;
     background: var(--bg); border: 1px solid var(--border);
+    font-size: 12px; font-weight: 600; color: var(--text); font-family: var(--sans);
+    cursor: pointer; transition: all 0.15s; outline: none;
+    white-space: nowrap;
+  }
+  .theme-picker-btn:hover { border-color: #ccc; background: #f5f5f5; }
+  .theme-picker-swatch {
+    width: 16px; height: 16px; border-radius: 4px; flex-shrink: 0;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  .theme-picker-arrow {
+    margin-left: 2px; opacity: 0.4; transition: transform 0.2s var(--ease);
+  }
+  .theme-picker.open .theme-picker-arrow { transform: rotate(180deg); }
+  .theme-picker-menu {
+    position: absolute; top: calc(100% + 6px); left: 0;
+    min-width: 220px; max-height: 360px; overflow-y: auto;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; box-shadow: 0 8px 30px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.04);
+    padding: 4px; z-index: 100;
+    opacity: 0; visibility: hidden;
+    transform: translateY(-4px) scale(0.98);
+    transition: all 0.18s var(--ease);
+  }
+  .theme-picker.open .theme-picker-menu {
+    opacity: 1; visibility: visible;
+    transform: translateY(0) scale(1);
+  }
+  .theme-picker-menu::-webkit-scrollbar { width: 4px; }
+  .theme-picker-menu::-webkit-scrollbar-track { background: transparent; }
+  .theme-picker-menu::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  .theme-picker-opt {
+    display: flex; align-items: center; gap: 8px;
+    width: 100%; padding: 7px 10px; border-radius: 7px;
+    border: none; background: none; text-align: left;
     font-size: 12px; color: var(--text); font-family: var(--sans);
-    cursor: pointer; outline: none;
+    cursor: pointer; transition: background 0.1s;
+    white-space: nowrap;
+  }
+  .theme-picker-opt:hover { background: rgba(0,0,0,0.04); }
+  .theme-picker-opt.active { background: rgba(0,0,0,0.06); font-weight: 600; }
+  .theme-picker-opt .tp-swatch {
+    width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  .theme-picker-opt .tp-series {
+    margin-left: auto; font-size: 10px; color: var(--text-3);
+    font-weight: 400; letter-spacing: 0.02em;
   }
   .editor-header-r { display: flex; align-items: center; gap: 6px; }
   .editor-btn {
@@ -421,7 +471,7 @@
   .editor-btn-p {
     background: var(--text); color: #fff; border-color: var(--text);
   }
-  .editor-btn-p:hover { opacity: 0.85; }
+  .editor-btn-p:hover { background: var(--text); color: #fff; border-color: var(--text); opacity: 0.85; }
   .editor-btn-p:active { opacity: 0.75; transform: scale(0.96); }
   .wm-toggle {
     display: flex; align-items: center; gap: 6px; cursor: pointer;
@@ -813,7 +863,14 @@
       <div class="editor-header-l">
         <button class="editor-back" id="editorCloseBtn">← <span data-i18n="nav.themes">Themes</span></button>
         <h3 data-i18n="editor.title">Editor</h3>
-        <select id="editorThemeSelect"></select>
+        <div class="theme-picker" id="themePicker">
+          <button class="theme-picker-btn" type="button" id="themePickerBtn">
+            <span class="theme-picker-swatch" id="themePickerSwatch"></span>
+            <span class="theme-picker-name" id="themePickerName"></span>
+            <svg class="theme-picker-arrow" width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2.5 4L5 6.5L7.5 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="theme-picker-menu" id="themePickerMenu"></div>
+        </div>
       </div>
       <div class="editor-header-r">
         <div class="mode-tabs">
