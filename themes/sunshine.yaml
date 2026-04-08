@@ -113,7 +113,7 @@ list:
     line-height: 1.85;
     font-size: 15px;
 
-  ul_prefix: "☀ "
+  ul_prefix: ""
   ol_prefix: "{n}. "
 
   nested_container_style: |
@@ -269,8 +269,8 @@ body:
 
 # 装饰配置
 decorations:
-  h2_prefix: "☀ "
-  hr_text: "· ☀ ·"
+  h2_prefix: ""
+  hr_text: "· · ·"
 
 # 脚注样式
 footnote:

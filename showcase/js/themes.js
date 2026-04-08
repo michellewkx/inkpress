@@ -215,8 +215,8 @@ const THEMES = {
       "margin": "0"
     },
     "decorations": {
-      "h2_prefix": "✦ ",
-      "hr_text": "· ✦ ·"
+      "h2_prefix": "",
+      "hr_text": "· · ·"
     },
     "footnote": {
       "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
@@ -563,7 +563,7 @@ const THEMES = {
     "decorations": {
       "h2_prefix": "◈ ",
       "ul_prefix": "○ ",
-      "hr_text": "— ✦ —"
+      "hr_text": "— · —"
     },
     "footnote": {
       "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
@@ -796,8 +796,8 @@ const THEMES = {
       "margin": "0"
     },
     "decorations": {
-      "h2_prefix": "✦ ",
-      "hr_text": "— ✦ —"
+      "h2_prefix": "",
+      "hr_text": "— · —"
     },
     "footnote": {
       "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
@@ -1028,7 +1028,7 @@ const THEMES = {
       "h2_prefix": "§ ",
       "blockquote_prefix": "「",
       "blockquote_suffix": "」",
-      "hr_text": "— ✦ —"
+      "hr_text": "— · —"
     },
     "body": {
       "background": "#f9f7f3",
@@ -1099,7 +1099,7 @@ const THEMES = {
     "list": {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.2em 0;\ncolor: #2d3a2e;\nfont-size: 15px;\nfont-family: Georgia, 'Noto Serif CJK SC', serif;\n",
       "item_style": "margin: 0.6em 0;\npadding: 0;\nline-height: 1.85;\nfont-size: 15px;\n",
-      "ul_prefix": "🌿 ",
+      "ul_prefix": "",
       "ol_prefix": "{n}. ",
       "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
       "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #2d3a2e;\n",
@@ -1144,8 +1144,8 @@ const THEMES = {
       "style": "text-decoration: line-through;\ncolor: #a8b8a0;\n"
     },
     "decorations": {
-      "h2_prefix": "🌿 ",
-      "hr_text": "— 🌱 —"
+      "h2_prefix": "",
+      "hr_text": "— · —"
     },
     "footnote": {
       "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
@@ -1323,7 +1323,7 @@ const THEMES = {
     "list": {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.2em 0;\ncolor: #4a3728;\nfont-size: 15px;\nfont-family: 'PingFang SC', -apple-system, sans-serif;\n",
       "item_style": "margin: 0.6em 0;\npadding: 0;\nline-height: 1.8;\nfont-size: 15px;\n",
-      "ul_prefix": "☕ ",
+      "ul_prefix": "",
       "ol_prefix": "{n}. ",
       "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
       "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #4a3728;\n",
@@ -1372,7 +1372,7 @@ const THEMES = {
       "padding": "20px"
     },
     "decorations": {
-      "h2_prefix": "☕ ",
+      "h2_prefix": "",
       "hr_text": "· · ·"
     },
     "footnote": {
@@ -1669,7 +1669,7 @@ const THEMES = {
     "list": {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.2em 8px;\ncolor: #333333;\nfont-size: 15px;\n",
       "item_style": "margin: 0.5em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #333333;\n",
-      "ul_prefix": "✦ ",
+      "ul_prefix": "",
       "ol_prefix": "{n}. ",
       "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
       "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #333333;\n",
@@ -1729,7 +1729,7 @@ const THEMES = {
       "margin": "0"
     },
     "decorations": {
-      "ul_prefix": "✦ ",
+      "ul_prefix": "",
       "h2_prefix": "◆ ",
       "hr_text": "— ◆ —"
     },
@@ -2030,7 +2030,7 @@ const THEMES = {
     "list": {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.2em 0;\ncolor: #4a3540;\nfont-size: 15px;\nfont-family: 'PingFang SC', sans-serif;\n",
       "item_style": "margin: 0.6em 0;\npadding: 0;\nline-height: 1.85;\nfont-size: 15px;\n",
-      "ul_prefix": "♡ ",
+      "ul_prefix": "",
       "ol_prefix": "{n}. ",
       "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
       "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #4a3540;\n",
@@ -2075,8 +2075,8 @@ const THEMES = {
       "style": "text-decoration: line-through;\ncolor: #ccc;\n"
     },
     "decorations": {
-      "h2_prefix": "🌸 ",
-      "hr_text": "· 🌸 ·"
+      "h2_prefix": "",
+      "hr_text": "· · ·"
     },
     "footnote": {
       "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
@@ -2188,8 +2188,8 @@ const THEMES = {
       "padding": "16px"
     },
     "decorations": {
-      "h2_prefix": "⚔ ",
-      "hr_text": "— ⚔ —"
+      "h2_prefix": "",
+      "hr_text": "— · —"
     },
     "footnote": {
       "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
@@ -2372,7 +2372,7 @@ const THEMES = {
     "list": {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.2em 0;\ncolor: #3a2a1e;\nfont-size: 15px;\n",
       "item_style": "margin: 0.6em 0;\npadding: 0;\nline-height: 1.85;\nfont-size: 15px;\n",
-      "ul_prefix": "☀ ",
+      "ul_prefix": "",
       "ol_prefix": "{n}. ",
       "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
       "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #3a2a1e;\n",
@@ -2421,8 +2421,8 @@ const THEMES = {
       "padding": "18px"
     },
     "decorations": {
-      "h2_prefix": "☀ ",
-      "hr_text": "· ☀ ·"
+      "h2_prefix": "",
+      "hr_text": "· · ·"
     },
     "footnote": {
       "sup_style": "font-size: 0.75em;\nline-height: 0;\nvertical-align: super;\nmargin: 0;\npadding: 0;\n",
@@ -2543,7 +2543,7 @@ const THEMES = {
       "margin": "0"
     },
     "decorations": {
-      "h2_prefix": "❖ ",
+      "h2_prefix": "",
       "hr_text": "— ◆ —",
       "blockquote_prefix": "「",
       "blockquote_suffix": "」"
@@ -2731,7 +2731,7 @@ const THEMES = {
     "list": {
       "container_style": "list-style: none;\npadding: 0;\nmargin: 1.2em 0;\ncolor: #333333;\nfont-size: 15px;\n",
       "item_style": "margin: 0.5em 0;\npadding: 0;\nline-height: 1.9;\nfont-size: 15px;\nletter-spacing: 0.05em;\n",
-      "ul_prefix": "💕 ",
+      "ul_prefix": "",
       "ol_prefix": "{n}. ",
       "nested_container_style": "list-style: none;\npadding: 0 0 0 1.5em;\nmargin: 0.3em 0;\nfont-size: 15px;\n",
       "nested_item_style": "margin: 0.3em 0;\npadding: 0;\nline-height: 1.75;\nfont-size: 15px;\ncolor: #333333;\n",
@@ -2786,8 +2786,8 @@ const THEMES = {
       "avatar_right_style": "background: linear-gradient(135deg, #ff2442, #ff6b81);\ncolor: #ffffff;\nbox-shadow: 0 2px 8px rgba(255, 36, 66, 0.3);\n"
     },
     "decorations": {
-      "h2_prefix": "✨ ",
-      "blockquote_prefix": "💡 ",
+      "h2_prefix": "",
+      "blockquote_prefix": "",
       "blockquote_suffix": "",
       "hr_text": ""
     },

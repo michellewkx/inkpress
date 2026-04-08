@@ -335,7 +335,7 @@ body:
 decorations:
   h2_prefix: "◈ "
   ul_prefix: "○ "
-  hr_text: "— ✦ —"
+  hr_text: "— · —"
 
 # 脚注样式
 footnote:

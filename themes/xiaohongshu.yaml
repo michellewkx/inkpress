@@ -104,7 +104,7 @@ list:
     font-size: 15px;
     letter-spacing: 0.05em;
 
-  ul_prefix: "💕 "
+  ul_prefix: ""
   ol_prefix: "{n}. "
 
   nested_container_style: |
@@ -316,8 +316,8 @@ dialogue:
 
 # 装饰配置
 decorations:
-  h2_prefix: "✨ "
-  blockquote_prefix: "💡 "
+  h2_prefix: ""
+  blockquote_prefix: ""
   blockquote_suffix: ""
   hr_text: ""
 
