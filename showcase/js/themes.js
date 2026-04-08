@@ -709,7 +709,7 @@ const THEMES = {
     "container": {
       "max_width": "677px",
       "padding": "32px 24px",
-      "background": "#faf6f0",
+      "background": "#faf9f6",
       "border_radius": "0",
       "box_shadow": "none"
     },
@@ -751,8 +751,8 @@ const THEMES = {
       "style": "font-size: 88%;\ncolor: #b5342b;\nbackground: rgba(181, 52, 43, 0.06);\npadding: 2px 6px;\nborder-radius: 3px;\nfont-family: 'SFMono-Regular', Consolas, Menlo, monospace;\n"
     },
     "blockquote": {
-      "style": "margin: 1.8em 0;\npadding: 16px 20px;\nbackground: rgba(207, 68, 54, 0.06);\ncolor: #cf4436;\nborder-radius: 8px;\nborder: none;\n",
-      "p_inner_style": "margin: 0;\ncolor: #cf4436;\nline-height: 1.9;\nfont-style: normal;\nfont-size: 15px;\nfont-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', -apple-system, sans-serif;\ntext-align: center;\n"
+      "style": "margin: 1.8em 0;\npadding: 1em 1.2em 1em 1.5em;\nborder-left: 4px solid #b5342b;\nbackground: rgba(181, 52, 43, 0.05);\ncolor: #b5342b;\nborder-radius: 0;\n",
+      "p_inner_style": "margin: 0;\ncolor: #b5342b;\nline-height: 1.9;\nfont-style: normal;\nfont-size: 15px;\nfont-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;\nletter-spacing: 0.03em;\n"
     },
     "link": {
       "style": "color: #b5342b;\ntext-decoration: none;\nborder-bottom: 1px solid rgba(181, 52, 43, 0.3);\n"
@@ -782,7 +782,7 @@ const THEMES = {
       "style": "text-decoration: line-through;\ncolor: #bbb;\n"
     },
     "body": {
-      "background": "#f4f1ec",
+      "background": "#f5f4f1",
       "padding": "20px"
     },
     "decorations": {
